@@ -1,0 +1,21 @@
+{
+  "name": "optinov-agence",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site internet officiel OPTINOV Agence & landing page PROS.CARDS — CDC v1.1",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "next": "^16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
+  },
+  "devDependencies": {
+    "vercel": "^55.0.0"
+  }
+}
