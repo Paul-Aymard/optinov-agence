@@ -49,7 +49,16 @@
 
 /* ---------- 2. Reset ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) + 16px); }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  /* `clip` plutôt que `hidden` : `hidden` sur <body> seul laissait le panneau
+     de menu mobile (position: fixed, translaté hors écran) creer un defilement
+     horizontal fantome. `clip` coupe sans creer de conteneur de defilement,
+     et s'applique aussi a <html> — sans quoi iOS Safari scrolle quand meme. */
+  overflow-x: clip;
+}
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -58,7 +67,7 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 img, svg, video { max-width: 100%; height: auto; display: block; }
 h1, h2, h3, h4 { font-family: var(--font-title); line-height: 1.18; color: var(--navy); margin: 0 0 .6em; font-weight: 700; letter-spacing: -.01em; }
@@ -126,7 +135,7 @@ button { font: inherit; }
 .section--navy .btn--ghost:hover { background: #fff; color: var(--navy); border-color: #fff; }
 .btn--wa { background: #25D366; color: #06301a; }
 .btn--wa:hover { background: #1eb457; color: #06301a; }
-.btn--sm { min-height: 40px; padding: .5rem 1rem; font-size: .88rem; }
+.btn--sm { min-height: 44px; padding: .5rem 1rem; font-size: .88rem; } /* UX-008 */
 .btn--block { width: 100%; }
 .link-arrow { font-weight: 600; text-decoration: none; color: var(--or-600); display: inline-flex; gap: .4rem; align-items: center; }
 .link-arrow::after { content: "→"; transition: transform var(--t-fast); }
@@ -147,7 +156,12 @@ button { font: inherit; }
 
 .nav { margin-left: auto; }
 .nav > ul { display: flex; align-items: center; gap: .25rem; list-style: none; margin: 0; padding: 0; }
-.nav a { display: block; padding: .7rem .8rem; font-size: .93rem; font-weight: 500; color: var(--navy); text-decoration: none; border-radius: var(--r); }
+/* UX-008 : cible tactile >= 44px de haut */
+.nav a {
+  display: flex; align-items: center; min-height: 44px;
+  padding: .5rem .8rem; font-size: .93rem; font-weight: 500;
+  color: var(--navy); text-decoration: none; border-radius: var(--r);
+}
 .nav a:hover, .nav a[aria-current="page"] { background: var(--bg-alt); color: var(--or-600); }
 .nav a[aria-current="page"] { font-weight: 600; }
 
@@ -155,7 +169,8 @@ button { font: inherit; }
 .has-sub { position: relative; }
 .has-sub > button {
   display: inline-flex; align-items: center; gap: .35rem; background: none; border: 0; cursor: pointer;
-  padding: .7rem .8rem; font-size: .93rem; font-weight: 500; color: var(--navy); border-radius: var(--r);
+  min-height: 44px; /* UX-008 */
+  padding: .5rem .8rem; font-size: .93rem; font-weight: 500; color: var(--navy); border-radius: var(--r);
 }
 .has-sub > button:hover { background: var(--bg-alt); color: var(--or-600); }
 .has-sub > button::after { content: ""; width: 6px; height: 6px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: rotate(45deg) translateY(-2px); transition: transform var(--t-fast); }
@@ -167,7 +182,7 @@ button { font: inherit; }
   opacity: 0; visibility: hidden; transition: opacity var(--t), transform var(--t), visibility var(--t);
 }
 .has-sub[data-open="true"] .submenu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(0); }
-.submenu a { padding: .65rem .8rem; font-size: .9rem; }
+.submenu a { min-height: 44px; padding: .5rem .8rem; font-size: .9rem; }
 
 .header .btn { margin-left: .6rem; }
 .burger {
@@ -206,9 +221,14 @@ body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px);
 
 /* ---------- 6. Fil d'Ariane — EX-004 ---------- */
 .breadcrumb { background: var(--bg-alt); border-bottom: 1px solid var(--border); font-size: .85rem; }
-.breadcrumb ol { display: flex; flex-wrap: wrap; gap: .5rem; list-style: none; margin: 0; padding: .9rem 0; }
+.breadcrumb ol { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; list-style: none; margin: 0; padding: .3rem 0; }
+.breadcrumb li { display: flex; align-items: center; }
 .breadcrumb li + li::before { content: "/"; margin-right: .5rem; color: var(--text-muted); }
-.breadcrumb a { color: var(--text-muted); text-decoration: none; }
+/* UX-008 : les liens du fil d'Ariane sont aussi des cibles tactiles */
+.breadcrumb a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: var(--text-muted); text-decoration: none;
+}
 .breadcrumb a:hover { color: var(--or-600); }
 .breadcrumb [aria-current] { color: var(--navy); font-weight: 600; }
 
@@ -316,14 +336,14 @@ body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px);
 /* ---------- 11. Portfolio / blog ---------- */
 .thumb {
   aspect-ratio: 4 / 3; border-radius: var(--r); background: linear-gradient(135deg, var(--navy) 0%, var(--navy-300) 100%);
-  display: grid; place-items: center; color: rgba(255,255,255,.4); font-size: .72rem;
+  display: grid; place-items: center; color: rgba(255,255,255,.4); font-size: .75rem;
   letter-spacing: .14em; text-transform: uppercase; margin: -1px -1px 1.15rem; text-align: center; padding: .5rem;
 }
 .card--project { padding: 0; overflow: hidden; }
 .card--project .thumb { border-radius: var(--r-lg) var(--r-lg) 0 0; margin: 0 0 1.15rem; }
 .card--project .card__body { padding: 0 1.6rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
 .tag {
-  display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+  display: inline-block; font-size: .75rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
   color: var(--or-600); background: var(--or-100); padding: .28rem .6rem; border-radius: 100px; margin-bottom: .6rem;
 }
 .meta { font-size: .82rem; color: var(--text-muted); display: flex; gap: .6rem; flex-wrap: wrap; align-items: center; }
@@ -390,8 +410,17 @@ body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px);
 .field[data-state="success"] input, .field[data-state="success"] select, .field[data-state="success"] textarea { border-color: var(--success); }
 .field .error-msg { font-size: .8rem; color: var(--error); min-height: 0; }
 .field[data-state="error"] .error-msg { min-height: 1.2em; }
-.checkbox { display: flex; gap: .7rem; align-items: flex-start; font-size: .85rem; color: var(--text-muted); }
-.checkbox input { min-height: 0; width: 20px; height: 20px; margin-top: 3px; flex: none; accent-color: var(--or); }
+/* UX-008 : la case fait 20px visuellement, mais sa zone tactile atteint 44px
+   grace au padding du <label>, qui est cliquable et englobe la case. */
+.checkbox {
+  display: flex; gap: .7rem; align-items: flex-start;
+  font-size: .85rem; color: var(--text-muted);
+  min-height: 44px; padding-block: .5rem; cursor: pointer;
+}
+.checkbox input {
+  min-height: 0; width: 22px; height: 22px; margin-top: 1px;
+  flex: none; accent-color: var(--or); cursor: pointer;
+}
 .honeypot { position: absolute !important; left: -9999px; }
 .form-note { font-size: .8rem; color: var(--text-muted); }
 .form-alert { padding: 1rem 1.15rem; border-radius: var(--r); font-size: .92rem; display: none; }
@@ -422,7 +451,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 @media (max-width: 900px) { .price-card--featured { transform: none; } }
 .price-card .badge {
   position: absolute; top: 1.1rem; right: 1.1rem; background: var(--or); color: #fff;
-  font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+  font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
   padding: .3rem .6rem; border-radius: 100px;
 }
 .price { font-family: var(--font-title); font-size: 2.4rem; color: var(--navy); line-height: 1; margin: .6rem 0 .2rem; }
@@ -452,11 +481,11 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #1B2A4A, #2b3d64); border: 1px solid rgba(184,134,11,.4); border-radius: 12px; padding: 1rem; color: #fff; }
 .phone__card .av { width: 44px; height: 44px; border-radius: 50%; background: var(--or); color: var(--navy); display: grid; place-items: center; font-weight: 700; margin-bottom: .6rem; }
 .phone__card b { display: block; font-size: .95rem; }
-.phone__card em { font-style: normal; font-size: .74rem; color: #9fabc2; }
+.phone__card em { font-style: normal; font-size: .75rem; color: #9fabc2; }
 .phone__rows { display: grid; gap: .55rem; }
-.phone__row { background: rgba(255,255,255,.05); border-radius: 8px; height: 34px; display: flex; align-items: center; padding: 0 .7rem; font-size: .72rem; color: #9fabc2; }
+.phone__row { background: rgba(255,255,255,.05); border-radius: 8px; height: 34px; display: flex; align-items: center; padding: 0 .7rem; font-size: .75rem; color: #9fabc2; }
 .phone__nfc {
-  margin-top: auto; text-align: center; font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+  margin-top: auto; text-align: center; font-size: .75rem; letter-spacing: .1em; text-transform: uppercase;
   color: var(--or); padding-bottom: .4rem;
 }
 .phone__nfc span { display: inline-block; animation: pulse 2.4s ease-in-out infinite; }
@@ -487,16 +516,22 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .footer__grid { display: grid; gap: 2.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
 .footer__grid > div:first-child { grid-column: span 1; }
 @media (min-width: 900px) { .footer__grid { grid-template-columns: 1.5fr 1fr 1fr 1.5fr; } }
-.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .6rem; }
-.footer a { color: #9fabc2; text-decoration: none; font-size: .9rem; }
+.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .2rem; }
+/* UX-008 : les liens du footer sont aussi des cibles tactiles (>= 44px) */
+.footer a {
+  display: inline-flex; align-items: center; min-height: 44px;
+  color: #9fabc2; text-decoration: none; font-size: .9rem;
+}
 .footer a:hover { color: var(--or); }
+.footer li { display: flex; }
 .footer .logo { color: #fff; }
 .footer .logo__mark { background: #fff; color: var(--navy); }
 .footer p { font-size: .9rem; }
 .socials { display: flex; gap: .6rem; margin-top: 1rem; }
 .socials a {
-  width: 40px; height: 40px; border-radius: 8px; border: 1px solid rgba(255,255,255,.15);
+  width: 44px; height: 44px; border-radius: 8px; border: 1px solid rgba(255,255,255,.15); /* UX-008 */
   display: grid; place-items: center; font-size: .78rem; font-weight: 600;
+  min-height: 44px;
 }
 .socials a:hover { background: var(--or); color: var(--navy); border-color: var(--or); }
 .footer__bottom {
@@ -504,8 +539,13 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   display: flex; flex-wrap: wrap; gap: .6rem 1.5rem; align-items: center; justify-content: space-between;
   font-size: .82rem;
 }
-.footer__bottom ul { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-.footer__bottom button { background: none; border: 0; color: #9fabc2; cursor: pointer; font-size: .82rem; padding: 0; text-decoration: underline; }
+.footer__bottom ul { display: flex; flex-wrap: wrap; gap: 0 1.2rem; }
+.footer__bottom a { font-size: .82rem; }
+.footer__bottom button {
+  display: inline-flex; align-items: center; min-height: 44px; /* UX-008 */
+  background: none; border: 0; color: #9fabc2; cursor: pointer;
+  font-size: .82rem; padding: 0; text-decoration: underline;
+}
 .footer__bottom button:hover { color: var(--or); }
 
 /* ---------- 21. Bandeau cookies — EX-045 / EX-046 ---------- */
