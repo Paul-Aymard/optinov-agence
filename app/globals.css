@@ -547,6 +547,14 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   font-size: .82rem; padding: 0; text-decoration: underline;
 }
 .footer__bottom button:hover { color: var(--or); }
+.footer__vision {
+  margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,.12);
+  display: flex; flex-wrap: wrap; gap: .35rem 1rem; align-items: center;
+  font-size: .82rem; letter-spacing: .04em; color: #9fabc2; text-transform: uppercase;
+}
+.footer__vision b { color: var(--or); font-weight: 700; }
+.footer__vision i { margin-left: 1rem; color: rgba(255,255,255,.25); font-style: normal; }
+.footer__vision span:last-child i { display: none; }
 
 /* ---------- 21. Bandeau cookies — EX-045 / EX-046 ---------- */
 .cookie {
@@ -594,6 +602,110 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   [data-reveal] { opacity: 1; transform: none; }
+}
+
+/* ---------- 23b. Méthode V.I.S.I.O.N. (refonte accueil) ---------- */
+
+/* Sélecteur d'objectif de croissance */
+.objectifs { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+.objectif {
+  display: flex; align-items: center; gap: .9rem; min-height: 44px;
+  padding: 1.1rem 1.3rem; background: #fff; border: 1px solid var(--border);
+  border-radius: var(--r-lg); box-shadow: var(--shadow-sm);
+  font-weight: 600; color: var(--navy); text-decoration: none; font-size: .98rem;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+.objectif:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--or); color: var(--navy); }
+.objectif .emoji { font-size: 1.5rem; line-height: 1; flex: none; }
+.objectif::after { content: "→"; margin-left: auto; color: var(--or-600); transition: transform var(--t-fast); }
+.objectif:hover::after { transform: translateX(4px); }
+
+/* Frise interactive (desktop / tablette) */
+.vision__desktop { display: none; }
+@media (min-width: 760px) { .vision__desktop { display: block; } }
+
+.vision__frise {
+  display: grid; grid-template-columns: repeat(6, 1fr); gap: .5rem;
+  list-style: none; margin: 0 0 2.5rem; padding: 0; position: relative;
+}
+.vision__frise::before {
+  content: ""; position: absolute; top: 33px; left: 8%; right: 8%; height: 2px;
+  background: rgba(255,255,255,.15); z-index: 0;
+}
+.section:not(.section--navy) .vision__frise::before { background: var(--border); }
+.vision__node {
+  position: relative; z-index: 1; width: 100%;
+  display: flex; flex-direction: column; align-items: center; gap: .7rem;
+  background: none; border: 0; cursor: pointer; padding: .3rem;
+}
+.vision__lettre {
+  width: 66px; height: 66px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--font-title); font-size: 1.7rem; font-weight: 700;
+  background: var(--navy); color: var(--or); border: 2px solid transparent;
+  transition: transform var(--t), background var(--t), color var(--t), border-color var(--t), box-shadow var(--t);
+}
+.section--navy .vision__lettre { background: #24304a; color: var(--or); }
+.vision__node:hover .vision__lettre,
+.vision__node[data-active="true"] .vision__lettre {
+  background: var(--or); color: var(--navy); transform: scale(1.1); box-shadow: var(--shadow-md);
+}
+.vision__nom { font-size: .82rem; font-weight: 600; color: inherit; opacity: .8; text-align: center; }
+.vision__node[data-active="true"] .vision__nom { opacity: 1; color: var(--or); }
+.section:not(.section--navy) .vision__node[data-active="true"] .vision__nom { color: var(--or-600); }
+
+.vision__detail {
+  display: flex; gap: 1.5rem; align-items: flex-start;
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2.25rem);
+}
+.section:not(.section--navy) .vision__detail { background: var(--bg-alt); border-color: var(--border); }
+.vision__detail-num {
+  flex: none; width: 72px; height: 72px; border-radius: 16px; display: grid; place-items: center;
+  font-family: var(--font-title); font-size: 2.2rem; font-weight: 700;
+  background: var(--or); color: var(--navy);
+}
+.vision__detail h3 { margin: 0 0 .5rem; }
+.vision__detail h3 span { color: var(--or); font-family: var(--font-body); font-size: 1rem; font-weight: 500; }
+.section:not(.section--navy) .vision__detail h3 span { color: var(--or-600); }
+.vision__resultat { margin: .8rem 0 0; font-size: .92rem; }
+.vision__resultat strong { color: var(--or); }
+.section:not(.section--navy) .vision__resultat strong { color: var(--or-600); }
+
+/* Cartes verticales (mobile) */
+.vision__mobile { display: grid; gap: 1rem; list-style: none; margin: 0; padding: 0; }
+@media (min-width: 760px) { .vision__mobile { display: none; } }
+.vision__carte {
+  background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+  border-radius: var(--r-lg); padding: 1.4rem;
+}
+.section:not(.section--navy) .vision__carte { background: #fff; border-color: var(--border); box-shadow: var(--shadow-sm); }
+.vision__carte-tete { display: flex; align-items: center; gap: .9rem; margin-bottom: .6rem; }
+.vision__carte-tete h3 { margin: 0; font-size: 1.15rem; }
+.vision__carte .vision__lettre { width: 48px; height: 48px; font-size: 1.3rem; }
+.vision__accroche { color: var(--or); font-weight: 600; margin-bottom: .4rem; }
+.section:not(.section--navy) .vision__accroche { color: var(--or-600); }
+
+/* Piliers (résultats de la méthode) */
+.pilier ul { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.pilier ul li {
+  font-size: .78rem; background: var(--bg-alt); color: var(--navy-300);
+  padding: .28rem .6rem; border-radius: 100px;
+}
+.pilier .emoji { font-size: 1.8rem; line-height: 1; display: block; margin-bottom: .8rem; }
+
+/* Solutions reliées aux étapes V.I.S.I.O.N. */
+.etape-tags { display: flex; gap: .3rem; margin-bottom: .8rem; }
+.etape-tags span {
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  font-family: var(--font-title); font-size: .8rem; font-weight: 700;
+  background: var(--or-100); color: var(--or-600);
+}
+
+/* Frise réalisations = méthode en action (rappel léger) */
+.vision-mini { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.vision-mini span {
+  font-size: .78rem; font-weight: 600; color: var(--navy-300);
+  border: 1px solid var(--border); border-radius: 100px; padding: .3rem .7rem;
 }
 
 /* ---------- 24. Utilitaires ---------- */

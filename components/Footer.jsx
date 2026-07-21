@@ -86,6 +86,16 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Signature de marque : les six étapes de V.I.S.I.O.N. */}
+        <p className="footer__vision" aria-label="Méthode V.I.S.I.O.N.">
+          {["Voir", "Imaginer", "Structurer", "Implémenter", "Optimiser", "Nourrir"].map((mot, i) => (
+            <span key={mot}>
+              <b>{mot[0]}</b>{mot.slice(1)}
+              {i < 5 && <i aria-hidden="true">·</i>}
+            </span>
+          ))}
+        </p>
+
         {/* Ligne inférieure — EX-003 */}
         <div className="footer__bottom">
           <p style={{ margin: 0 }}>

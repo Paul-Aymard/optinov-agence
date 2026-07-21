@@ -11,3 +11,6 @@ next-env.d.ts
 
 .vercel
 captures/
+cap-accueil.mjs
+verif-prod.mjs
+deploy.log
