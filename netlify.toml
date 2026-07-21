@@ -1,0 +1,18 @@
+[build]
+  command = "next build"
+  publish = ".next"
+
+# Runtime officiel Next.js pour Netlify : SSG + App Router + generateMetadata.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# En-têtes de sécurité (SEC-002) — répliqués ici pour couvrir toutes les réponses,
+# y compris les fichiers statiques servis directement par Netlify.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    X-Frame-Options = "SAMEORIGIN"
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
