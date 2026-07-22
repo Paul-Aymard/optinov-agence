@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { site, nav, lienTel, lienEmail, socialsRenseignes, estRenseigne } from "@/content/site";
+import { site, nav, lienTel, lienTelFixe, lienEmail, socialsRenseignes, estRenseigne } from "@/content/site";
 import { openCookiePrefs } from "./CookieBanner";
 
 /** Footer 4 colonnes — EX-003, M */
@@ -29,6 +29,11 @@ export default function Footer() {
               {estRenseigne(site.telephone) && (
                 <li>
                   <a href={lienTel()}>{site.telephone}</a>
+                </li>
+              )}
+              {estRenseigne(site.telephoneFixe) && (
+                <li>
+                  <a href={lienTelFixe()}>{site.telephoneFixe}</a>
                 </li>
               )}
               {estRenseigne(site.email) && (

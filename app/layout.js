@@ -2,7 +2,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import CookieBanner from "@/components/CookieBanner";
 import { JsonLd } from "@/components/Ui";
-import { site } from "@/content/site";
+import { site, socialsRenseignes } from "@/content/site";
 
 /**
  * UX-002, M : titres serif éditoriale (Playfair Display), corps sans-serif
@@ -62,7 +62,8 @@ export default function RootLayout({ children }) {
     name: site.nom,
     description: site.baseline,
     url: site.url,
-    telephone: site.telephone,
+    // Deux lignes : mobile (= WhatsApp) et fixe. Schema.org accepte un tableau.
+    telephone: [site.telephone, site.telephoneFixe],
     email: site.email,
     address: {
       "@type": "PostalAddress",
@@ -71,7 +72,10 @@ export default function RootLayout({ children }) {
       addressCountry: "CI",
     },
     areaServed: "Côte d'Ivoire",
-    sameAs: site.socials.map((s) => s.href),
+    // On n'expose que les réseaux réellement renseignés (pas de « [À compléter] »).
+    ...(socialsRenseignes().length > 0 && {
+      sameAs: socialsRenseignes().map((s) => s.href),
+    }),
   };
 
   return (

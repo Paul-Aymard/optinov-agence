@@ -13,11 +13,12 @@ export const site = {
   url: "https://optinov-agence.com",
   ville: "Abidjan",
   pays: "Côte d'Ivoire",
-  adresse: TODO,
-  telephone: TODO,
-  email: TODO,
+  adresse: "Cocody Angré 7ᵉ Tranche, Abidjan — Côte d'Ivoire",
+  telephone: "+225 01 73 73 24 21", // mobile (= WhatsApp)
+  telephoneFixe: "+225 27 22 25 22 74", // ligne fixe
+  email: "optinovagence@gmail.com",
   // EX-033 : lien wa.me pré-rempli, message contextuel injecté par page
-  whatsapp: TODO, // format international sans "+", ex. 2250700000000
+  whatsapp: "2250173732421", // format international sans "+", ex. 2250700000000
   horaires: TODO,
   // §6.9 : « délai de réponse annoncé ([À compléter], proposition : sous 24 h ouvrées) ».
   // La proposition du CDC est reprise telle quelle, à valider au kick-off.
@@ -61,6 +62,9 @@ export const lienRdv = () => (estRenseigne(site.rdvUrl) ? site.rdvUrl : REPLI);
 
 export const lienTel = () =>
   estRenseigne(site.telephone) ? `tel:${site.telephone.replace(/[^\d+]/g, "")}` : REPLI;
+
+export const lienTelFixe = () =>
+  estRenseigne(site.telephoneFixe) ? `tel:${site.telephoneFixe.replace(/[^\d+]/g, "")}` : REPLI;
 
 export const lienEmail = () => (estRenseigne(site.email) ? `mailto:${site.email}` : REPLI);
 

@@ -1,4 +1,4 @@
-import { site, estRenseigne, lienRdv, lienTel, lienEmail, lienWhatsApp, socialsRenseignes } from "@/content/site";
+import { site, estRenseigne, lienRdv, lienTel, lienTelFixe, lienEmail, lienWhatsApp, socialsRenseignes } from "@/content/site";
 import { Breadcrumb, Reveal, WhatsAppFloat } from "@/components/Ui";
 import { FormulaireContact } from "@/components/Forms";
 
@@ -51,9 +51,16 @@ export default function Contact() {
             <div className="stack" style={{ marginBottom: "2rem" }}>
               {estRenseigne(site.telephone) && (
                 <p>
-                  <strong>Téléphone</strong>
+                  <strong>Téléphone (mobile)</strong>
                   <br />
                   <a href={lienTel()} data-ga="clic_telephone">{site.telephone}</a>
+                </p>
+              )}
+              {estRenseigne(site.telephoneFixe) && (
+                <p>
+                  <strong>Téléphone (fixe)</strong>
+                  <br />
+                  <a href={lienTelFixe()} data-ga="clic_telephone_fixe">{site.telephoneFixe}</a>
                 </p>
               )}
               {estRenseigne(site.email) && (

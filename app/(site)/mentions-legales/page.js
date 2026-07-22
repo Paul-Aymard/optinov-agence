@@ -21,7 +21,7 @@ const rubriques = [
   { titre: "Numéro RCCM", contenu: site.rccm },
   { titre: "Siège social", contenu: `${site.adresse}, ${site.ville}, ${site.pays}` },
   { titre: "Directeur de la publication", contenu: site.directeurPublication },
-  { titre: "Contact", contenu: `Téléphone : ${site.telephone} — E-mail : ${site.email}` },
+  { titre: "Contact", contenu: `Téléphone : ${site.telephone} (mobile) / ${site.telephoneFixe} (fixe) — E-mail : ${site.email}` },
   { titre: "Hébergeur", contenu: `${site.hebergeur}. Raison sociale, adresse et téléphone de l'hébergeur : ${TODO}.` },
   {
     titre: "Propriété intellectuelle",
