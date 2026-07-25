@@ -33,8 +33,10 @@ export default function Accueil() {
   return (
     <>
       {/* ---------- 1. Hero ---------- */}
-      <section className="hero hero--home">
-        <div className="container hero__grid">
+      {/* Pas de photo d'ensemble de l'entreprise (décision direction) : hero
+          pleine largeur, sans visuel à droite. */}
+      <section className="hero hero--home hero--sansvisuel">
+        <div className="container">
           <Reveal>
             <span className="eyebrow">OPTINOV · Communication &amp; croissance</span>
             <h1>Votre croissance commence par une vision claire.</h1>
@@ -46,11 +48,6 @@ export default function Accueil() {
             <div className="btn-group" style={{ marginTop: "1.8rem" }}>
               <a className="btn btn--gold" href="#methode">Découvrir la méthode V.I.S.I.O.N.</a>
               <a className="btn btn--navy" href="#contact">{CTA_PROJET}</a>
-            </div>
-          </Reveal>
-          <Reveal>
-            <div className="hero-visual">
-              <p className="ph">Équipe OPTINOV en réunion stratégique</p>
             </div>
           </Reveal>
         </div>

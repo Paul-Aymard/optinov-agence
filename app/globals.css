@@ -251,6 +251,9 @@ body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px);
 @media (min-width: 900px) { .hero__grid { grid-template-columns: 1.05fr .95fr; } }
 .hero h1 { margin-bottom: .5em; }
 .hero .lead { max-width: 34rem; }
+/* Hero d'accueil sans visuel à droite : on borne le titre pour garder un bel équilibre. */
+.hero--sansvisuel h1 { max-width: 20ch; }
+.hero--sansvisuel .lead { max-width: 44rem; }
 .hero--page { background: var(--navy); color: #c9d1e0; padding-block: clamp(2.75rem, 5vw, 4.5rem); }
 .hero--page h1 { color: #fff; }
 .hero--page .lead { color: #b9c2d4; max-width: 42rem; }
