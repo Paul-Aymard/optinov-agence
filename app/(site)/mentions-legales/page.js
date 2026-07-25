@@ -10,13 +10,13 @@ import { Breadcrumb, Reveal } from "@/components/Ui";
  */
 export const metadata = {
   title: "Mentions légales",
-  description: "Mentions légales du site OPTINOV Agence : éditeur, hébergeur, propriété intellectuelle.",
+  description: "Mentions légales du site OPTINOV : éditeur, hébergeur, propriété intellectuelle.",
   alternates: { canonical: "/mentions-legales" },
   robots: { index: true, follow: false },
 };
 
 const rubriques = [
-  { titre: "Éditeur du site", contenu: `Raison sociale : ${TODO}. Le site ${site.url} est édité par OPTINOV Agence, pôle communication du groupe OPTINOV.` },
+  { titre: "Éditeur du site", contenu: `Raison sociale : ${TODO}. Le site ${site.url} est édité par OPTINOV, pôle communication du groupe OPTINOV.` },
   { titre: "Forme juridique et capital social", contenu: TODO },
   { titre: "Numéro RCCM", contenu: site.rccm },
   { titre: "Siège social", contenu: `${site.adresse}, ${site.ville}, ${site.pays}` },
@@ -26,7 +26,7 @@ const rubriques = [
   {
     titre: "Propriété intellectuelle",
     contenu:
-      "L'ensemble des contenus du site (textes, images, vidéos, logos, chartes graphiques, code source) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou représentation, totale ou partielle, sans autorisation écrite préalable, est interdite. La marque PROS.CARDS et la plateforme associée sont la propriété d'OPTINOV Agence.",
+      "L'ensemble des contenus du site (textes, images, vidéos, logos, chartes graphiques, code source) est protégé par le droit de la propriété intellectuelle. Toute reproduction ou représentation, totale ou partielle, sans autorisation écrite préalable, est interdite. La marque PROS.CARDS et la plateforme associée sont la propriété d'OPTINOV.",
   },
   {
     titre: "Crédits",

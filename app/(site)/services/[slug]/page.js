@@ -23,7 +23,7 @@ export async function generateMetadata({ params }) {
     title: `${s.titre} à Abidjan`,
     description: s.sousTitre.slice(0, 155),
     alternates: { canonical: `/services/${s.slug}` },
-    openGraph: { title: `${s.titre} — OPTINOV Agence`, description: s.sousTitre },
+    openGraph: { title: `${s.titre} — OPTINOV`, description: s.sousTitre },
   };
 }
 

@@ -6,7 +6,7 @@ export const categories = [
   { id: "marketing-digital", label: "Marketing digital", service: "communication-digitale" },
   { id: "ia", label: "Intelligence artificielle & automatisation", service: "automatisation-ia" },
   { id: "carte-digitale", label: "Carte de visite digitale & networking", service: null },
-  { id: "agence", label: "Vie de l'agence / actualités", service: null },
+  { id: "agence", label: "Coulisses & actualités", service: null },
 ];
 
 /**

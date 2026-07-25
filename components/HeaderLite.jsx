@@ -22,7 +22,7 @@ export default function HeaderLite() {
   return (
     <header className="header header--lite">
       <div className="container header__inner">
-        <Link href="/" className="logo" aria-label="OPTINOV Agence — retour au site">
+        <Link href="/" className="logo" aria-label="OPTINOV — retour au site">
           <span className="logo__mark" aria-hidden="true">OP</span>
           <span>
             OPTINOV <span style={{ color: "var(--or-600)" }}>×</span> PROS.CARDS

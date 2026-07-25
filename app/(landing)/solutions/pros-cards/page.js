@@ -59,7 +59,7 @@ export default function LandingProsCards() {
     "@type": "Product",
     name: "PROS.CARDS",
     description: "Carte de visite digitale et interactive en libre-service.",
-    brand: { "@type": "Brand", name: "OPTINOV Agence" },
+    brand: { "@type": "Brand", name: "OPTINOV" },
     offers: offres.map((o) => ({
       "@type": "Offer",
       name: o.nom,
@@ -75,7 +75,7 @@ export default function LandingProsCards() {
       <section className="pc-hero">
         <div className="container hero__grid">
           <Reveal>
-            <span className="eyebrow">PROS.CARDS par OPTINOV Agence</span>
+            <span className="eyebrow">PROS.CARDS par OPTINOV</span>
             <h1>Une seule carte.<br />Toutes vos coordonnées.<br />Pour toujours.</h1>
             <p className="lead">
               La carte de visite digitale que vous créez vous-même, en quelques minutes,
@@ -439,7 +439,7 @@ export default function LandingProsCards() {
             <span className="eyebrow">Contact</span>
             <h2>Une plateforme, une équipe, une ville</h2>
             <p className="lead">
-              PROS.CARDS est développée, exploitée et supportée par OPTINOV Agence, à Abidjan.
+              PROS.CARDS est développée, exploitée et supportée par OPTINOV, à Abidjan.
               Abonnements, licences, paiements et support client : tout est géré ici.
             </p>
             {(estRenseigne(site.telephone) || estRenseigne(site.email)) && (

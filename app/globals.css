@@ -1,25 +1,35 @@
 /* ==========================================================================
-   OPTINOV Agence — Design System
+   OPTINOV — Design System
    Réf. CDC v1.1 §10 (Charte UX/UI) — navy/or, mobile-first, WCAG 2.1 AA
    ========================================================================== */
 
 /* ---------- 1. Tokens ---------- */
 :root {
-  /* Palette — CDC 10.1 */
-  --navy: #1B2A4A;
-  --navy-700: #16223c;
-  --navy-300: #46587c;
-  --or: #B8860B;
-  --or-600: #9c7209;
-  --or-100: #f6efe0;
+  /* Palette de marque OPTINOV — charte v2 (fichier direction).
+     Socle présent sur tout le site : Bleu Nuit + Orange + Blanc + Anthracite. */
+  --navy: #0F1E3D;      /* Bleu Nuit OPTINOV */
+  --navy-700: #0a1730;
+  --navy-300: #3b4d70;
+  --or: #FC6303;        /* Orange OPTINOV — boutons, accents, éléments interactifs */
+  --or-600: #C24D03;    /* Orange assombri pour texte/liens (contraste AA sur blanc) */
+  --or-100: #FFE7D3;
   --bg: #FAFBFC;
   --bg-alt: #F2F4F8;
-  --text: #22262E;
+  --text: #222222;      /* Anthracite */
   --text-muted: #5b616e;
   --border: #e2e6ee;
   --white: #ffffff;
   --success: #2E7D4F;
   --error: #B3402E;
+
+  /* Couleur d'accent par service (règle 80/20 : 20 % de la page).
+     Appliquée via --accent sur la page service ; retombe sur l'orange sinon. */
+  --accent: var(--or);
+  --accent-visuelle: #7C3AED;   /* Communication visuelle — violet */
+  --accent-digitale: #2563EB;   /* Communication digitale — bleu */
+  --accent-marketing: #FC6303;  /* Marketing & stratégie — orange institutionnel */
+  --accent-performance: #16A34A;/* Performance & automatisation — vert */
+  --accent-photo: #111111;      /* Photo & vidéo — noir dominant */
 
   /* Typographie — CDC 10.2. Les variables --font-playfair / --font-inter sont
      injectées par next/font : woff2 auto-hébergés, sous-ensemblés, swap. */
@@ -34,9 +44,9 @@
   /* Espace / rayon / ombre — angles 8px, ombres douces */
   --r: 8px;
   --r-lg: 16px;
-  --shadow-sm: 0 1px 2px rgba(27, 42, 74, .06), 0 2px 8px rgba(27, 42, 74, .05);
-  --shadow-md: 0 8px 24px rgba(27, 42, 74, .10);
-  --shadow-lg: 0 18px 48px rgba(27, 42, 74, .16);
+  --shadow-sm: 0 1px 2px rgba(15, 30, 61, .06), 0 2px 8px rgba(15, 30, 61, .05);
+  --shadow-md: 0 8px 24px rgba(15, 30, 61, .10);
+  --shadow-lg: 0 18px 48px rgba(15, 30, 61, .16);
 
   --header-h: 76px;
   --maxw: 1200px;
@@ -107,7 +117,7 @@ button { font: inherit; }
   display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .14em;
   text-transform: uppercase; color: var(--or-600); margin-bottom: .8rem;
 }
-.section--navy .eyebrow { color: #d9b45f; }
+.section--navy .eyebrow { color: #FF9D4D; }
 .lead { font-size: clamp(1.03rem, .98rem + .3vw, 1.2rem); color: var(--text-muted); }
 .section--navy .lead { color: #b9c2d4; }
 
@@ -151,6 +161,8 @@ button { font: inherit; }
 }
 .header__inner { display: flex; align-items: center; gap: 1rem; min-height: var(--header-h); }
 .logo { display: flex; align-items: center; gap: .6rem; font-family: var(--font-title); font-weight: 700; font-size: 1.28rem; color: var(--navy); text-decoration: none; letter-spacing: -.02em; }
+.logo__img { height: 42px; width: auto; max-width: 190px; display: block; }
+@media (max-width: 560px) { .logo__img { height: 36px; } }
 .logo__mark { width: 34px; height: 34px; border-radius: 8px; background: var(--navy); color: var(--or); display: grid; place-items: center; font-size: .95rem; font-weight: 700; }
 .logo small { display: block; font-family: var(--font-body); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--or-600); font-weight: 600; margin-top: -4px; }
 
@@ -478,7 +490,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   display: flex; flex-direction: column; gap: .8rem; position: relative;
 }
 .phone::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 70px; height: 5px; border-radius: 4px; background: #24304a; }
-.phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #1B2A4A, #2b3d64); border: 1px solid rgba(184,134,11,.4); border-radius: 12px; padding: 1rem; color: #fff; }
+.phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #0F1E3D, #24365f); border: 1px solid rgba(252,99,3,.4); border-radius: 12px; padding: 1rem; color: #fff; }
 .phone__card .av { width: 44px; height: 44px; border-radius: 50%; background: var(--or); color: var(--navy); display: grid; place-items: center; font-weight: 700; margin-bottom: .6rem; }
 .phone__card b { display: block; font-size: .95rem; }
 .phone__card em { font-style: normal; font-size: .75rem; color: #9fabc2; }

@@ -4,26 +4,26 @@ import { Breadcrumb, Reveal, CtaBand, WhatsAppFloat } from "@/components/Ui";
 
 /** À propos (G2) — CDC §6.2 */
 export const metadata = {
-  title: "À propos de l'agence",
+  title: "À propos d'OPTINOV",
   description:
     "Qui sommes-nous : le pôle communication du groupe OPTINOV, basé à Abidjan. Notre histoire, notre vision, nos valeurs et l'équipe qui les porte.",
-  alternates: { canonical: "/agence" },
+  alternates: { canonical: "/a-propos" },
 };
 
 export default function Agence() {
   return (
     <>
-      <Breadcrumb items={[{ nom: "À propos", href: "/agence" }]} />
+      <Breadcrumb items={[{ nom: "À propos", href: "/a-propos" }]} />
 
       {/* Hero éditorial */}
       <section className="hero hero--page">
         <div className="container">
           <Reveal>
-            <span className="eyebrow">L&apos;agence</span>
-            <h1>Une agence qui rend des comptes</h1>
+            <span className="eyebrow">Qui nous sommes</span>
+            <h1>Un partenaire qui rend des comptes</h1>
             <p className="lead">
               Nous sommes le pôle communication du groupe OPTINOV. Nous travaillons pour
-              des dirigeants qui attendent d&apos;une agence autre chose que de belles
+              des dirigeants qui attendent d&apos;un partenaire autre chose que de belles
               images : des résultats qu&apos;on peut lire.
             </p>
           </Reveal>
@@ -38,12 +38,12 @@ export default function Agence() {
             <h2>Née d&apos;une frustration</h2>
             <p>
               Nous avons commencé par constater ce que beaucoup de dirigeants ivoiriens nous
-              disaient en privé : les agences promettent, facturent, puis disparaissent. Les
+              disaient en privé : trop de prestataires promettent, facturent, puis disparaissent. Les
               livrables arrivent en retard, les résultats ne se mesurent jamais, et personne
               ne répond quand le téléphone sonne.
             </p>
             <p>
-              OPTINOV Agence s&apos;est construite contre cela. Un interlocuteur unique qui
+              OPTINOV s&apos;est construite contre cela. Un interlocuteur unique qui
               connaît votre dossier. Des délais contractualisés. Des indicateurs définis avant
               de commencer, pas inventés après coup pour justifier la facture.
             </p>
@@ -143,7 +143,7 @@ export default function Agence() {
         </div>
       </section>
 
-      <WhatsAppFloat contexte="une présentation de l'agence" />
+      <WhatsAppFloat contexte="une présentation d'OPTINOV" />
     </>
   );
 }

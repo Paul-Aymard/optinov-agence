@@ -194,14 +194,14 @@ export const faqProsCards = [
   { q: "Tous les téléphones lisent-ils le NFC ?", r: "La quasi-totalité des smartphones récents, iPhone comme Android. Pour les rares appareils sans NFC, le QR code imprimé au dos de la carte prend le relais." },
   { q: "Combien de temps pour créer ma carte ?", r: "Quelques minutes. Le compte est activé automatiquement à la validation du paiement : vous accédez immédiatement à votre tableau de bord." },
   { q: "Puis-je modifier mes informations après coup ?", r: "Autant de fois que vous le souhaitez. Les modifications sont prises en compte instantanément, sans réimpression ni intervention d'OPTINOV." },
-  { q: "Qui crée la carte : vous ou OPTINOV ?", r: "Vous. PROS.CARDS est une plateforme en libre-service : OPTINOV Agence développe, exploite et supporte la plateforme, mais n'intervient pas dans la création de votre carte." },
+  { q: "Qui crée la carte : vous ou OPTINOV ?", r: "Vous. PROS.CARDS est une plateforme en libre-service : OPTINOV développe, exploite et supporte la plateforme, mais n'intervient pas dans la création de votre carte." },
   { q: "Quelles statistiques sont disponibles ?", r: "Le nombre de consultations de votre carte, leur évolution dans le temps, et les contenus les plus consultés. Les statistiques détaillées sont incluses à partir de l'offre Professionnelle." },
   { q: "Comment fonctionne l'offre Entreprise ?", r: "Le responsable crée un compte Entreprise et devient administrateur de son espace. Il crée les comptes de ses collaborateurs, qui personnalisent chacun leur carte, et peut créer, modifier, suspendre ou supprimer les cartes de son équipe." },
   { q: "Que se passe-t-il quand un collaborateur quitte l'entreprise ?", r: "L'administrateur suspend ou supprime sa carte depuis son espace. Le lien cesse immédiatement de fonctionner — contrairement aux cartes papier déjà distribuées." },
   { q: "Quels moyens de paiement acceptez-vous ?", r: "Les moyens de paiement disponibles sont ceux proposés par le tunnel d'inscription de la plateforme." },
   { q: "Puis-je résilier mon abonnement ?", r: "Les conditions de résiliation figurent aux conditions générales de la plateforme PROS.CARDS." },
   { q: "La carte NFC est-elle livrée ?", r: "Oui, à l'adresse indiquée à la souscription, après validation du paiement." },
-  { q: "Mes données sont-elles protégées ?", r: "La plateforme est développée, exploitée et supportée par OPTINOV Agence à Abidjan, dans le respect de la loi ivoirienne n° 2013-450 et du RGPD pour les visiteurs de l'Union européenne." },
+  { q: "Mes données sont-elles protégées ?", r: "La plateforme est développée, exploitée et supportée par OPTINOV à Abidjan, dans le respect de la loi ivoirienne n° 2013-450 et du RGPD pour les visiteurs de l'Union européenne." },
 ];
 
 /**

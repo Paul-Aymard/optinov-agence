@@ -5,7 +5,7 @@ import FaqSearch from "@/components/FaqSearch";
 
 /** FAQ (G8) — CDC §6.8 */
 export const metadata = {
-  title: "FAQ — Agence, tarifs et PROS.CARDS",
+  title: "FAQ — OPTINOV, tarifs et PROS.CARDS",
   description:
     "Méthodes, tarifs, délais, PROS.CARDS, support : les réponses aux questions que l'on nous pose le plus souvent.",
   alternates: { canonical: "/faq" },

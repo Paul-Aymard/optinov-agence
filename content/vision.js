@@ -165,7 +165,7 @@ export const pourquoiOptinov = [
 
 /** §10 — FAQ orientée méthode (affichée sur l'accueil) */
 export const faqAccueil = [
-  { q: "Comment démarre une collaboration avec OPTINOV Agence ?", r: "Chaque projet commence par un échange. Nous prenons le temps de comprendre votre entreprise, vos objectifs et vos défis : c'est l'étape « V — Voir » de notre méthode V.I.S.I.O.N." },
+  { q: "Comment démarre une collaboration avec OPTINOV ?", r: "Chaque projet commence par un échange. Nous prenons le temps de comprendre votre entreprise, vos objectifs et vos défis : c'est l'étape « V — Voir » de notre méthode V.I.S.I.O.N." },
   { q: "Combien de temps dure la phase « Voir » ?", r: "Elle dépend de la complexité de votre contexte, mais reste volontairement courte : quelques échanges et une analyse ciblée suffisent à poser une vision claire avant d'engager la suite." },
   { q: "Que comprend la méthode V.I.S.I.O.N. ?", r: "Six étapes : Voir, Imaginer, Structurer, Implémenter, Optimiser, Nourrir votre croissance. Elle garantit une démarche claire, cohérente et évolutive pour chacun de nos projets." },
   { q: "Proposez-vous uniquement des prestations de communication ?", r: "Non. Nous accompagnons votre développement à travers la communication, le marketing, le digital, la création de contenus, l'automatisation et l'Intelligence Artificielle. Notre approche est globale." },

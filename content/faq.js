@@ -8,7 +8,7 @@ import { TODO } from "./site";
 export const themesFaq = [
   {
     id: "agence",
-    titre: "Agence & méthodes",
+    titre: "OPTINOV & méthode",
     questions: [
       { q: "Quels types de clients accompagnez-vous ?", r: "Des PME, grandes entreprises, institutions, administrations, entrepreneurs, indépendants et associations. Notre point commun n'est pas la taille mais l'exigence : nous travaillons avec des dirigeants qui attendent des résultats mesurables." },
       { q: "Travaillez-vous en dehors d'Abidjan ?", r: "Oui. Nous sommes basés à Abidjan et intervenons sur l'ensemble du territoire ivoirien et en Afrique francophone. Les missions de conseil et de production digitale se conduisent à distance sans perte de qualité." },
@@ -32,7 +32,7 @@ export const themesFaq = [
     id: "pros-cards",
     titre: "PROS.CARDS",
     questions: [
-      { q: "Qu'est-ce que PROS.CARDS ?", r: "Une plateforme de cartes de visite digitales et interactives en libre-service, développée, exploitée et supportée par OPTINOV Agence. Vous choisissez votre offre, créez votre compte, payez en ligne, et votre compte est activé automatiquement." },
+      { q: "Qu'est-ce que PROS.CARDS ?", r: "Une plateforme de cartes de visite digitales et interactives en libre-service, développée, exploitée et supportée par OPTINOV. Vous choisissez votre offre, créez votre compte, payez en ligne, et votre compte est activé automatiquement." },
       { q: "OPTINOV crée-t-elle ma carte à ma place ?", r: "Non. PROS.CARDS est une plateforme en libre-service : vous créez, personnalisez et modifiez votre carte en toute autonomie depuis votre tableau de bord. OPTINOV administre la plateforme, pas votre contenu." },
       { q: "Faut-il installer une application ?", r: "Ni pour vous, ni pour la personne à qui vous partagez votre carte. Tout se passe dans le navigateur." },
       { q: "Comment équiper une équipe commerciale ?", r: "Via l'offre Entreprise. Le responsable devient administrateur de son espace, crée les comptes de ses collaborateurs et peut créer, modifier, suspendre ou supprimer leurs cartes." },
@@ -48,7 +48,7 @@ export const themesFaq = [
       { q: "Assurez-vous la maintenance après livraison ?", r: "Oui, sur contrat de maintenance : mises à jour, sauvegardes, supervision et corrections. Le détail figure au devis." },
       { q: "Formez-vous nos équipes ?", r: "Chaque livraison inclut une passation. Des sessions de formation complémentaires peuvent être ajoutées au périmètre." },
       { q: "À qui appartiennent les fichiers et le code produits ?", r: "À vous. Fichiers sources, dépôts Git et droits d'exploitation sont cédés à la livraison." },
-      { q: "Comment contacter le support PROS.CARDS ?", r: "Le support de la plateforme est assuré par OPTINOV Agence depuis Abidjan. Les canaux de contact figurent dans votre tableau de bord et sur la page Contact." },
+      { q: "Comment contacter le support PROS.CARDS ?", r: "Le support de la plateforme est assuré par OPTINOV depuis Abidjan. Les canaux de contact figurent dans votre tableau de bord et sur la page Contact." },
     ],
   },
 ];

@@ -14,7 +14,7 @@ export default function sitemap() {
 
   return [
     url("/", 1, "weekly"),
-    url("/agence", 0.7, "monthly"),
+    url("/a-propos", 0.7, "monthly"),
     url("/services", 0.9, "monthly"),
     ...services.map((s) => url(`/services/${s.slug}`, 0.8, "monthly")),
     url("/solutions", 0.7, "monthly"),

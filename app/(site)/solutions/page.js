@@ -10,7 +10,7 @@ import { Breadcrumb, Reveal, CtaBand, WhatsAppFloat } from "@/components/Ui";
 export const metadata = {
   title: "Nos solutions numériques",
   description:
-    "Les produits numériques développés par OPTINOV Agence, à commencer par PROS.CARDS, la carte de visite digitale en libre-service.",
+    "Les produits numériques développés par OPTINOV, à commencer par PROS.CARDS, la carte de visite digitale en libre-service.",
   alternates: { canonical: "/solutions" },
 };
 
@@ -26,7 +26,7 @@ export default function HubSolutions() {
             <h1>Nos solutions numériques</h1>
             <p className="lead">
               Quand un besoin revient chez tous nos clients, nous en faisons un produit.
-              Développé, exploité et supporté par OPTINOV Agence, depuis Abidjan.
+              Développé, exploité et supporté par OPTINOV, depuis Abidjan.
             </p>
           </Reveal>
         </div>

@@ -53,12 +53,12 @@ export default function Header() {
   return (
     <header className="header">
       <div className="container header__inner">
-        <Link href="/" className="logo" aria-label="OPTINOV Agence — accueil">
+        {/* Logo — texte pour l'instant. Dès que le fichier public/logo-optinov.png
+            sera fourni, on remplace ce bloc par :
+            <img src="/logo-optinov.png" alt="OPTINOV" className="logo__img" width="176" height="44" /> */}
+        <Link href="/" className="logo" aria-label="OPTINOV — accueil">
           <span className="logo__mark" aria-hidden="true">OP</span>
-          <span>
-            OPTINOV
-            <small>Agence</small>
-          </span>
+          <span>OPTINOV</span>
         </Link>
 
         <nav className="nav" id="menu-principal" ref={navRef} aria-label="Navigation principale">

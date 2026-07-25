@@ -16,9 +16,7 @@ export default function Footer() {
           <div>
             <Link href="/" className="logo">
               <span className="logo__mark" aria-hidden="true">OP</span>
-              <span>
-                OPTINOV<small>Agence</small>
-              </span>
+              <span>OPTINOV</span>
             </Link>
             <p style={{ marginTop: "1.1rem" }}>
               Pôle communication du groupe OPTINOV. Communication, marketing et
@@ -76,7 +74,7 @@ export default function Footer() {
               <li><Link href="/realisations">Réalisations</Link></li>
               <li><Link href="/blog">Blog</Link></li>
               <li><Link href="/faq">FAQ</Link></li>
-              <li><Link href="/agence">À propos</Link></li>
+              <li><Link href="/a-propos">À propos</Link></li>
             </ul>
           </div>
 

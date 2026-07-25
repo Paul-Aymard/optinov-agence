@@ -6,6 +6,14 @@
 [[plugins]]
   package = "@netlify/plugin-nextjs"
 
+# L'ancienne page « À propos » (/agence) a été renommée /a-propos : redirection
+# permanente pour ne casser aucun lien déjà partagé.
+[[redirects]]
+  from = "/agence"
+  to = "/a-propos"
+  status = 301
+  force = true
+
 # En-têtes de sécurité (SEC-002) — répliqués ici pour couvrir toutes les réponses,
 # y compris les fichiers statiques servis directement par Netlify.
 [[headers]]

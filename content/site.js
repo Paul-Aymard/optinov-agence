@@ -8,7 +8,7 @@
 export const TODO = "[À compléter]";
 
 export const site = {
-  nom: "OPTINOV Agence",
+  nom: "OPTINOV",
   baseline: "Communication · Marketing · Transformation digitale",
   url: "https://optinov-agence.com",
   ville: "Abidjan",
@@ -104,7 +104,7 @@ export const equipe = [];
 /** Navigation principale — EX-001 */
 export const nav = [
   { label: "Accueil", href: "/" },
-  { label: "À propos", href: "/agence" },
+  { label: "À propos", href: "/a-propos" },
   {
     label: "Services",
     href: "/services",

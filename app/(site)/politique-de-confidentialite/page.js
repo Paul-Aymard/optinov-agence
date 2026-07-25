@@ -36,7 +36,7 @@ export default function PolitiqueConfidentialite() {
 
             <h2>1. Responsable de traitement</h2>
             <p>
-              OPTINOV Agence, {site.adresse}, {site.ville}, {site.pays}. Contact du référent
+              OPTINOV, {site.adresse}, {site.ville}, {site.pays}. Contact du référent
               en matière de protection des données : {TODO}.
             </p>
 
@@ -87,7 +87,7 @@ export default function PolitiqueConfidentialite() {
 
             <h2>4. Destinataires et sous-traitants</h2>
             <p>
-              Vos données sont traitées par les équipes d&apos;OPTINOV Agence. Les
+              Vos données sont traitées par les équipes d&apos;OPTINOV. Les
               sous-traitants (hébergeur, outil d&apos;e-mailing, CRM, outils de mesure) et les
               éventuels transferts hors Côte d&apos;Ivoire sont listés ici : {TODO}.
             </p>

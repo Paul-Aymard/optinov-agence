@@ -29,27 +29,27 @@ const playfair = Playfair_Display({
 /** SEO-003 : gabarits de title par type de page ; OG/Twitter — SEO-010 */
 export const metadata = {
   metadataBase: new URL(site.url),
-  // SEO-003 : title ≤ 60 caractères. Le gabarit ajoute « | OPTINOV Agence »
+  // SEO-003 : title ≤ 60 caractères. Le gabarit ajoute « | OPTINOV »
   // (17 caractères) : le titre propre à chaque page doit donc tenir en 43.
   title: {
-    default: "OPTINOV Agence — Communication & marketing",
-    template: "%s | OPTINOV Agence",
+    default: "OPTINOV — Communication & marketing",
+    template: "%s | OPTINOV",
   },
   description:
-    "Agence de communication à Abidjan : identité de marque, réseaux sociaux, marketing, automatisation IA, photo et vidéo. Découvrez aussi PROS.CARDS, la carte de visite digitale.",
+    "Communication, marketing et digital à Abidjan : identité de marque, réseaux sociaux, IA, photo et vidéo. Et PROS.CARDS, la carte de visite digitale.",
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    siteName: "OPTINOV Agence",
+    siteName: "OPTINOV",
     url: site.url,
-    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "OPTINOV Agence" }],
+    images: [{ url: "/og-default.png", width: 1200, height: 630, alt: "OPTINOV" }],
   },
   twitter: { card: "summary_large_image" },
   robots: { index: true, follow: true },
 };
 
 export const viewport = {
-  themeColor: "#1B2A4A",
+  themeColor: "#0F1E3D",
   width: "device-width",
   initialScale: 1,
 };

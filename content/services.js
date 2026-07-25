@@ -48,7 +48,7 @@ export const services = [
     },
     benefices: [
       { titre: "Une image cohérente partout", preuve: "Un seul système de règles, appliqué du flyer au post Instagram." },
-      { titre: "Des équipes autonomes", preuve: "Gabarits livrés : vos supports courants se produisent sans l'agence." },
+      { titre: "Des équipes autonomes", preuve: "Gabarits livrés : vos supports courants se produisent sans nous." },
       { titre: "Une marque qui vieillit bien", preuve: "Aucune tendance graphique éphémère : le système tient plusieurs années." },
       { titre: "Un actif transmissible", preuve: "Fichiers sources et droits cédés — votre identité vous appartient." },
     ],
@@ -61,7 +61,7 @@ export const services = [
     ],
     faq: [
       { q: "Combien de propositions de logo présentez-vous ?", r: "Trois territoires visuels distincts au premier jalon, puis une seule direction approfondie. Multiplier les pistes dilue la réflexion plus qu'il ne rassure." },
-      { q: "Cédez-vous les fichiers sources ?", r: "Oui, systématiquement, ainsi que les droits d'exploitation. Vous n'êtes jamais captif de l'agence pour modifier vos propres supports." },
+      { q: "Cédez-vous les fichiers sources ?", r: "Oui, systématiquement, ainsi que les droits d'exploitation. Vous n'êtes jamais captif d'OPTINOV pour modifier vos propres supports." },
       { q: "Gérez-vous l'impression ?", r: "Nous préparons les fichiers aux normes de vos imprimeurs et pouvons piloter la production et le contrôle qualité si vous le souhaitez." },
       { q: "Quel est le délai moyen pour une identité complète ?", r: "Le calendrier est arrêté au brief, selon le périmètre et la réactivité des validations." },
     ],
@@ -200,7 +200,7 @@ export const services = [
       { titre: "Des heures récupérées", preuve: "Gain mesuré avant/après sur chaque processus automatisé." },
       { titre: "Une réponse 24 h / 24", preuve: "Les questions récurrentes traitées sans intervention humaine." },
       { titre: "Moins d'erreurs de saisie", preuve: "Les données circulent entre outils sans recopie manuelle." },
-      { titre: "Une équipe qui reprend la main", preuve: "Documentation et formation livrées ; l'agence n'est pas un point de blocage." },
+      { titre: "Une équipe qui reprend la main", preuve: "Documentation et formation livrées ; OPTINOV n'est pas un point de blocage." },
     ],
     processus: [
       { titre: "Brief & cartographie", texte: "Observation des processus, mesure du temps réellement passé.", delai: TODO },

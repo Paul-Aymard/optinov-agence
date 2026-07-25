@@ -21,7 +21,7 @@ import { FormulaireCourt } from "@/components/Forms";
  *  8 Pourquoi OPTINOV  ·  9 Ils nous font confiance  ·  10 FAQ  ·  11 CTA final
  */
 export const metadata = {
-  title: { absolute: "OPTINOV Agence — La méthode V.I.S.I.O.N. pour votre croissance" },
+  title: { absolute: "OPTINOV — La méthode V.I.S.I.O.N. pour votre croissance" },
   description:
     "Votre croissance commence par une vision claire. Découvrez V.I.S.I.O.N., la méthode OPTINOV qui transforme vos ambitions en résultats durables, à Abidjan.",
   alternates: { canonical: "/" },
@@ -36,7 +36,7 @@ export default function Accueil() {
       <section className="hero hero--home">
         <div className="container hero__grid">
           <Reveal>
-            <span className="eyebrow">OPTINOV Agence · Communication &amp; croissance</span>
+            <span className="eyebrow">OPTINOV · Communication &amp; croissance</span>
             <h1>Votre croissance commence par une vision claire.</h1>
             <p className="lead">
               Les entreprises qui réussissent ne se contentent pas de communiquer :
