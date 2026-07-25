@@ -161,8 +161,8 @@ button { font: inherit; }
 }
 .header__inner { display: flex; align-items: center; gap: 1rem; min-height: var(--header-h); }
 .logo { display: flex; align-items: center; gap: .6rem; font-family: var(--font-title); font-weight: 700; font-size: 1.28rem; color: var(--navy); text-decoration: none; letter-spacing: -.02em; }
-.logo__img { height: 42px; width: auto; max-width: 190px; display: block; }
-@media (max-width: 560px) { .logo__img { height: 36px; } }
+.logo__img { height: 46px; width: auto; max-width: 200px; display: block; }
+@media (max-width: 560px) { .logo__img { height: 38px; } }
 .logo__mark { width: 34px; height: 34px; border-radius: 8px; background: var(--navy); color: var(--or); display: grid; place-items: center; font-size: .95rem; font-weight: 700; }
 .logo small { display: block; font-family: var(--font-body); font-size: .62rem; letter-spacing: .18em; text-transform: uppercase; color: var(--or-600); font-weight: 600; margin-top: -4px; }
 
