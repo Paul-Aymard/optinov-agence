@@ -138,7 +138,7 @@ export const solutionsAccueil = [
     items: ["Photographie", "Production vidéo", "Films institutionnels", "Interviews", "Reportages", "Drone", "Motion Design"],
   },
   {
-    titre: "Automatisation IA & Transformation Digitale",
+    titre: "Performance & automatisation",
     href: "/services/automatisation-ia",
     accroche: "Faites du digital un véritable levier de performance.",
     etapes: ["O", "N"],

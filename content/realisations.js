@@ -12,7 +12,7 @@ export const filtresServices = [
   { id: "visuel", label: "Communication visuelle" },
   { id: "digital", label: "Communication digitale" },
   { id: "marketing", label: "Marketing & stratégie" },
-  { id: "ia", label: "Automatisation IA" },
+  { id: "ia", label: "Performance & automatisation" },
   { id: "photo-video", label: "Photo & vidéo" },
 ];
 

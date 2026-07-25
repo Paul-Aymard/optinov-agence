@@ -169,7 +169,7 @@ export const services = [
   },
   {
     slug: "automatisation-ia",
-    titre: "Automatisation IA",
+    titre: "Performance & automatisation",
     icone: "⬡",
     accroche: "Rendre à vos équipes les heures que la saisie leur prend.",
     h1: "Automatisation IA : des heures rendues à vos équipes",

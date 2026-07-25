@@ -727,4 +727,108 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .stack > * + * { margin-top: 1rem; }
 .notice { border-left: 3px solid var(--or); background: var(--or-100); padding: 1rem 1.25rem; border-radius: 0 var(--r) var(--r) 0; font-size: .9rem; }
 .notice strong { color: var(--or-600); }
+/* ---------- 25. Pages Services — refonte « 5 actes » ---------- */
+/* --accent est injecté par page (couleur propre au service, règle 80/20). */
+.service-page { --accent: var(--or); }
+.service-page .btn--accent { background: var(--accent); color: #fff; box-shadow: var(--shadow-sm); }
+.service-page .btn--accent:hover { filter: brightness(.92); color: #fff; box-shadow: var(--shadow-md); }
+.service-page .btn--lg { padding: .95rem 1.9rem; font-size: 1.02rem; }
+.service-page .svc-verbe { color: var(--accent); }
+
+/* Acte 1 — hero */
+.svc-hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3.5rem); }
+.svc-hero h1 { max-width: 16ch; }
+.svc-hero .lead { max-width: 60ch; }
+.svc-vision {
+  display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .6rem;
+  margin: 0 0 1.4rem; padding: .55rem .95rem; border-radius: 999px;
+  background: color-mix(in srgb, var(--accent) 12%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  font-size: .82rem; color: var(--text); font-weight: 500;
+}
+.svc-vision b { color: var(--accent); letter-spacing: .06em; font-weight: 800; }
+.svc-vision span { color: var(--text-muted); }
+
+/* Actes 2-4 */
+.svc-acte__head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+.acte-num {
+  font-family: var(--font-title); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem);
+  line-height: 1; color: var(--accent); opacity: .9;
+}
+.svc-acte__head h2 { margin: 0; }
+.svc-acte__body { max-width: 62ch; }
+.svc-acte__body > p { color: var(--text); }
+.svc-chute {
+  margin-top: 1.3rem; font-family: var(--font-title); font-size: 1.15rem;
+  color: var(--navy); font-weight: 700;
+}
+
+/* Liste « écosystème » (icône + clé → valeur) */
+.svc-liste { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .8rem; }
+.svc-liste li {
+  display: flex; align-items: center; gap: .8rem; padding: .85rem 1.1rem;
+  background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+.svc-liste__ic { font-size: 1.35rem; line-height: 1; }
+.svc-liste__cle { font-weight: 700; color: var(--navy); }
+.svc-liste__val { color: var(--text-muted); }
+.svc-liste__val::before { content: "→"; color: var(--accent); margin: 0 .5rem 0 .4rem; font-weight: 700; }
+
+/* Checklist (✔ en couleur d'accent) */
+.svc-check { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .7rem; }
+.svc-check li { position: relative; padding-left: 2rem; font-weight: 500; color: var(--navy); }
+.svc-check li::before {
+  content: "✔"; position: absolute; left: 0; top: 0; color: var(--accent); font-weight: 800;
+}
+
+/* Parcours du prospect : Découverte → Intérêt → Confiance → Contact */
+.svc-parcours { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; margin-top: 1.6rem; }
+.svc-parcours__etape {
+  display: inline-flex; align-items: center; gap: .6rem; padding: .5rem 1rem;
+  background: color-mix(in srgb, var(--accent) 10%, var(--white));
+  border: 1px solid color-mix(in srgb, var(--accent) 30%, transparent);
+  border-radius: 999px; font-weight: 600; color: var(--navy); font-size: .92rem;
+}
+.svc-parcours__etape i { color: var(--accent); font-style: normal; font-weight: 800; }
+
+/* Acte 5 — manifeste */
+.svc-manifeste { background: var(--navy); color: #dfe4ee; padding: var(--section-y) 0; }
+.svc-manifeste h2 { color: #fff; max-width: 20ch; margin-inline: auto; }
+.svc-manifeste .lead { color: #cdd5e4; }
+.svc-manifeste p { color: #b9c2d4; max-width: 60ch; margin-inline: auto; }
+.svc-manifeste .btn--ghost { color: #fff; border-color: rgba(255,255,255,.5); }
+.svc-manifeste .btn--ghost:hover { background: #fff; color: var(--navy); }
+
+/* Transition — pont vers le service suivant */
+.svc-transition {
+  padding: clamp(3rem, 6vw, 5rem) 0; text-align: center;
+  background: color-mix(in srgb, var(--accent) 8%, var(--bg-alt));
+  border-top: 1px solid var(--border);
+}
+.svc-transition__lead { font-family: var(--font-title); font-size: clamp(1.3rem, 2.4vw, 1.9rem); color: var(--navy); font-weight: 700; max-width: 24ch; margin: 0 auto .6rem; }
+.svc-transition p { max-width: 56ch; margin-inline: auto; color: var(--text); }
+.svc-transition .btn { margin-top: 1.6rem; }
+
+/* Univers sombre — Photo & Vidéo Corporate (noir dominant, accent orange conservé) */
+.service-page--sombre .svc-hero,
+.service-page--sombre .svc-manifeste,
+.service-page--sombre .svc-transition {
+  background: linear-gradient(160deg, #111111, #1c1c1c);
+  color: #e8e8e8; border-top-color: rgba(255,255,255,.08);
+}
+.service-page--sombre .svc-hero h1,
+.service-page--sombre .svc-manifeste h2,
+.service-page--sombre .svc-transition__lead { color: #fff; }
+.service-page--sombre .svc-hero .lead,
+.service-page--sombre .svc-hero p,
+.service-page--sombre .svc-transition p { color: #c9c9c9; }
+.service-page--sombre .svc-vision { background: rgba(252,99,3,.14); border-color: rgba(252,99,3,.4); color: #eee; }
+.service-page--sombre .svc-vision span { color: #bdbdbd; }
+
+@media (min-width: 640px) {
+  .svc-liste { grid-template-columns: repeat(2, 1fr); }
+  .svc-check { grid-template-columns: repeat(2, 1fr); }
+}
+
 @media print { .header, .footer, .wa-float, .cookie, .sticky-cta { display: none !important; } }

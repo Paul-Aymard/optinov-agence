@@ -112,7 +112,7 @@ export const nav = [
       { label: "Communication visuelle", href: "/services/communication-visuelle" },
       { label: "Communication digitale", href: "/services/communication-digitale" },
       { label: "Marketing & stratégie", href: "/services/marketing-strategie" },
-      { label: "Automatisation IA", href: "/services/automatisation-ia" },
+      { label: "Performance & automatisation", href: "/services/automatisation-ia" },
       { label: "Photo & vidéo", href: "/services/photo-video" },
     ],
   },
