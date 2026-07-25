@@ -10,7 +10,7 @@ export const TODO = "[À compléter]";
 export const site = {
   nom: "OPTINOV",
   baseline: "Communication · Marketing · Transformation digitale",
-  url: "https://optinov-agence.com",
+  url: "https://optinovagence.netlify.app",
   ville: "Abidjan",
   pays: "Côte d'Ivoire",
   adresse: "Cocody Angré 7ᵉ Tranche, Abidjan — Côte d'Ivoire",
