@@ -72,7 +72,7 @@ export default function Accueil() {
       </section>
 
       {/* ---------- 2. Pourquoi tant d'entreprises peinent à se développer ---------- */}
-      <section className="section section--alt">
+      <section className="section section--alt section--constat">
         <div className="container">
           <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Le constat</span>
@@ -80,14 +80,14 @@ export default function Accueil() {
             <p className="lead">
               Beaucoup investissent dans des actions isolées — un logo, un site, une
               campagne — utiles, mais qui produisent rarement leur plein potentiel
-              lorsqu&apos;elles ne s&apos;inscrivent pas dans une vision d&apos;ensemble.
+              lorsqu&apos;elles ne s&apos;inscrivent pas dans une{" "}
+              <strong className="mot-vision">vision d&apos;ensemble</strong>.
             </p>
           </Reveal>
           <div className="grid grid-3">
             {defis.map((d) => (
-              <Reveal key={d.titre} className="card">
-                <div className="card__icon" aria-hidden="true">{d.icone}</div>
-                <h3 style={{ fontSize: "1.1rem" }}>{d.titre}</h3>
+              <Reveal key={d.titre} className="card card--constat">
+                <h3>{d.titre}</h3>
                 <p>{d.texte}</p>
               </Reveal>
             ))}
@@ -145,19 +145,21 @@ export default function Accueil() {
               sont pas une fin&nbsp;: ce sont des moyens au service de votre croissance.
             </p>
           </Reveal>
-          <div className="grid grid-2">
+          <div className="grid grid-4 piliers-grid">
             {piliers.map((p) => (
               <Reveal key={p.id} className="card pilier" id={`pilier-${p.id}`} style={{ scrollMarginTop: "90px" }}>
                 <span className="emoji" aria-hidden="true">{p.icone}</span>
                 <h3>{p.titre}</h3>
-                <p style={{ color: "var(--or-600)", fontWeight: 600 }}>{p.accroche}</p>
-                <p>{p.texte}</p>
-                <ul>
-                  {p.moyens.map((m) => <li key={m}>{m}</li>)}
-                </ul>
-                <p style={{ marginTop: "1rem", fontSize: ".92rem" }}>
-                  <strong style={{ color: "var(--navy)" }}>Résultat&nbsp;:</strong> {p.resultat}
-                </p>
+                <p className="pilier__accroche">{p.accroche}</p>
+                <div className="pilier__details">
+                  <p>{p.texte}</p>
+                  <ul>
+                    {p.moyens.map((m) => <li key={m}>{m}</li>)}
+                  </ul>
+                  <p className="pilier__resultat">
+                    <strong>Résultat&nbsp;:</strong> {p.resultat}
+                  </p>
+                </div>
               </Reveal>
             ))}
           </div>

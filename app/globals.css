@@ -184,14 +184,14 @@ button { font: inherit; }
 }
 .nav a:hover, .nav a[aria-current="page"] { background: var(--bg-alt); color: var(--or-600); }
 .nav a[aria-current="page"] { font-weight: 600; }
-/* Onglet PROS.CARDS mis en avant comme un bouton bleu. */
+/* Onglet PROS.CARDS mis en avant comme un bouton — bleu nuit du logo (#0F1E3D). */
 .nav a[href="/solutions/pros-cards"] {
-  background: #2563EB; color: #fff; font-weight: 700;
+  background: #0F1E3D; color: #fff; font-weight: 700;
   padding-inline: 1.05rem; border-radius: 100px;
 }
 .nav a[href="/solutions/pros-cards"]:hover,
 .nav a[href="/solutions/pros-cards"][aria-current="page"] {
-  background: #1D4ED8; color: #fff;
+  background: #1B2A4A; color: #fff;
 }
 
 /* Méga-menu */
@@ -957,3 +957,62 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 }
 
 @media print { .header, .footer, .wa-float, .cookie, .sticky-cta { display: none !important; } }
+
+/* ============================================================= *
+ * 25. Accueil — ajustements direction (constat, piliers, solutions)
+ * ============================================================= */
+
+/* --- Constat : section agrandie, mot « vision » en évidence --- */
+.section--constat { padding-block: clamp(3.5rem, 7vw, 6rem); }
+.section--constat .section-head { margin-bottom: clamp(2.5rem, 5vw, 3.75rem); }
+.mot-vision { color: var(--or-600); font-weight: 800; }
+
+/* Cadrans du constat : fond bleu nuit du logo, barre orange qui apparaît en haut au survol */
+.card--constat {
+  position: relative; overflow: hidden;
+  background: #0F1E3D; border-color: transparent;
+  padding: clamp(1.6rem, 3vw, 2.25rem);
+  transition: transform var(--t), box-shadow var(--t);
+}
+.card--constat h3 { color: #fff; font-size: 1.28rem; margin-bottom: .55rem; }
+.card--constat p { color: #c2cbdc; font-size: 1rem; }
+.card--constat::before {
+  content: ""; position: absolute; inset: 0 0 auto 0; height: 5px;
+  background: var(--or); transform: scaleX(0); transform-origin: left;
+  transition: transform .4s cubic-bezier(.22,.61,.36,1);
+}
+.card--constat:hover::before { transform: scaleX(1); }
+.card--constat:hover { transform: translateY(-5px); box-shadow: 0 18px 42px rgba(15,30,61,.4); }
+
+/* --- Piliers (résultats) : compacts sur une ligne, expansion au survol --- */
+.piliers-grid { align-items: start; }
+.pilier {
+  text-align: center; padding: 1.6rem 1.2rem;
+  transition: transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease;
+}
+.pilier .emoji { font-size: 2.1rem; margin-bottom: .55rem; transition: transform .4s ease; }
+.pilier h3 { font-size: 1.04rem; }
+.pilier__accroche { color: var(--or-600); font-weight: 600; font-size: .9rem; margin-top: .35rem; }
+.pilier ul { justify-content: center; }
+.pilier__resultat { margin-top: 1rem; font-size: .9rem; }
+.pilier__resultat strong { color: var(--navy); }
+.pilier__details {
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height .5s ease, opacity .4s ease, margin-top .4s ease;
+}
+.pilier:hover, .pilier:focus-within {
+  transform: translateY(-6px) scale(1.03); box-shadow: var(--shadow-lg); z-index: 3;
+}
+.pilier:hover .emoji, .pilier:focus-within .emoji { transform: scale(1.15); }
+.pilier:hover .pilier__details, .pilier:focus-within .pilier__details {
+  max-height: 520px; opacity: 1; margin-top: .85rem;
+}
+/* Sur écran tactile (pas de survol) : on affiche les détails en permanence. */
+@media (hover: none) {
+  .pilier__details { max-height: none; opacity: 1; margin-top: .85rem; }
+}
+
+/* --- Solutions : cartes un peu plus grandes --- */
+#solutions .grid > .card { padding: clamp(1.7rem, 2.6vw, 2.3rem); }
+#solutions .grid > .card h3 { font-size: 1.3rem; }
+#solutions .grid > .card > p { font-size: 1.02rem; }
