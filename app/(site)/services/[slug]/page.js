@@ -8,7 +8,7 @@ import {
   Breadcrumb, Reveal, Accordion, FaqJsonLd, JsonLd, WhatsAppFloat,
 } from "@/components/Ui";
 import { FormulaireDevisService } from "@/components/Forms";
-import { Lignes } from "@/components/Lignes";
+import { Lignes, Vision } from "@/components/Lignes";
 
 /** SSG des 5 pages services — SEO-006 (rendu serveur, zéro dépendance JS) */
 export function generateStaticParams() {
@@ -96,7 +96,7 @@ export default async function PageService({ params }) {
               </p>
             )}
             <p className="svc-vision">
-              Cette solution active les étapes <b>{p.visionLettres}</b> de la méthode V.I.S.I.O.N.
+              Cette solution active les étapes <b>{p.visionLettres}</b> de la méthode <b className="vision-mot">V.I.S.I.O.N.</b>
               <span>{p.visionEtapes}</span>
             </p>
             {p.heroParas.map((t, i) => (
@@ -229,7 +229,7 @@ export default async function PageService({ params }) {
               <p key={i} className={i === 0 ? "svc-transition__lead" : undefined}><Lignes>{t}</Lignes></p>
             ))}
             <Link className="btn btn--accent btn--lg" href={p.transition.bouton.href}>
-              {p.transition.bouton.label} <span aria-hidden="true">→</span>
+              <Vision>{p.transition.bouton.label}</Vision> <span aria-hidden="true">→</span>
             </Link>
           </Reveal>
         </div>

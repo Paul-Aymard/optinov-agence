@@ -1023,3 +1023,10 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 /* Une phrase par ligne (helper Lignes) : chaque phrase sur sa propre ligne. */
 .phrase { display: block; }
 .phrase + .phrase { margin-top: .35em; }
+
+/* « V.I.S.I.O.N. » mis en évidence partout (gras + léger espacement). */
+.vision-mot { font-weight: 800; letter-spacing: .04em; }
+
+/* Intitulés de section (eyebrow) agrandis sur la page d'accueil (demande direction). */
+.accueil .eyebrow { font-size: 1.05rem; font-weight: 700; letter-spacing: .12em; }
+@media (max-width: 560px) { .accueil .eyebrow { font-size: .95rem; } }

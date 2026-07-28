@@ -8,7 +8,7 @@ import { projets } from "@/content/realisations";
 import { Reveal, Carousel, Accordion, FaqJsonLd, WhatsAppFloat } from "@/components/Ui";
 import VisionMethod from "@/components/VisionMethod";
 import { FormulaireCourt } from "@/components/Forms";
-import { Lignes } from "@/components/Lignes";
+import { Lignes, Vision } from "@/components/Lignes";
 
 /**
  * Accueil (G1) — refonte « parcours de croissance » demandée par la direction.
@@ -32,7 +32,7 @@ const CTA_PROJET = "Parlons de votre projet";
 
 export default function Accueil() {
   return (
-    <>
+    <div className="accueil">
       {/* ---------- 1. Hero ---------- */}
       {/* Pas de photo d'ensemble de l'entreprise (décision direction) : hero
           pleine largeur, sans visuel à droite. */}
@@ -45,7 +45,7 @@ export default function Accueil() {
               <Lignes>Les entreprises qui réussissent ne se contentent pas de communiquer : elles suivent une méthode. Découvrez comment OPTINOV transforme vos ambitions en résultats durables.</Lignes>
             </p>
             <div className="btn-group" style={{ marginTop: "1.8rem" }}>
-              <a className="btn btn--gold" href="#methode">Découvrir la méthode V.I.S.I.O.N.</a>
+              <a className="btn btn--gold" href="#methode"><Vision>Découvrir la méthode V.I.S.I.O.N.</Vision></a>
               <a className="btn btn--navy" href="#contact">{CTA_PROJET}</a>
             </div>
           </Reveal>
@@ -57,7 +57,7 @@ export default function Accueil() {
         <div className="container">
           <Reveal className="section-head center" style={{ marginBottom: "1.75rem" }}>
             <h2 style={{ fontSize: "1.4rem" }}>Quel est votre objectif de croissance ?</h2>
-            <p className="lead">Choisissez votre priorité : la méthode V.I.S.I.O.N. vous montre comment nous vous y menons.</p>
+            <p className="lead"><Lignes>Choisissez votre priorité : la méthode V.I.S.I.O.N. vous montre comment nous vous y menons.</Lignes></p>
           </Reveal>
           <Reveal className="objectifs">
             {objectifs.map((o) => (
@@ -104,7 +104,7 @@ export default function Accueil() {
               <Lignes>Une croissance durable ne repose pas sur une succession d&apos;actions isolées, mais sur une vision claire, une stratégie adaptée et une exécution maîtrisée. C&apos;est pourquoi nous avons développé une méthode qui accompagne les entreprises à chaque étape de leur évolution.</Lignes>
             </p>
             <p style={{ marginTop: "1.5rem" }}>
-              <a className="link-arrow" href="#methode">Découvrez la méthode V.I.S.I.O.N.</a>
+              <a className="link-arrow" href="#methode"><Vision>Découvrez la méthode V.I.S.I.O.N.</Vision></a>
             </p>
           </Reveal>
         </div>
@@ -115,7 +115,7 @@ export default function Accueil() {
         <div className="container">
           <Reveal className="section-head center">
             <span className="eyebrow">Notre méthode propriétaire</span>
-            <h2>Découvrez la méthode V.I.S.I.O.N.</h2>
+            <h2><Vision>Découvrez la méthode V.I.S.I.O.N.</Vision></h2>
             <p className="lead">
               Six étapes qui donnent du sens à chaque action et assurent la cohérence
               de chaque projet — de la réflexion stratégique à l&apos;amélioration continue.
@@ -168,8 +168,7 @@ export default function Accueil() {
             <span className="eyebrow">Nos solutions</span>
             <h2 className="titre-1ligne">Des solutions pensées pour chaque étape de votre croissance</h2>
             <p className="lead">
-              Chaque solution s&apos;intègre naturellement à la méthode V.I.S.I.O.N.
-              Les pastilles indiquent les étapes qu&apos;elle sert.
+              <Lignes>Chaque solution s&apos;intègre naturellement à la méthode V.I.S.I.O.N. Les pastilles indiquent les étapes qu&apos;elle sert.</Lignes>
             </p>
           </Reveal>
           <div className="grid grid-3">
@@ -200,9 +199,7 @@ export default function Accueil() {
             <span className="eyebrow">Réalisations</span>
             <h2 className="titre-1ligne">Des projets qui donnent vie aux ambitions de nos clients</h2>
             <p className="lead">
-              Nos études de cas ne montrent pas seulement un résultat&nbsp;: elles
-              racontent le projet à travers les étapes de V.I.S.I.O.N., pour montrer
-              la méthode réellement appliquée.
+              <Lignes>Nos études de cas ne montrent pas seulement un résultat&nbsp;: elles racontent le projet à travers les étapes de V.I.S.I.O.N., pour montrer la méthode réellement appliquée.</Lignes>
             </p>
           </Reveal>
 
@@ -310,8 +307,7 @@ export default function Accueil() {
               <span className="eyebrow">Confiance</span>
               <h2 className="titre-1ligne">Et si le prochain logo affiché ici était le vôtre&nbsp;?</h2>
               <p className="lead">
-                Nous serions heureux de découvrir votre entreprise et de mettre la
-                méthode V.I.S.I.O.N. au service de vos ambitions.
+                <Lignes>Nous serions heureux de découvrir votre entreprise et de mettre la méthode V.I.S.I.O.N. au service de vos ambitions.</Lignes>
               </p>
             </Reveal>
           </div>
@@ -338,10 +334,9 @@ export default function Accueil() {
           <div className="cta-band">
             <div className="hero__grid">
               <div>
-                <h2>Prêt à appliquer la méthode V.I.S.I.O.N. à votre entreprise&nbsp;?</h2>
+                <h2><Vision>Prêt à appliquer la méthode V.I.S.I.O.N. à votre entreprise&nbsp;?</Vision></h2>
                 <p className="lead">
-                  Chaque grande réussite commence par un premier échange. Parlons de
-                  vos objectifs&nbsp;: nous vous montrerons comment nous vous y menons.
+                  <Lignes>Chaque grande réussite commence par un premier échange. Parlons de vos objectifs&nbsp;: nous vous montrerons comment nous vous y menons.</Lignes>
                 </p>
                 <div className="btn-group" style={{ marginTop: "1.5rem" }}>
                   <a className="btn btn--gold" href={lienRdv()} data-ga="cta_rdv">{CTA_PROJET}</a>
@@ -359,6 +354,6 @@ export default function Accueil() {
 
       <FaqJsonLd items={faqAccueil} />
       <WhatsAppFloat contexte="la méthode V.I.S.I.O.N. et mon projet de croissance" />
-    </>
+    </div>
   );
 }
