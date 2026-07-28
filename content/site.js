@@ -116,11 +116,7 @@ export const nav = [
       { label: "Photo & Vidéo Corporate", href: "/services/photo-video" },
     ],
   },
-  {
-    label: "Solutions",
-    href: "/solutions",
-    sub: [{ label: "PROS.CARDS", href: "/solutions/pros-cards" }],
-  },
+  { label: "PROS.CARDS", href: "/solutions/pros-cards" },
   { label: "Réalisations", href: "/realisations" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
