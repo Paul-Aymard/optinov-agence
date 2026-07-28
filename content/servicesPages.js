@@ -272,7 +272,7 @@ export const pagesServices = {
         "Une entreprise performante mérite aussi d'être remarquée.",
         "Découvrez comment la photo et la vidéo permettent de valoriser vos événements, vos équipes et vos réalisations.",
       ],
-      bouton: { label: "Découvrir Photo & vidéo corporate", href: "/services/photo-video" },
+      bouton: { label: "Découvrir Photo & Vidéo Corporate", href: "/services/photo-video" },
     },
   },
 

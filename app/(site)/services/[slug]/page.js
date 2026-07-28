@@ -87,6 +87,13 @@ export default async function PageService({ params }) {
           <Reveal>
             <span className="eyebrow svc-verbe">{p.verbe} — {s.titre}</span>
             <h1>{p.heroTitre}</h1>
+            {p.accroche && <p className="svc-accroche">{p.accroche}</p>}
+            {p.architecture && (
+              <p className="svc-architecture">
+                <span className="svc-architecture__label">Architecture</span>
+                {p.architecture}
+              </p>
+            )}
             <p className="svc-vision">
               Cette solution active les étapes <b>{p.visionLettres}</b> de la méthode V.I.S.I.O.N.
               <span>{p.visionEtapes}</span>

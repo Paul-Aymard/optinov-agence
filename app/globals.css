@@ -742,6 +742,22 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .svc-hero { padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(2rem, 4vw, 3.5rem); }
 .svc-hero h1 { max-width: 16ch; }
 .svc-hero .lead { max-width: 60ch; }
+/* Accroche courte sous le titre (PDF : « La naissance de votre identité »…) */
+.svc-accroche {
+  font-family: var(--font-title); font-size: clamp(1.05rem, 2.4vw, 1.35rem);
+  color: var(--accent); font-weight: 600; margin: 0 0 1rem; max-width: 46ch;
+}
+/* Ligne « Architecture : … » (PDF : Un atelier de création, Le voyage d'un prospect…) */
+.svc-architecture {
+  display: inline-flex; align-items: center; gap: .6rem; flex-wrap: wrap;
+  margin: 0 0 1.3rem; font-size: .95rem; color: var(--text); font-weight: 500;
+}
+.svc-architecture__label {
+  text-transform: uppercase; letter-spacing: .14em; font-size: .68rem; font-weight: 800;
+  color: #fff; background: var(--accent); padding: .28rem .6rem; border-radius: 6px;
+}
+.service-page--sombre .svc-accroche { color: var(--or); }
+.service-page--sombre .svc-architecture { color: #d5d5d5; }
 .svc-vision {
   display: inline-flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .6rem;
   margin: 0 0 1.4rem; padding: .55rem .95rem; border-radius: 999px;

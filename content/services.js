@@ -172,11 +172,11 @@ export const services = [
     titre: "Performance & automatisation",
     icone: "⬡",
     accroche: "Rendre à vos équipes les heures que la saisie leur prend.",
-    h1: "Automatisation IA : des heures rendues à vos équipes",
+    h1: "Performance & automatisation : des heures rendues à vos équipes",
     sousTitre:
-      "Chatbots, workflows automatisés, assistants IA et intégration d'outils no-code, déployés sur des cas d'usage mesurables.",
+      "Automatisation des tâches, workflows, assistants intelligents et outils sur mesure pour gagner du temps et simplifier votre organisation.",
     description:
-      "Chatbots, workflows automatisés, assistants IA, intégration d'outils no-code.",
+      "Automatisation des tâches répétitives, workflows, assistants intelligents et outils no-code pour une entreprise plus simple à gérer.",
     livrablesTypes: ["Chatbot & assistant IA", "Workflows automatisés", "Intégrations no-code"],
     douleurs: [
       { titre: "Vos équipes recopient des données", texte: "Du formulaire au tableur, du tableur au CRM. Des heures par semaine, sans valeur ajoutée." },
@@ -219,10 +219,10 @@ export const services = [
   },
   {
     slug: "photo-video",
-    titre: "Photo & vidéo",
+    titre: "Photo & Vidéo Corporate",
     icone: "◉",
     accroche: "Des images qui vous ressemblent, pas des banques d'images.",
-    h1: "Photo & vidéo : montrer plutôt que promettre",
+    h1: "Photo & Vidéo Corporate : montrer plutôt que promettre",
     sousTitre:
       "Shootings corporate, captation d'événements, films institutionnels et publicitaires, motion design.",
     description:
