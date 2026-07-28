@@ -88,17 +88,11 @@ export default async function PageService({ params }) {
           <Reveal>
             <span className="eyebrow svc-verbe">{p.verbe} — {s.titre}</span>
             <h1>{p.heroTitre}</h1>
-            {p.accroche && <p className="svc-accroche">{p.accroche}</p>}
-            {p.architecture && (
-              <p className="svc-architecture">
-                <span className="svc-architecture__label">Architecture</span>
-                {p.architecture}
-              </p>
-            )}
             <p className="svc-vision">
               Cette solution active les étapes <b>{p.visionLettres}</b> de la méthode <b className="vision-mot">V.I.S.I.O.N.</b>
               <span>{p.visionEtapes}</span>
             </p>
+            {p.accroche && <p className="svc-accroche">{p.accroche}</p>}
             {p.heroParas.map((t, i) => (
               <p key={i} className={i === 0 ? "lead" : undefined}><Lignes>{t}</Lignes></p>
             ))}
@@ -116,7 +110,6 @@ export default async function PageService({ params }) {
         <section key={acte.titre} className={`svc-acte section${i % 2 === 0 ? " section--alt" : ""}`}>
           <div className="container">
             <Reveal className="svc-acte__head">
-              <span className="acte-num" aria-hidden="true">{String(i + 2).padStart(2, "0")}</span>
               <h2>{acte.titre}</h2>
             </Reveal>
             <Reveal className="svc-acte__body">

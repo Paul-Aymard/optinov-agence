@@ -14,9 +14,8 @@ export default function Footer() {
         <div className="footer__grid">
           {/* Colonne 1 — présentation courte + coordonnées */}
           <div>
-            <Link href="/" className="logo">
-              <span className="logo__mark" aria-hidden="true">OP</span>
-              <span>OPTINOV</span>
+            <Link href="/" className="footer__logo" aria-label="OPTINOV — accueil">
+              <img src="/logo-optinov.png" alt="OPTINOV" width="200" height="50" />
             </Link>
             <p style={{ marginTop: "1.1rem" }}>
               Pôle communication du groupe OPTINOV. Communication, marketing et

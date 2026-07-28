@@ -194,7 +194,7 @@ export default function Accueil() {
 
       {/* ---------- 7. Des projets qui donnent vie aux ambitions ---------- */}
       <section className="section">
-        <div className="container">
+        <div className="container cartes-anim">
           <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Réalisations</span>
             <h2 className="titre-1ligne">Des projets qui donnent vie aux ambitions de nos clients</h2>
@@ -248,12 +248,11 @@ export default function Accueil() {
             <span className="eyebrow">Notre différence</span>
             <h2>Pourquoi choisir OPTINOV&nbsp;?</h2>
           </Reveal>
-          <div className="grid grid-3">
+          <div className="grid grid-3 cartes-anim">
             {pourquoiOptinov.map((p) => (
               <Reveal key={p.titre} className="card">
-                <div className="card__icon" aria-hidden="true">✓</div>
                 <h3 style={{ fontSize: "1.1rem" }}>{p.titre}</h3>
-                <p>{p.texte}</p>
+                <p><Lignes>{p.texte}</Lignes></p>
               </Reveal>
             ))}
           </div>

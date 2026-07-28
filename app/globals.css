@@ -1030,3 +1030,32 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 /* Intitulés de section (eyebrow) agrandis sur la page d'accueil (demande direction). */
 .accueil .eyebrow { font-size: 1.05rem; font-weight: 700; letter-spacing: .12em; }
 @media (max-width: 560px) { .accueil .eyebrow { font-size: .95rem; } }
+
+/* Logo image dans le footer (fond bleu nuit) : pastille claire pour le rendre visible. */
+.footer__logo { display: inline-flex; background: #fff; padding: .55rem .9rem; border-radius: 12px; box-shadow: var(--shadow-sm); }
+.footer__logo img { height: 42px; width: auto; display: block; }
+
+/* Animation renforcée des cartes « Notre différence » et « Réalisations » (demande direction). */
+.cartes-anim .card, .cartes-anim .card--project {
+  transition: transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease, border-color .3s ease;
+}
+.cartes-anim .card h3, .cartes-anim .card--project h3 { transition: color .3s ease; }
+.cartes-anim .card:hover, .cartes-anim .card--project:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: var(--shadow-lg);
+  border-color: color-mix(in srgb, var(--or) 45%, transparent);
+}
+.cartes-anim .card:hover h3, .cartes-anim .card--project:hover h3 { color: var(--or-600); }
+
+/* Chips « la méthode en action » (Réalisations) : entrée en cascade + survol. */
+.vision-mini span { opacity: 0; transition: transform .3s ease, background .3s ease, color .3s ease, box-shadow .3s ease; }
+.vision-mini.is-in span { animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both; }
+.vision-mini.is-in span:nth-child(2) { animation-delay: .08s; }
+.vision-mini.is-in span:nth-child(3) { animation-delay: .16s; }
+.vision-mini.is-in span:nth-child(4) { animation-delay: .24s; }
+.vision-mini.is-in span:nth-child(5) { animation-delay: .32s; }
+.vision-mini.is-in span:nth-child(6) { animation-delay: .40s; }
+.vision-mini span:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); color: var(--navy); }
+@media (prefers-reduced-motion: reduce) {
+  .vision-mini span { opacity: 1 !important; transform: none !important; }
+}
