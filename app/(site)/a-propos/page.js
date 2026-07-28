@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { chiffresCles, equipe, valeurs } from "@/content/site";
 import { Breadcrumb, Reveal, CtaBand, WhatsAppFloat } from "@/components/Ui";
+import { Lignes } from "@/components/Lignes";
 
 /** À propos (G2) — CDC §6.2 */
 export const metadata = {
@@ -37,20 +38,13 @@ export default function Agence() {
             <span className="eyebrow">Notre histoire</span>
             <h2>Née d&apos;une frustration</h2>
             <p>
-              Nous avons commencé par constater ce que beaucoup de dirigeants ivoiriens nous
-              disaient en privé : trop de prestataires promettent, facturent, puis disparaissent. Les
-              livrables arrivent en retard, les résultats ne se mesurent jamais, et personne
-              ne répond quand le téléphone sonne.
+              <Lignes>Nous avons commencé par constater ce que beaucoup de dirigeants ivoiriens nous disaient en privé : trop de prestataires promettent, facturent, puis disparaissent. Les livrables arrivent en retard, les résultats ne se mesurent jamais, et personne ne répond quand le téléphone sonne.</Lignes>
             </p>
             <p>
-              OPTINOV s&apos;est construite contre cela. Un interlocuteur unique qui
-              connaît votre dossier. Des délais contractualisés. Des indicateurs définis avant
-              de commencer, pas inventés après coup pour justifier la facture.
+              <Lignes>OPTINOV s&apos;est construite contre cela. Un interlocuteur unique qui connaît votre dossier. Des délais contractualisés. Des indicateurs définis avant de commencer, pas inventés après coup pour justifier la facture.</Lignes>
             </p>
             <p>
-              Nous avons aussi choisi de développer nos propres outils plutôt que de revendre
-              ceux des autres. PROS.CARDS est né de cette conviction : quand un besoin revient
-              chez tous nos clients, il mérite un produit, pas une prestation répétée.
+              <Lignes>Nous avons aussi choisi de développer nos propres outils plutôt que de revendre ceux des autres. PROS.CARDS est né de cette conviction : quand un besoin revient chez tous nos clients, il mérite un produit, pas une prestation répétée.</Lignes>
             </p>
           </Reveal>
           <Reveal>
@@ -86,7 +80,7 @@ export default function Agence() {
             {valeurs.map((v) => (
               <Reveal key={v.titre} className="card">
                 <h3>{v.titre}</h3>
-                <p>{v.texte}</p>
+                <p><Lignes>{v.texte}</Lignes></p>
               </Reveal>
             ))}
           </div>

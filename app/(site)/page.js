@@ -8,6 +8,7 @@ import { projets } from "@/content/realisations";
 import { Reveal, Carousel, Accordion, FaqJsonLd, WhatsAppFloat } from "@/components/Ui";
 import VisionMethod from "@/components/VisionMethod";
 import { FormulaireCourt } from "@/components/Forms";
+import { Lignes } from "@/components/Lignes";
 
 /**
  * Accueil (G1) — refonte « parcours de croissance » demandée par la direction.
@@ -41,9 +42,7 @@ export default function Accueil() {
             <span className="eyebrow">OPTINOV · Communication &amp; croissance</span>
             <h1>Votre croissance commence par une vision claire.</h1>
             <p className="lead">
-              Les entreprises qui réussissent ne se contentent pas de communiquer :
-              elles suivent une méthode. Découvrez comment OPTINOV transforme vos
-              ambitions en résultats durables.
+              <Lignes>Les entreprises qui réussissent ne se contentent pas de communiquer : elles suivent une méthode. Découvrez comment OPTINOV transforme vos ambitions en résultats durables.</Lignes>
             </p>
             <div className="btn-group" style={{ marginTop: "1.8rem" }}>
               <a className="btn btn--gold" href="#methode">Découvrir la méthode V.I.S.I.O.N.</a>
@@ -88,7 +87,7 @@ export default function Accueil() {
             {defis.map((d) => (
               <Reveal key={d.titre} className="card card--constat">
                 <h3>{d.titre}</h3>
-                <p>{d.texte}</p>
+                <p><Lignes>{d.texte}</Lignes></p>
               </Reveal>
             ))}
           </div>
@@ -102,10 +101,7 @@ export default function Accueil() {
             <span className="eyebrow">Notre conviction</span>
             <h2>La croissance ne s&apos;improvise pas.</h2>
             <p className="lead">
-              Une croissance durable ne repose pas sur une succession d&apos;actions
-              isolées, mais sur une vision claire, une stratégie adaptée et une
-              exécution maîtrisée. C&apos;est pourquoi nous avons développé une méthode
-              qui accompagne les entreprises à chaque étape de leur évolution.
+              <Lignes>Une croissance durable ne repose pas sur une succession d&apos;actions isolées, mais sur une vision claire, une stratégie adaptée et une exécution maîtrisée. C&apos;est pourquoi nous avons développé une méthode qui accompagne les entreprises à chaque étape de leur évolution.</Lignes>
             </p>
             <p style={{ marginTop: "1.5rem" }}>
               <a className="link-arrow" href="#methode">Découvrez la méthode V.I.S.I.O.N.</a>
@@ -141,8 +137,7 @@ export default function Accueil() {
             <span className="eyebrow">Les résultats</span>
             <h2 className="titre-1ligne">Ce que la méthode vous permet d&apos;accomplir</h2>
             <p className="lead">
-              Une méthode n&apos;a de valeur que par ses résultats. Nos expertises ne
-              sont pas une fin&nbsp;: ce sont des moyens au service de votre croissance.
+              <Lignes>Une méthode n&apos;a de valeur que par ses résultats. Nos expertises ne sont pas une fin&nbsp;: ce sont des moyens au service de votre croissance.</Lignes>
             </p>
           </Reveal>
           <div className="grid grid-4 piliers-grid">
@@ -152,7 +147,7 @@ export default function Accueil() {
                 <h3>{p.titre}</h3>
                 <p className="pilier__accroche">{p.accroche}</p>
                 <div className="pilier__details">
-                  <p>{p.texte}</p>
+                  <p><Lignes>{p.texte}</Lignes></p>
                   <ul>
                     {p.moyens.map((m) => <li key={m}>{m}</li>)}
                   </ul>
@@ -184,7 +179,7 @@ export default function Accueil() {
                   {s.etapes.map((l, i) => <span key={i} aria-hidden="true">{l}</span>)}
                 </div>
                 <h3 style={{ fontSize: "1.15rem" }}>{s.titre}</h3>
-                <p>{s.accroche}</p>
+                <p><Lignes>{s.accroche}</Lignes></p>
                 <ul style={{ fontSize: ".85rem", color: "var(--text-muted)", margin: "0 0 1rem" }}>
                   {s.items.slice(0, 5).map((it) => <li key={it}>{it}</li>)}
                 </ul>

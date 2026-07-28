@@ -1,5 +1,6 @@
 import { site, TODO } from "@/content/site";
 import { Breadcrumb, Reveal } from "@/components/Ui";
+import { Lignes } from "@/components/Lignes";
 
 /**
  * Mentions légales (G10) — CDC §6.10
@@ -58,7 +59,7 @@ export default function MentionsLegales() {
             {rubriques.map((r) => (
               <section key={r.titre}>
                 <h2>{r.titre}</h2>
-                <p>{r.contenu}</p>
+                <p><Lignes>{r.contenu}</Lignes></p>
               </section>
             ))}
           </Reveal>

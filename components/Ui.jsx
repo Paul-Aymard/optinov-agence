@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useId, useRef, useState } from "react";
 import { site, lienRdv, lienWhatsApp, estRenseigne } from "@/content/site";
+import { Lignes } from "@/components/Lignes";
 
 /* ------------------------------------------------------------------ *
  * Fil d'Ariane — EX-004, M — balisé Schema.org BreadcrumbList
@@ -117,7 +118,7 @@ export function Accordion({ items, defaultOpen = -1 }) {
               aria-labelledby={`${base}-btn-${i}`}
               {...(ouvert ? { "data-open": "" } : {})}
             >
-              <p style={{ margin: 0 }}>{it.r}</p>
+              <p style={{ margin: 0 }}><Lignes>{it.r}</Lignes></p>
             </div>
           </div>
         );

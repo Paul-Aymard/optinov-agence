@@ -8,6 +8,7 @@ import {
   Breadcrumb, Reveal, Accordion, FaqJsonLd, JsonLd, WhatsAppFloat,
 } from "@/components/Ui";
 import { FormulaireDevisService } from "@/components/Forms";
+import { Lignes } from "@/components/Lignes";
 
 /** SSG des 5 pages services — SEO-006 (rendu serveur, zéro dépendance JS) */
 export function generateStaticParams() {
@@ -99,7 +100,7 @@ export default async function PageService({ params }) {
               <span>{p.visionEtapes}</span>
             </p>
             {p.heroParas.map((t, i) => (
-              <p key={i} className={i === 0 ? "lead" : undefined}>{t}</p>
+              <p key={i} className={i === 0 ? "lead" : undefined}><Lignes>{t}</Lignes></p>
             ))}
             <div className="btn-group" style={{ marginTop: "1.8rem" }}>
               <a className="btn btn--accent" href={p.heroCta.href} data-ga="cta_devis">
@@ -120,7 +121,7 @@ export default async function PageService({ params }) {
             </Reveal>
             <Reveal className="svc-acte__body">
               {acte.paras.map((t, j) => (
-                <p key={j}>{t}</p>
+                <p key={j}><Lignes>{t}</Lignes></p>
               ))}
 
               {acte.liste && (
@@ -154,7 +155,7 @@ export default async function PageService({ params }) {
                 </div>
               )}
 
-              {acte.chute && <p className="svc-chute">{acte.chute}</p>}
+              {acte.chute && <p className="svc-chute"><Lignes>{acte.chute}</Lignes></p>}
               {acte.realisations && <RealisationsGrid />}
             </Reveal>
           </div>
@@ -167,7 +168,7 @@ export default async function PageService({ params }) {
           <Reveal className="section-head center">
             <h2>{p.manifeste.titre}</h2>
             {p.manifeste.paras.map((t, i) => (
-              <p key={i} className={i === 0 ? "lead" : undefined}>{t}</p>
+              <p key={i} className={i === 0 ? "lead" : undefined}><Lignes>{t}</Lignes></p>
             ))}
             <div className="btn-group" style={{ justifyContent: "center", marginTop: "1.8rem" }}>
               <a className="btn btn--accent" href={p.manifeste.ctaPrincipal.href} data-ga="cta_devis">
@@ -225,7 +226,7 @@ export default async function PageService({ params }) {
         <div className="container">
           <Reveal className="center">
             {p.transition.paras.map((t, i) => (
-              <p key={i} className={i === 0 ? "svc-transition__lead" : undefined}>{t}</p>
+              <p key={i} className={i === 0 ? "svc-transition__lead" : undefined}><Lignes>{t}</Lignes></p>
             ))}
             <Link className="btn btn--accent btn--lg" href={p.transition.bouton.href}>
               {p.transition.bouton.label} <span aria-hidden="true">→</span>
