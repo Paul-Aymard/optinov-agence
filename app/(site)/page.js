@@ -137,9 +137,9 @@ export default function Accueil() {
       {/* ---------- 5. Ce que cette méthode vous permet d'accomplir (4 piliers) ---------- */}
       <section className="section" id="piliers">
         <div className="container">
-          <Reveal className="section-head center">
+          <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Les résultats</span>
-            <h2>Ce que la méthode vous permet d&apos;accomplir</h2>
+            <h2 className="titre-1ligne">Ce que la méthode vous permet d&apos;accomplir</h2>
             <p className="lead">
               Une méthode n&apos;a de valeur que par ses résultats. Nos expertises ne
               sont pas une fin&nbsp;: ce sont des moyens au service de votre croissance.
