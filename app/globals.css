@@ -611,12 +611,79 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .ba__handle::after { content: "⇄"; position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 44px; height: 44px; border-radius: 50%; background: #fff; color: var(--navy); display: grid; place-items: center; box-shadow: var(--shadow-md); }
 
 /* ---------- 23. Animations d'apparition — UX-003 / UX-005 ---------- */
-[data-reveal] { opacity: 0; transform: translateY(18px); }
-[data-reveal].is-in { opacity: 1; transform: none; transition: opacity 400ms ease, transform 400ms ease; }
+[data-reveal] { opacity: 0; transform: translateY(22px); }
+[data-reveal].is-in {
+  opacity: 1; transform: none;
+  transition: opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);
+}
+
+/* Variantes directionnelles (opt-in) */
+[data-reveal].reveal-left  { transform: translateX(-28px); }
+[data-reveal].reveal-right { transform: translateX(28px); }
+[data-reveal].reveal-scale { transform: scale(.94); }
+[data-reveal].reveal-left.is-in,
+[data-reveal].reveal-right.is-in,
+[data-reveal].reveal-scale.is-in { transform: none; }
+
+/* Cascade des cartes/étapes d'une même grille (chaque enfant est un data-reveal) */
+.grid > [data-reveal]:nth-child(2), .steps > [data-reveal]:nth-child(2) { transition-delay: .08s; }
+.grid > [data-reveal]:nth-child(3), .steps > [data-reveal]:nth-child(3) { transition-delay: .16s; }
+.grid > [data-reveal]:nth-child(4), .steps > [data-reveal]:nth-child(4) { transition-delay: .24s; }
+.grid > [data-reveal]:nth-child(5), .steps > [data-reveal]:nth-child(5) { transition-delay: .32s; }
+.grid > [data-reveal]:nth-child(6), .steps > [data-reveal]:nth-child(6) { transition-delay: .40s; }
+
+/* Keyframes utilitaires */
+@keyframes itemIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+@keyframes popIn  { from { opacity: 0; transform: scale(.85); }        to { opacity: 1; transform: none; } }
+
+/* Entrée séquencée des éléments internes (listes, checklists, parcours, objectifs) */
+.svc-liste li, .svc-check li, .svc-parcours__etape, .objectifs > a { opacity: 0; }
+.svc-acte__body.is-in .svc-liste li,
+.svc-acte__body.is-in .svc-check li,
+.objectifs.is-in > a { animation: itemIn .5s cubic-bezier(.22,.61,.36,1) both; }
+.svc-acte__body.is-in .svc-parcours__etape { animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both; }
+
+.svc-liste li:nth-child(2), .svc-check li:nth-child(2), .svc-parcours__etape:nth-child(2), .objectifs.is-in > a:nth-child(2) { animation-delay: .08s; }
+.svc-liste li:nth-child(3), .svc-check li:nth-child(3), .svc-parcours__etape:nth-child(3), .objectifs.is-in > a:nth-child(3) { animation-delay: .16s; }
+.svc-liste li:nth-child(4), .svc-check li:nth-child(4), .svc-parcours__etape:nth-child(4), .objectifs.is-in > a:nth-child(4) { animation-delay: .24s; }
+.svc-liste li:nth-child(5), .svc-check li:nth-child(5), .svc-parcours__etape:nth-child(5), .objectifs.is-in > a:nth-child(5) { animation-delay: .32s; }
+.svc-liste li:nth-child(6), .svc-check li:nth-child(6), .svc-parcours__etape:nth-child(6), .objectifs.is-in > a:nth-child(6) { animation-delay: .40s; }
+.svc-liste li:nth-child(7), .svc-check li:nth-child(7) { animation-delay: .48s; }
+
+/* Entrée séquencée des éléments du hero (service + accueil) */
+.svc-hero [data-reveal], .hero--home [data-reveal] { opacity: 1; transform: none; }
+.svc-hero [data-reveal] > *, .hero--home [data-reveal] > * { opacity: 0; }
+.svc-hero [data-reveal].is-in > *, .hero--home [data-reveal].is-in > * { animation: itemIn .6s cubic-bezier(.22,.61,.36,1) both; }
+.svc-hero [data-reveal].is-in > *:nth-child(2), .hero--home [data-reveal].is-in > *:nth-child(2) { animation-delay: .1s; }
+.svc-hero [data-reveal].is-in > *:nth-child(3), .hero--home [data-reveal].is-in > *:nth-child(3) { animation-delay: .2s; }
+.svc-hero [data-reveal].is-in > *:nth-child(4), .hero--home [data-reveal].is-in > *:nth-child(4) { animation-delay: .3s; }
+.svc-hero [data-reveal].is-in > *:nth-child(5), .hero--home [data-reveal].is-in > *:nth-child(5) { animation-delay: .4s; }
+.svc-hero [data-reveal].is-in > *:nth-child(6), .hero--home [data-reveal].is-in > *:nth-child(6) { animation-delay: .5s; }
+.svc-hero [data-reveal].is-in > *:nth-child(n+7), .hero--home [data-reveal].is-in > *:nth-child(n+7) { animation-delay: .6s; }
+
+/* Micro-interactions au survol */
+.card { transition: transform .3s cubic-bezier(.22,.61,.36,1), box-shadow .3s ease, border-color .3s ease; }
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
+.btn { transition: background var(--t-fast), color var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast); }
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+.link-arrow:hover::after { transform: translateX(5px); }
+
+/* Pulsation discrète des lettres V.I.S.I.O.N. dans le hero service */
+@keyframes visionGlow { 0%, 100% { opacity: 1; } 50% { opacity: .5; } }
+.svc-vision b { animation: visionGlow 3.4s ease-in-out infinite; }
+
+/* Flèche de la transition qui invite au clic */
+@keyframes nudge { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(6px); } }
+.svc-transition .btn span[aria-hidden] { display: inline-block; animation: nudge 1.7s ease-in-out infinite; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   [data-reveal] { opacity: 1; transform: none; }
+  /* On rend visibles tous les éléments qui, sinon, restent cachés sans animation. */
+  .svc-liste li, .svc-check li, .svc-parcours__etape, .objectifs > a,
+  .svc-hero [data-reveal] > *, .hero--home [data-reveal] > * { opacity: 1 !important; transform: none !important; }
 }
 
 /* ---------- 23b. Méthode V.I.S.I.O.N. (refonte accueil) ---------- */
