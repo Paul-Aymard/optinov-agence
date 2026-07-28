@@ -768,10 +768,30 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .section:not(.section--navy) .vision__accroche { color: var(--or-600); }
 
 /* Piliers (résultats de la méthode) */
-.pilier ul { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: .4rem; }
+.pilier ul { list-style: none; padding: 0; margin: 1rem 0 0; display: flex; flex-wrap: wrap; gap: .45rem; }
+/* Chaque pilier a sa couleur (écho à la charte des services). */
+.pilier { --pilier-accent: var(--or-600); }
+#pilier-visibilite     { --pilier-accent: #2563EB; } /* bleu   */
+#pilier-image          { --pilier-accent: #7C3AED; } /* violet */
+#pilier-valorisation   { --pilier-accent: #F97316; } /* orange */
+#pilier-digitalisation { --pilier-accent: #16A34A; } /* vert   */
+/* Pastilles colorées : fond teinté, texte saturé, petit point en tête. */
 .pilier ul li {
-  font-size: .78rem; background: var(--bg-alt); color: var(--navy-300);
-  padding: .28rem .6rem; border-radius: 100px;
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-size: .78rem; font-weight: 600;
+  background: color-mix(in srgb, var(--pilier-accent) 12%, #fff);
+  color: color-mix(in srgb, var(--pilier-accent) 82%, #000);
+  border: 1px solid color-mix(in srgb, var(--pilier-accent) 32%, transparent);
+  padding: .3rem .68rem; border-radius: 100px;
+  transition: background var(--t-fast), transform var(--t-fast), box-shadow var(--t-fast);
+}
+.pilier ul li::before {
+  content: ""; width: 7px; height: 7px; border-radius: 50%;
+  background: var(--pilier-accent); flex: none;
+}
+.pilier ul li:hover {
+  background: color-mix(in srgb, var(--pilier-accent) 20%, #fff);
+  transform: translateY(-2px); box-shadow: var(--shadow-sm);
 }
 .pilier .emoji { font-size: 1.8rem; line-height: 1; display: block; margin-bottom: .8rem; }
 

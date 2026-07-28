@@ -148,7 +148,7 @@ export default function Accueil() {
           <div className="grid grid-2">
             {piliers.map((p) => (
               <Reveal key={p.id} className="card pilier" id={`pilier-${p.id}`} style={{ scrollMarginTop: "90px" }}>
-                <span className="emoji" aria-hidden="true">{p.emoji}</span>
+                <span className="emoji" aria-hidden="true">{p.icone}</span>
                 <h3>{p.titre}</h3>
                 <p style={{ color: "var(--or-600)", fontWeight: 600 }}>{p.accroche}</p>
                 <p>{p.texte}</p>
