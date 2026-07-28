@@ -74,9 +74,9 @@ export default function Accueil() {
       {/* ---------- 2. Pourquoi tant d'entreprises peinent à se développer ---------- */}
       <section className="section section--alt">
         <div className="container">
-          <Reveal className="section-head center">
+          <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Le constat</span>
-            <h2>Pourquoi tant d&apos;entreprises peinent-elles à se développer&nbsp;?</h2>
+            <h2 className="titre-1ligne">Pourquoi tant d&apos;entreprises peinent-elles à se développer&nbsp;?</h2>
             <p className="lead">
               Beaucoup investissent dans des actions isolées — un logo, un site, une
               campagne — utiles, mais qui produisent rarement leur plein potentiel
