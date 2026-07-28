@@ -56,7 +56,7 @@ export default function Header() {
         {/* Logo officiel OPTINOV (public/logo-optinov.png, 800×200, fond transparent). */}
         <Link href="/" className="logo" aria-label="OPTINOV — accueil">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/logo-optinov.png" alt="OPTINOV" className="logo__img" width="184" height="46" />
+          <img src="/logo-optinov.png" alt="OPTINOV" className="logo__img" width="216" height="54" />
         </Link>
 
         <nav className="nav" id="menu-principal" ref={navRef} aria-label="Navigation principale">
