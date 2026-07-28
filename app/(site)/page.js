@@ -167,9 +167,9 @@ export default function Accueil() {
       {/* ---------- 6. Nos solutions (reliées aux étapes V.I.S.I.O.N.) ---------- */}
       <section className="section section--alt" id="solutions">
         <div className="container">
-          <Reveal className="section-head center">
+          <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Nos solutions</span>
-            <h2>Des solutions pensées pour chaque étape de votre croissance</h2>
+            <h2 className="titre-1ligne">Des solutions pensées pour chaque étape de votre croissance</h2>
             <p className="lead">
               Chaque solution s&apos;intègre naturellement à la méthode V.I.S.I.O.N.
               Les pastilles indiquent les étapes qu&apos;elle sert.
@@ -199,9 +199,9 @@ export default function Accueil() {
       {/* ---------- 7. Des projets qui donnent vie aux ambitions ---------- */}
       <section className="section">
         <div className="container">
-          <Reveal className="section-head center">
+          <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Réalisations</span>
-            <h2>Des projets qui donnent vie aux ambitions de nos clients</h2>
+            <h2 className="titre-1ligne">Des projets qui donnent vie aux ambitions de nos clients</h2>
             <p className="lead">
               Nos études de cas ne montrent pas seulement un résultat&nbsp;: elles
               racontent le projet à travers les étapes de V.I.S.I.O.N., pour montrer
@@ -308,10 +308,10 @@ export default function Accueil() {
         </section>
       ) : (
         <section className="section">
-          <div className="container" style={{ maxWidth: "44rem", textAlign: "center" }}>
+          <div className="container" style={{ maxWidth: "72rem", textAlign: "center" }}>
             <Reveal>
               <span className="eyebrow">Confiance</span>
-              <h2>Et si le prochain logo affiché ici était le vôtre&nbsp;?</h2>
+              <h2 className="titre-1ligne">Et si le prochain logo affiché ici était le vôtre&nbsp;?</h2>
               <p className="lead">
                 Nous serions heureux de découvrir votre entreprise et de mettre la
                 méthode V.I.S.I.O.N. au service de vos ambitions.
