@@ -1060,16 +1060,22 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   .vision-mini span { opacity: 1 !important; transform: none !important; }
 }
 
-/* Listes d'items (Performance & Communication visuelle) en bleu nuit du logo + animation au survol. */
+/* Listes d'items en bleu nuit du logo + animation au survol (services concernés). */
 [data-service="automatisation-ia"] .svc-liste li,
-[data-service="communication-visuelle"] .svc-liste li {
+[data-service="communication-visuelle"] .svc-liste li,
+[data-service="communication-digitale"] .svc-liste li {
   background: #0F1E3D; border-color: transparent;
   transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s ease;
 }
 [data-service="automatisation-ia"] .svc-liste__cle,
-[data-service="communication-visuelle"] .svc-liste__cle { color: #fff; }
+[data-service="communication-visuelle"] .svc-liste__cle,
+[data-service="communication-digitale"] .svc-liste__cle { color: #fff; }
+/* Liste avec valeur (digitale) : texte secondaire et flèche lisibles sur fond sombre. */
+[data-service="communication-digitale"] .svc-liste__val { color: #c2cbdc; }
+[data-service="communication-digitale"] .svc-liste__val::before { color: var(--or); }
 [data-service="automatisation-ia"] .svc-liste li:hover,
-[data-service="communication-visuelle"] .svc-liste li:hover {
+[data-service="communication-visuelle"] .svc-liste li:hover,
+[data-service="communication-digitale"] .svc-liste li:hover {
   transform: translateY(-5px) scale(1.03);
   box-shadow: 0 16px 34px rgba(15,30,61,.4);
 }
