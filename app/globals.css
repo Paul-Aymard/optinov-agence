@@ -1080,6 +1080,17 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   box-shadow: 0 16px 34px rgba(15,30,61,.4);
 }
 
+/* Parcours (Découverte → Intérêt → Confiance → Contact) : fond bleu logo + animation au survol. */
+[data-service="communication-digitale"] .svc-parcours__etape {
+  background: #0F1E3D; border-color: transparent; color: #fff;
+  transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s ease;
+}
+[data-service="communication-digitale"] .svc-parcours__etape i { color: var(--or); }
+[data-service="communication-digitale"] .svc-parcours__etape:hover {
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 14px 30px rgba(15,30,61,.4);
+}
+
 /* « FAQ » : police un peu plus grande (demande direction). */
 .eyebrow--faq { font-size: 1.05rem; }
 
