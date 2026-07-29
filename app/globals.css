@@ -1091,6 +1091,23 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   box-shadow: 0 14px 30px rgba(15,30,61,.4);
 }
 
+/* Photo & Vidéo Corporate : liste en bleu logo + animation DIFFÉRENTE (reflet lumineux qui balaie). */
+[data-service="photo-video"] .svc-liste li {
+  background: #0F1E3D; border-color: transparent; position: relative; overflow: hidden;
+  transition: box-shadow .4s ease;
+}
+[data-service="photo-video"] .svc-liste__cle { color: #fff; position: relative; z-index: 1; }
+[data-service="photo-video"] .svc-liste li::after {
+  content: ""; position: absolute; top: 0; left: -70%; width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.22), transparent);
+  transform: skewX(-18deg); transition: left .7s cubic-bezier(.22,.61,.36,1); z-index: 0;
+}
+[data-service="photo-video"] .svc-liste li:hover::after { left: 140%; }
+[data-service="photo-video"] .svc-liste li:hover { box-shadow: 0 16px 34px rgba(15,30,61,.4); }
+@media (prefers-reduced-motion: reduce) {
+  [data-service="photo-video"] .svc-liste li::after { display: none; }
+}
+
 /* « FAQ » : police un peu plus grande (demande direction). */
 .eyebrow--faq { font-size: 1.05rem; }
 
