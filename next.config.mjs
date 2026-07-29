@@ -2,30 +2,19 @@
 const nextConfig = {
   reactStrictMode: true,
 
-  // PERF-001..007 : formats modernes servis automatiquement par next/image
-  images: {
-    formats: ["image/avif", "image/webp"],
-  },
+  // Export statique : le site est 100 % SSG (aucune fonction serveur / route API).
+  // Produit un dossier `out/` déployable sur n'importe quel hébergeur statique
+  // (Cloudflare Pages, Netlify en mode statique, etc.).
+  output: "export",
 
-  // SEC-002 : en-têtes de sécurité.
-  // NOTE : en production, ces en-têtes doivent être portés par le reverse proxy
-  // ou le CDN, pas seulement par Next.js. La CSP ci-dessous est un socle à
-  // durcir une fois GTM/GA4/Meta Pixel branchés (§8.6) — 'unsafe-inline' est
-  // requis par GTM et devra être remplacé par un nonce.
-  async headers() {
-    return [
-      {
-        source: "/:path*",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
-          { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=()" },
-        ],
-      },
-    ];
-  },
+  // En export statique, l'optimiseur d'images serveur n'est pas disponible.
+  // (Le site n'utilise pas next/image de toute façon.)
+  images: { unoptimized: true },
+
+  // SEC-002 : les en-têtes de sécurité ne sont PAS gérés par next.config en export
+  // statique — ils sont portés par l'hébergeur :
+  //   - Cloudflare Pages : public/_headers
+  //   - Netlify          : netlify.toml
 };
 
 export default nextConfig;

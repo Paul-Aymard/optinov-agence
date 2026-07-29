@@ -14,3 +14,6 @@ captures/
 cap-accueil.mjs
 verif-prod.mjs
 deploy.log
+
+# Export statique
+/out/

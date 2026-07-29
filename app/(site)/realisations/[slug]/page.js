@@ -5,7 +5,14 @@ import { TODO } from "@/content/site";
 import { Breadcrumb, Reveal, AvantApres, WhatsAppFloat } from "@/components/Ui";
 import { FormulaireContact } from "@/components/Forms";
 
+// Export statique : seules les pages listées existent (les autres → 404).
+export const dynamicParams = false;
+
 export function generateStaticParams() {
+  // Aucune étude de cas publiée pour l'instant (projets = []). L'export statique
+  // exige au moins un chemin : on en génère un factice, que la page renvoie en
+  // 404 via notFound() (slug inconnu) — aucune fausse réalisation n'est affichée.
+  if (projets.length === 0) return [{ slug: "a-venir" }];
   return projets.map((p) => ({ slug: p.slug }));
 }
 

@@ -3,6 +3,9 @@ import { services } from "@/content/services";
 import { projets } from "@/content/realisations";
 import { articles } from "@/content/blog";
 
+// Requis avec `output: export` : sitemap généré statiquement au build.
+export const dynamic = "force-static";
+
 /** Sitemap XML généré automatiquement — SEO-004, M */
 export default function sitemap() {
   const url = (chemin, priority, changeFrequency) => ({

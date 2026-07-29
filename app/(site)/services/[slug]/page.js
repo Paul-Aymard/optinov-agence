@@ -11,6 +11,9 @@ import { FormulaireDevisService } from "@/components/Forms";
 import { Lignes, Vision } from "@/components/Lignes";
 
 /** SSG des 5 pages services — SEO-006 (rendu serveur, zéro dépendance JS) */
+// Export statique : seules les pages listées existent (les autres → 404).
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return services.map((s) => ({ slug: s.slug }));
 }

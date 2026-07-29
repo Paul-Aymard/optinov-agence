@@ -5,6 +5,9 @@ import { getService } from "@/content/services";
 import { site, estRenseigne } from "@/content/site";
 import { Breadcrumb, Reveal, JsonLd, WhatsAppFloat } from "@/components/Ui";
 
+// Export statique : seules les pages listées existent (les autres → 404).
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return articles.map((a) => ({ slug: a.slug }));
 }

@@ -1,10 +1,6 @@
 [build]
   command = "next build"
-  publish = ".next"
-
-# Runtime officiel Next.js pour Netlify : SSG + App Router + generateMetadata.
-[[plugins]]
-  package = "@netlify/plugin-nextjs"
+  publish = "out"
 
 # L'ancienne page « À propos » (/agence) a été renommée /a-propos : redirection
 # permanente pour ne casser aucun lien déjà partagé.
