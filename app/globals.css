@@ -1073,3 +1073,10 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 
 /* « FAQ » : police un peu plus grande (demande direction). */
 .eyebrow--faq { font-size: 1.05rem; }
+
+/* Intitulé « verbe — service » en haut des pages Services, agrandi (demande direction). */
+.service-page .svc-verbe { font-size: 1rem; }
+
+/* FAQ des pages Services : questions et réponses un peu plus grandes. */
+.service-page .accordion__btn { font-size: 1.2rem; }
+.service-page .accordion__panel { font-size: 1.02rem; }
