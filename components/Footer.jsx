@@ -17,7 +17,7 @@ export default function Footer() {
             <Link href="/" className="footer__logo" aria-label="OPTINOV — accueil">
               <img src="/logo-optinov.png" alt="OPTINOV" width="200" height="50" />
             </Link>
-            <p style={{ marginTop: "1.1rem" }}>
+            <p style={{ marginTop: ".7rem" }}>
               Pôle communication du groupe OPTINOV. Communication, marketing et
               transformation digitale à {site.ville}.
             </p>
