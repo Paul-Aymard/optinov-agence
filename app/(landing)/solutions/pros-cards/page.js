@@ -380,7 +380,7 @@ export default function LandingProsCards() {
       <section className="section section--alt" id="faq">
         <div className="container" style={{ maxWidth: "56rem" }}>
           <Reveal className="section-head center">
-            <span className="eyebrow">FAQ</span>
+            <span className="eyebrow eyebrow--faq">FAQ</span>
             <h2>Vos questions, nos réponses</h2>
           </Reveal>
           <Accordion items={faqProsCards} />

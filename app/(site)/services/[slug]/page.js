@@ -73,6 +73,7 @@ export default async function PageService({ params }) {
   return (
     <div
       className={`service-page${p.universSombre ? " service-page--sombre" : ""}`}
+      data-service={slug}
       style={{ "--accent": `var(${p.accentVar})` }}
     >
       <Breadcrumb
@@ -179,7 +180,7 @@ export default async function PageService({ params }) {
       <section className="section section--alt">
         <div className="container" style={{ maxWidth: "56rem" }}>
           <Reveal className="section-head center">
-            <span className="eyebrow">FAQ</span>
+            <span className="eyebrow eyebrow--faq">FAQ</span>
             <h2>Questions fréquentes</h2>
           </Reveal>
           <Accordion items={s.faq} />

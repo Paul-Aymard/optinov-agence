@@ -19,7 +19,7 @@ export default function Faq() {
       <section className="hero hero--page">
         <div className="container">
           <Reveal>
-            <span className="eyebrow">FAQ</span>
+            <span className="eyebrow eyebrow--faq">FAQ</span>
             <h1>Les questions qu&apos;on nous pose vraiment</h1>
             <p className="lead">
               Nos réponses, sans détour. Si la vôtre n&apos;y figure pas, elle mérite

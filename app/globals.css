@@ -1059,3 +1059,17 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 @media (prefers-reduced-motion: reduce) {
   .vision-mini span { opacity: 1 !important; transform: none !important; }
 }
+
+/* Performance & automatisation : liste des outils (rendez-vous, clients…) en bleu nuit du logo + animation au survol. */
+[data-service="automatisation-ia"] .svc-liste li {
+  background: #0F1E3D; border-color: transparent;
+  transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s ease;
+}
+[data-service="automatisation-ia"] .svc-liste__cle { color: #fff; }
+[data-service="automatisation-ia"] .svc-liste li:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 16px 34px rgba(15,30,61,.4);
+}
+
+/* « FAQ » : police un peu plus grande (demande direction). */
+.eyebrow--faq { font-size: 1.05rem; }
