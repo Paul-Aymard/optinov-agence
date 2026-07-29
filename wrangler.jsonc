@@ -1,0 +1,12 @@
+{
+  // Déploiement Cloudflare Workers en mode "static assets" : on sert simplement
+  // le dossier `out/` produit par l'export statique de Next.js (output: "export").
+  // Ce fichier empêche wrangler de forcer l'adaptateur serveur OpenNext.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "optinov-agence",
+  "compatibility_date": "2026-07-29",
+  "assets": {
+    "directory": "./out",
+    "not_found_handling": "404-page"
+  }
+}
