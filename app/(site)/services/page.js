@@ -16,6 +16,24 @@ export const metadata = {
   alternates: { canonical: "/services" },
 };
 
+/** Carte d'un service (hub) — factorisée pour les 2 rangées. */
+function carteServiceHub(s) {
+  return (
+    <Reveal key={s.slug} className="card">
+      <h3>{s.titre}</h3>
+      <p>{s.description}</p>
+      <ul>
+        {s.livrablesTypes.map((l) => (
+          <li key={l}>{l}</li>
+        ))}
+      </ul>
+      <Link className="link-arrow" href={`/services/${s.slug}`}>
+        Découvrir<span className="sr-only"> {s.titre}</span>
+      </Link>
+    </Reveal>
+  );
+}
+
 export default function HubServices() {
   return (
     <>
@@ -38,22 +56,13 @@ export default function HubServices() {
       {/* Grille des 5 services */}
       <section className="section">
         <div className="container">
-          <div className="grid grid-3">
-            {services.map((s) => (
-              <Reveal key={s.slug} className="card">
-                <div className="card__icon" aria-hidden="true">{s.icone}</div>
-                <h3>{s.titre}</h3>
-                <p>{s.description}</p>
-                <ul>
-                  {s.livrablesTypes.map((l) => (
-                    <li key={l}>{l}</li>
-                  ))}
-                </ul>
-                <Link className="link-arrow" href={`/services/${s.slug}`}>
-                  Découvrir<span className="sr-only"> {s.titre}</span>
-                </Link>
-              </Reveal>
-            ))}
+          {/* Rangée du haut : 2 cartes larges */}
+          <div className="grid grid-2 solutions-grille">
+            {services.slice(0, 2).map(carteServiceHub)}
+          </div>
+          {/* Rangée du bas : les 3 autres */}
+          <div className="grid grid-3 solutions-grille solutions-grille--bas">
+            {services.slice(2).map(carteServiceHub)}
           </div>
         </div>
       </section>

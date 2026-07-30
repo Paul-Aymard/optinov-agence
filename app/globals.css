@@ -886,6 +886,23 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .svc-acte__head h2 { margin: 0; }
 .svc-acte__body { max-width: 62ch; }
 .svc-acte__body > p { color: var(--text); }
+
+/* Actes en 2 colonnes : texte + cadre illustration, alternés gauche/droite. */
+.svc-acte__grid { display: grid; gap: clamp(1.6rem, 4vw, 3.5rem); align-items: center; }
+@media (min-width: 900px) {
+  .svc-acte__grid { grid-template-columns: 1fr 1fr; }
+  .svc-acte--inverse .svc-acte__texte { order: 2; }
+}
+.svc-acte__texte { min-width: 0; }
+/* Cadre où insérer une image (couleur d'accent du service). */
+.ph-media {
+  aspect-ratio: 4 / 3; border-radius: var(--r-lg);
+  border: 2px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--white));
+  display: grid; place-items: center;
+  color: var(--accent); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; font-size: .82rem;
+}
 .svc-chute {
   margin-top: 1.3rem; font-family: var(--font-title); font-size: 1.15rem;
   color: var(--navy); font-weight: 700;

@@ -111,49 +111,59 @@ export default async function PageService({ params }) {
 
       {/* ACTES 2 · 3 · 4 — le récit */}
       {p.actes.map((acte, i) => (
-        <section key={acte.titre} className={`svc-acte section${i % 2 === 0 ? " section--alt" : ""}`}>
-          <div className="container">
-            <Reveal className="svc-acte__head">
-              <h2>{acte.titre}</h2>
-            </Reveal>
-            <Reveal className="svc-acte__body">
-              {acte.paras.map((t, j) => (
-                <p key={j}><Lignes>{t}</Lignes></p>
-              ))}
+        <section
+          key={acte.titre}
+          className={`svc-acte section${i % 2 === 0 ? " section--alt" : ""}${i % 2 === 1 ? " svc-acte--inverse" : ""}`}
+        >
+          <div className="container svc-acte__grid">
+            <div className="svc-acte__texte">
+              <Reveal className="svc-acte__head">
+                <h2>{acte.titre}</h2>
+              </Reveal>
+              <Reveal className="svc-acte__body">
+                {acte.paras.map((t, j) => (
+                  <p key={j}><Lignes>{t}</Lignes></p>
+                ))}
 
-              {acte.liste && (
-                <ul className="svc-liste">
-                  {acte.liste.map((it) => (
-                    <li key={it.cle}>
-                      {it.icone && <span className="svc-liste__ic" aria-hidden="true">{it.icone}</span>}
-                      <span className="svc-liste__cle">{it.cle}</span>
-                      {it.valeur && <span className="svc-liste__val">{it.valeur}</span>}
-                    </li>
-                  ))}
-                </ul>
-              )}
+                {acte.liste && (
+                  <ul className="svc-liste">
+                    {acte.liste.map((it) => (
+                      <li key={it.cle}>
+                        {it.icone && <span className="svc-liste__ic" aria-hidden="true">{it.icone}</span>}
+                        <span className="svc-liste__cle">{it.cle}</span>
+                        {it.valeur && <span className="svc-liste__val">{it.valeur}</span>}
+                      </li>
+                    ))}
+                  </ul>
+                )}
 
-              {acte.checklist && (
-                <ul className="svc-check">
-                  {acte.checklist.map((c) => (
-                    <li key={c}>{c}</li>
-                  ))}
-                </ul>
-              )}
+                {acte.checklist && (
+                  <ul className="svc-check">
+                    {acte.checklist.map((c) => (
+                      <li key={c}>{c}</li>
+                    ))}
+                  </ul>
+                )}
 
-              {acte.parcours && (
-                <div className="svc-parcours" aria-hidden="true">
-                  {acte.parcours.map((etape, k) => (
-                    <span key={etape} className="svc-parcours__etape">
-                      {etape}
-                      {k < acte.parcours.length - 1 && <i>→</i>}
-                    </span>
-                  ))}
-                </div>
-              )}
+                {acte.parcours && (
+                  <div className="svc-parcours" aria-hidden="true">
+                    {acte.parcours.map((etape, k) => (
+                      <span key={etape} className="svc-parcours__etape">
+                        {etape}
+                        {k < acte.parcours.length - 1 && <i>→</i>}
+                      </span>
+                    ))}
+                  </div>
+                )}
 
-              {acte.chute && <p className="svc-chute"><Lignes>{acte.chute}</Lignes></p>}
-              {acte.realisations && <RealisationsGrid />}
+                {acte.chute && <p className="svc-chute"><Lignes>{acte.chute}</Lignes></p>}
+                {acte.realisations && <RealisationsGrid />}
+              </Reveal>
+            </div>
+
+            {/* Cadre où insérer une illustration — alterné gauche/droite selon l'acte */}
+            <Reveal className="svc-acte__media">
+              <div className="ph-media" aria-hidden="true">Illustration</div>
             </Reveal>
           </div>
         </section>
