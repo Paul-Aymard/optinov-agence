@@ -30,6 +30,26 @@ export const metadata = {
 
 const CTA_PROJET = "Parlons de votre projet";
 
+/** Carte d'une solution (grille d'accueil) — factorisée pour les 2 rangées. */
+function carteSolution(s) {
+  return (
+    <Reveal key={s.titre} className="card">
+      <div className="etape-tags" aria-label={`Étapes V.I.S.I.O.N. : ${s.etapes.join(", ")}`}>
+        {s.etapes.map((l, i) => <span key={i} aria-hidden="true">{l}</span>)}
+      </div>
+      <h3 style={{ fontSize: "1.15rem" }}>{s.titre}</h3>
+      <p><Lignes>{s.accroche}</Lignes></p>
+      <ul style={{ fontSize: ".85rem", color: "var(--text-muted)", margin: "0 0 1rem" }}>
+        {s.items.slice(0, 5).map((it) => <li key={it}>{it}</li>)}
+      </ul>
+      <Link className="link-arrow" href={s.href}>
+        {s.produit ? "Découvrir PROS.CARDS" : "En savoir plus"}
+        <span className="sr-only"> — {s.titre}</span>
+      </Link>
+    </Reveal>
+  );
+}
+
 export default function Accueil() {
   return (
     <div className="accueil">
@@ -171,23 +191,13 @@ export default function Accueil() {
               <Lignes>Chaque solution s&apos;intègre naturellement à la méthode V.I.S.I.O.N. Les pastilles indiquent les étapes qu&apos;elle sert.</Lignes>
             </p>
           </Reveal>
-          <div className="grid grid-3">
-            {solutionsAccueil.map((s) => (
-              <Reveal key={s.titre} className="card">
-                <div className="etape-tags" aria-label={`Étapes V.I.S.I.O.N. : ${s.etapes.join(", ")}`}>
-                  {s.etapes.map((l, i) => <span key={i} aria-hidden="true">{l}</span>)}
-                </div>
-                <h3 style={{ fontSize: "1.15rem" }}>{s.titre}</h3>
-                <p><Lignes>{s.accroche}</Lignes></p>
-                <ul style={{ fontSize: ".85rem", color: "var(--text-muted)", margin: "0 0 1rem" }}>
-                  {s.items.slice(0, 5).map((it) => <li key={it}>{it}</li>)}
-                </ul>
-                <Link className="link-arrow" href={s.href}>
-                  {s.produit ? "Découvrir PROS.CARDS" : "En savoir plus"}
-                  <span className="sr-only"> — {s.titre}</span>
-                </Link>
-              </Reveal>
-            ))}
+          {/* Rangée du haut : 2 cartes larges (paysage) sur toute la largeur */}
+          <div className="grid grid-2 solutions-grille">
+            {solutionsAccueil.slice(0, 2).map(carteSolution)}
+          </div>
+          {/* Rangée du bas : les 3 autres cartes, sur toute la largeur */}
+          <div className="grid grid-3 solutions-grille solutions-grille--bas">
+            {solutionsAccueil.slice(2).map(carteSolution)}
           </div>
         </div>
       </section>

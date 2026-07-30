@@ -1022,6 +1022,13 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 #solutions .grid > .card h3 { font-size: 1.3rem; }
 #solutions .grid > .card > p { font-size: 1.02rem; }
 
+/* Grilles solutions : 2 cartes larges en haut, 3 en bas — remplissage complet, sans espace vide. */
+.solutions-grille--bas { margin-top: clamp(1rem, 2.2vw, 1.75rem); }
+@media (min-width: 760px) {
+  .solutions-grille { grid-template-columns: repeat(2, 1fr); }
+  .solutions-grille--bas { grid-template-columns: repeat(3, 1fr); }
+}
+
 /* --- Direction : suppression des icônes décoratives sur tout le site --- */
 .card__icon, .emoji, .svc-liste__ic { display: none !important; }
 
