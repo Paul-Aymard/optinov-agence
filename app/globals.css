@@ -77,7 +77,8 @@ body {
   font-size: 1rem;
   line-height: 1.65;
   color: var(--text);
-  background: var(--bg);
+  /* Fond habillé : dégradé doux dans les tons bleu nuit de la marque (reste léger et lisible). */
+  background: linear-gradient(175deg, #F4F7FD 0%, #E7EEF9 55%, #EDF2FB 100%) fixed;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -1120,6 +1121,15 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 }
 [data-service="photo-video"] .svc-liste li:hover::after { left: 140%; }
 [data-service="photo-video"] .svc-liste li:hover { box-shadow: var(--glow-orange); }
+/* Photo & Vidéo : centrer la carte orpheline de la dernière rangée sous les autres. */
+@media (min-width: 640px) {
+  [data-service="photo-video"] .svc-liste li:last-child:nth-child(odd),
+  [data-service="photo-video"] .svc-check li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: calc(50% - .4rem);
+    margin-inline: auto;
+  }
+}
 @media (prefers-reduced-motion: reduce) {
   [data-service="photo-video"] .svc-liste li::after { display: none; }
 }
