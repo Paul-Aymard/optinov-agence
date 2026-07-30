@@ -50,6 +50,16 @@ function carteSolution(s) {
   );
 }
 
+/** Carte « Notre différence » — factorisée pour les 2 rangées. */
+function cartePourquoi(p) {
+  return (
+    <Reveal key={p.titre} className="card">
+      <h3 style={{ fontSize: "1.1rem" }}>{p.titre}</h3>
+      <p><Lignes>{p.texte}</Lignes></p>
+    </Reveal>
+  );
+}
+
 export default function Accueil() {
   return (
     <div className="accueil">
@@ -258,13 +268,13 @@ export default function Accueil() {
             <span className="eyebrow">Notre différence</span>
             <h2>Pourquoi choisir OPTINOV&nbsp;?</h2>
           </Reveal>
-          <div className="grid grid-3 cartes-anim">
-            {pourquoiOptinov.map((p) => (
-              <Reveal key={p.titre} className="card">
-                <h3 style={{ fontSize: "1.1rem" }}>{p.titre}</h3>
-                <p><Lignes>{p.texte}</Lignes></p>
-              </Reveal>
-            ))}
+          {/* Rangée du haut : 2 cartes larges sur toute la largeur */}
+          <div className="grid grid-2 cartes-anim solutions-grille">
+            {pourquoiOptinov.slice(0, 2).map(cartePourquoi)}
+          </div>
+          {/* Rangée du bas : les 3 autres cartes */}
+          <div className="grid grid-3 cartes-anim solutions-grille solutions-grille--bas">
+            {pourquoiOptinov.slice(2).map(cartePourquoi)}
           </div>
         </div>
       </section>
