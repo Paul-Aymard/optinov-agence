@@ -36,15 +36,24 @@ export default function Agence() {
         <div className="container hero__grid">
           <Reveal>
             <span className="eyebrow">Notre histoire</span>
-            <h2>Née d&apos;une frustration</h2>
+            <h2>Née d&apos;une conviction</h2>
             <p>
-              <Lignes>Nous avons commencé par constater ce que beaucoup de dirigeants ivoiriens nous disaient en privé : trop de prestataires promettent, facturent, puis disparaissent. Les livrables arrivent en retard, les résultats ne se mesurent jamais, et personne ne répond quand le téléphone sonne.</Lignes>
+              <Lignes>Les entreprises qui marquent leur époque ne communiquent pas davantage. Elles communiquent mieux.</Lignes>
             </p>
             <p>
-              <Lignes>OPTINOV s&apos;est construite contre cela. Un interlocuteur unique qui connaît votre dossier. Des délais contractualisés. Des indicateurs définis avant de commencer, pas inventés après coup pour justifier la facture.</Lignes>
+              <Lignes>Pourtant, dans de nombreuses organisations, la communication reste fragmentée. Une agence conçoit le logo. Une autre réalise le site internet. Les réseaux sociaux sont confiés à un prestataire, les vidéos à un autre, le marketing à un troisième.</Lignes>
             </p>
             <p>
-              <Lignes>Nous avons aussi choisi de développer nos propres outils plutôt que de revendre ceux des autres. PROS.CARDS est né de cette conviction : quand un besoin revient chez tous nos clients, il mérite un produit, pas une prestation répétée.</Lignes>
+              <Lignes>Les actions se multiplient, mais la vision se disperse.</Lignes>
+            </p>
+            <p>
+              <Lignes>Nous avons créé OPTINOV avec une conviction forte : la communication ne doit pas être une succession de prestations. Elle doit devenir un véritable levier de croissance.</Lignes>
+            </p>
+            <p>
+              <Lignes>Notre nom traduit cette ambition : OPTINOV, pour «&nbsp;Optez pour l&apos;Innovation&nbsp;».</Lignes>
+            </p>
+            <p>
+              <Lignes>Nous accompagnons les entreprises qui veulent aller au-delà de la simple visibilité. Celles qui souhaitent construire une marque forte, harmoniser leur communication, moderniser leurs outils et faire de chaque action un investissement créateur de valeur.</Lignes>
             </p>
           </Reveal>
           <Reveal>
