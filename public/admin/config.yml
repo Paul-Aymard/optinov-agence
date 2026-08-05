@@ -1,0 +1,70 @@
+# ============================================================================
+# OPTINOV — Configuration du tableau de bord (Decap CMS)
+#
+# MODE DÉMO : backend "test-repo" → permet de VOIR et manipuler l'interface
+# sans aucune connexion. Rien n'est enregistré (tout est en mémoire).
+# Quand l'aperçu est validé, on remplace ce backend par le vrai (GitHub),
+# et le contenu sera alors réellement enregistré + publié automatiquement.
+# ============================================================================
+
+backend:
+  name: test-repo
+
+locale: fr
+
+# Où sont rangées les images téléversées.
+media_folder: "public/uploads"
+public_folder: "/uploads"
+
+collections:
+  # -------------------------------------------------------------------------
+  - name: "blog"
+    label: "Articles du blog"
+    label_singular: "Article"
+    description: "Écris tes articles et téléverse leur image de couverture."
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    fields:
+      - { label: "Titre", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Image de couverture", name: "image", widget: "image", required: false }
+      - { label: "Catégorie", name: "categorie", widget: "select", options: ["Branding", "Marketing digital", "Intelligence artificielle", "Carte digitale", "Actualités"] }
+      - { label: "Extrait (résumé court)", name: "extrait", widget: "text" }
+      - { label: "Contenu de l'article", name: "body", widget: "markdown" }
+
+  # -------------------------------------------------------------------------
+  - name: "realisations"
+    label: "Réalisations"
+    label_singular: "Réalisation"
+    description: "Ajoute une étude de cas avec ses images."
+    folder: "content/realisations"
+    create: true
+    fields:
+      - { label: "Nom du client", name: "client", widget: "string" }
+      - { label: "Type de mission", name: "typeMission", widget: "string" }
+      - { label: "Image principale", name: "image", widget: "image", required: false }
+      - { label: "Galerie d'images", name: "galerie", widget: "list", field: { label: "Image", name: "img", widget: "image" }, required: false }
+      - { label: "Résumé", name: "extrait", widget: "text" }
+      - { label: "Étude de cas", name: "body", widget: "markdown" }
+
+  # -------------------------------------------------------------------------
+  - name: "images_services"
+    label: "Images des services"
+    description: "Les illustrations des pages Services (une par bloc)."
+    files:
+      - name: "communication_visuelle"
+        label: "Communication visuelle"
+        file: "content/images/communication-visuelle.json"
+        fields:
+          - { label: "Image — bloc 1", name: "img1", widget: "image", required: false }
+          - { label: "Image — bloc 2", name: "img2", widget: "image", required: false }
+          - { label: "Image — bloc 3", name: "img3", widget: "image", required: false }
+      - name: "communication_digitale"
+        label: "Communication digitale"
+        file: "content/images/communication-digitale.json"
+        fields:
+          - { label: "Image — bloc 1", name: "img1", widget: "image", required: false }
+          - { label: "Image — bloc 2", name: "img2", widget: "image", required: false }
+          - { label: "Image — bloc 3", name: "img3", widget: "image", required: false }
