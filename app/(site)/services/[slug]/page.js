@@ -161,9 +161,13 @@ export default async function PageService({ params }) {
               </Reveal>
             </div>
 
-            {/* Cadre où insérer une illustration — alterné gauche/droite selon l'acte */}
+            {/* Illustration — image si fournie, sinon cadre placeholder (alterné G/D) */}
             <Reveal className="svc-acte__media">
-              <div className="ph-media" aria-hidden="true">Illustration</div>
+              {acte.image ? (
+                <img src={acte.image} alt="" className="svc-acte__img" />
+              ) : (
+                <div className="ph-media" aria-hidden="true">Illustration</div>
+              )}
             </Reveal>
           </div>
         </section>

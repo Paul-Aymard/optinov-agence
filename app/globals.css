@@ -903,6 +903,11 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   color: var(--accent); font-weight: 700; letter-spacing: .12em;
   text-transform: uppercase; font-size: .82rem;
 }
+/* Image d'illustration (quand elle est fournie) — même cadre 4:3. */
+.svc-acte__img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  border-radius: var(--r-lg); display: block; box-shadow: var(--shadow-md);
+}
 .svc-chute {
   margin-top: 1.3rem; font-family: var(--font-title); font-size: 1.15rem;
   color: var(--navy); font-weight: 700;
