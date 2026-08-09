@@ -70,8 +70,12 @@ export default async function Article({ params }) {
             </p>
           </Reveal>
 
-          <Reveal className="hero-visual" style={{ aspectRatio: "16/9", maxWidth: "68ch", marginInline: "auto" }}>
-            <p className="ph">Illustration de l’article</p>
+          <Reveal className="hero-visual" style={{ aspectRatio: "16/9", maxWidth: "68ch", marginInline: "auto", overflow: "hidden" }}>
+            {a.image ? (
+              <img src={a.image} alt={a.titre} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+            ) : (
+              <p className="ph">Illustration de l’article</p>
+            )}
           </Reveal>
 
           <div className="prose" style={{ marginInline: "auto", marginTop: "2.5rem" }}>

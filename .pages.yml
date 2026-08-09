@@ -1,0 +1,61 @@
+# ============================================================================
+# OPTINOV — Tableau de bord (Pages CMS : https://pagescms.org)
+# Connexion via GitHub sur https://app.pagescms.org
+# Tout ce qui est enregistré ici est publié automatiquement sur le site.
+# ============================================================================
+
+media:
+  input: public/uploads
+  output: /uploads
+  extensions: [jpg, jpeg, png, gif, webp, svg]
+
+content:
+  - name: blog
+    label: Articles du blog
+    type: collection
+    path: content/blog
+    filename: "{fields.titre|slugify}.md"
+    view:
+      fields: [titre, categorie, date, aLaUne]
+    fields:
+      - name: titre
+        label: Titre de l'article
+        type: string
+      - name: categorie
+        label: Catégorie
+        type: select
+        options:
+          values:
+            - { value: branding, label: "Communication & branding" }
+            - { value: marketing-digital, label: "Marketing digital" }
+            - { value: ia, label: "Intelligence artificielle & automatisation" }
+            - { value: carte-digitale, label: "Carte de visite digitale & networking" }
+            - { value: agence, label: "Coulisses & actualités" }
+      - name: date
+        label: Date de publication
+        type: date
+      - name: image
+        label: Image de couverture
+        type: image
+      - name: extrait
+        label: Résumé court (accroche)
+        type: text
+      - name: tempsLecture
+        label: Temps de lecture (minutes)
+        type: number
+        default: 5
+      - name: auteur
+        label: Auteur
+        type: string
+        default: "L'équipe OPTINOV"
+      - name: aLaUne
+        label: Mettre à la une
+        type: boolean
+        default: false
+      - name: serviceLie
+        label: "Service lié (facultatif — ex : communication-visuelle)"
+        type: string
+        required: false
+      - name: body
+        label: Contenu de l'article
+        type: rich-text

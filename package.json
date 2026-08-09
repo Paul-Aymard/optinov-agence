@@ -11,6 +11,8 @@
     "deploy": "vercel --prod"
   },
   "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^18.0.9",
     "next": "^16.2.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
