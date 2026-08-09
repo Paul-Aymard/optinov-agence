@@ -1,0 +1,11 @@
+{
+  "communication-visuelle": { "img1": "", "img2": "", "img3": "" },
+  "communication-digitale": {
+    "img1": "/uploads/com-digitale-1.svg",
+    "img2": "/uploads/com-digitale-2.svg",
+    "img3": "/uploads/com-digitale-3.svg"
+  },
+  "marketing-strategie": { "img1": "", "img2": "", "img3": "" },
+  "automatisation-ia": { "img1": "", "img2": "", "img3": "" },
+  "photo-video": { "img1": "", "img2": "", "img3": "" }
+}

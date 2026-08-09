@@ -92,7 +92,6 @@ export const pagesServices = {
     actes: [
       {
         titre: "Chaque point de contact compte",
-        image: "/uploads/com-digitale-1.svg",
         paras: [
           "Votre présence digitale ne se limite pas à un réseau social.",
           "Elle se construit sur un écosystème cohérent où chaque canal joue un rôle.",
@@ -108,7 +107,6 @@ export const pagesServices = {
       },
       {
         titre: "De la visibilité à la confiance",
-        image: "/uploads/com-digitale-2.svg",
         paras: [
           "Être visible ne suffit plus.",
           "Vos contenus doivent rassurer, convaincre et donner envie de passer à l'action.",
@@ -118,7 +116,6 @@ export const pagesServices = {
       },
       {
         titre: "Des résultats concrets",
-        image: "/uploads/com-digitale-3.svg",
         paras: ["Une communication digitale efficace produit des effets mesurables."],
         checklist: [
           "Plus de visibilité", "Plus d'engagement", "Plus de demandes",

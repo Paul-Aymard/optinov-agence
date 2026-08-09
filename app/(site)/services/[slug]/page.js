@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { site, lienRdv, lienWhatsApp } from "@/content/site";
 import { services, getService } from "@/content/services";
 import { getPageService } from "@/content/servicesPages";
+import imagesServices from "@/content/images/services.json";
 import { projetsParService } from "@/content/realisations";
 import {
   Breadcrumb, Reveal, Accordion, FaqJsonLd, JsonLd, WhatsAppFloat,
@@ -42,6 +43,9 @@ export default async function PageService({ params }) {
   const s = getService(slug);
   const p = getPageService(slug);
   if (!s || !p) notFound();
+
+  // Illustrations des blocs (éditables depuis le dashboard via content/images/services.json)
+  const imgs = imagesServices[slug] || {};
 
   const realisations = projetsParService(s.secteurs[0]);
 
@@ -161,10 +165,10 @@ export default async function PageService({ params }) {
               </Reveal>
             </div>
 
-            {/* Illustration — image si fournie, sinon cadre placeholder (alterné G/D) */}
+            {/* Illustration — image du dashboard si fournie, sinon cadre placeholder (alterné G/D) */}
             <Reveal className="svc-acte__media">
-              {acte.image ? (
-                <img src={acte.image} alt="" className="svc-acte__img" />
+              {imgs[`img${i + 1}`] ? (
+                <img src={imgs[`img${i + 1}`]} alt="" className="svc-acte__img" />
               ) : (
                 <div className="ph-media" aria-hidden="true">Illustration</div>
               )}
