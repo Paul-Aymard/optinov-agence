@@ -36,7 +36,14 @@ export default {
         scope: "repo",
         state: crypto.randomUUID(),
       });
-      return Response.redirect(`${GITHUB_AUTHORIZE}?${params.toString()}`, 302);
+      // Jamais mise en cache : chaque connexion doit repartir de zéro.
+      return new Response(null, {
+        status: 302,
+        headers: {
+          Location: `${GITHUB_AUTHORIZE}?${params.toString()}`,
+          "Cache-Control": "no-store, no-cache, must-revalidate",
+        },
+      });
     }
 
     // 2) Retour de GitHub : on échange le code contre un jeton d'accès
