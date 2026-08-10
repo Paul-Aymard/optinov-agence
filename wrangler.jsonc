@@ -1,12 +1,15 @@
 {
-  // Déploiement Cloudflare Workers en mode "static assets" : on sert simplement
-  // le dossier `out/` produit par l'export statique de Next.js (output: "export").
-  // Ce fichier empêche wrangler de forcer l'adaptateur serveur OpenNext.
+  // Déploiement Cloudflare Workers : sert le site statique (dossier out/) via le
+  // binding ASSETS, et un petit Worker (worker/index.js) gère la connexion du
+  // tableau de bord (/api/auth, /api/callback). Les assets sont servis en
+  // priorité : le Worker n'est appelé que pour les routes /api/*.
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "optinov-agence",
+  "main": "worker/index.js",
   "compatibility_date": "2026-07-29",
   "assets": {
     "directory": "./out",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
   }
 }

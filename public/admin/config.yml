@@ -1,0 +1,90 @@
+# ============================================================================
+# OPTINOV — Tableau de bord (Decap CMS), hébergé sur le site.
+# Connexion GitHub via le connecteur maison (/api/auth sur ce domaine).
+# ============================================================================
+
+backend:
+  name: github
+  repo: christ544/Optinov-agence
+  branch: main
+  base_url: https://optinov-agence.christkangah14.workers.dev
+  auth_endpoint: /api/auth
+
+locale: fr
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: blog
+    label: Articles du blog
+    label_singular: Article
+    description: "Créez, modifiez et illustrez vos articles."
+    folder: content/blog
+    create: true
+    slug: "{{slug}}"
+    summary: "{{titre}}"
+    fields:
+      - { label: "Titre", name: "titre", widget: "string" }
+      - label: "Catégorie"
+        name: "categorie"
+        widget: "select"
+        default: "agence"
+        options:
+          - { label: "Communication & branding", value: "branding" }
+          - { label: "Marketing digital", value: "marketing-digital" }
+          - { label: "Intelligence artificielle & automatisation", value: "ia" }
+          - { label: "Carte de visite digitale & networking", value: "carte-digitale" }
+          - { label: "Coulisses & actualités", value: "agence" }
+      - { label: "Date de publication", name: "date", widget: "string", required: false, hint: "Format AAAA-MM-JJ (facultatif)" }
+      - { label: "Image de couverture", name: "image", widget: "image", required: false }
+      - { label: "Résumé court (accroche)", name: "extrait", widget: "text" }
+      - { label: "Temps de lecture (minutes)", name: "tempsLecture", widget: "number", default: 5, value_type: "int", min: 1 }
+      - { label: "Auteur", name: "auteur", widget: "string", default: "L'équipe OPTINOV" }
+      - { label: "Mettre à la une", name: "aLaUne", widget: "boolean", default: false }
+      - { label: "Service lié (facultatif)", name: "serviceLie", widget: "string", required: false }
+      - { label: "Lien landing (facultatif)", name: "landingLiee", widget: "string", required: false }
+      - { label: "Contenu de l'article", name: "body", widget: "markdown" }
+
+  - name: images_services
+    label: Images des pages Services
+    description: "Illustrations de chaque bloc des pages Services."
+    files:
+      - name: services
+        label: Illustrations des services
+        file: content/images/services.json
+        fields:
+          - label: "Communication visuelle"
+            name: "communication-visuelle"
+            widget: "object"
+            fields:
+              - { label: "Bloc « L'identité prend forme »", name: "img1", widget: "image", required: false }
+              - { label: "Bloc « Votre marque prend la parole »", name: "img2", widget: "image", required: false }
+              - { label: "Bloc « La preuve par nos réalisations »", name: "img3", widget: "image", required: false }
+          - label: "Communication digitale"
+            name: "communication-digitale"
+            widget: "object"
+            fields:
+              - { label: "Bloc « Chaque point de contact compte »", name: "img1", widget: "image", required: false }
+              - { label: "Bloc « De la visibilité à la confiance »", name: "img2", widget: "image", required: false }
+              - { label: "Bloc « Des résultats concrets »", name: "img3", widget: "image", required: false }
+          - label: "Marketing & stratégie"
+            name: "marketing-strategie"
+            widget: "object"
+            fields:
+              - { label: "Bloc « Faire les bons choix »", name: "img1", widget: "image", required: false }
+              - { label: "Bloc « Passer à l'action »", name: "img2", widget: "image", required: false }
+              - { label: "Bloc « Voir les résultats »", name: "img3", widget: "image", required: false }
+          - label: "Performance & automatisation"
+            name: "automatisation-ia"
+            widget: "object"
+            fields:
+              - { label: "Bloc « Une entreprise plus simple à gérer »", name: "img1", widget: "image", required: false }
+              - { label: "Bloc « Des solutions adaptées »", name: "img2", widget: "image", required: false }
+              - { label: "Bloc « Plus de performance »", name: "img3", widget: "image", required: false }
+          - label: "Photo & Vidéo Corporate"
+            name: "photo-video"
+            widget: "object"
+            fields:
+              - { label: "Bloc « Nous capturons l'essentiel »", name: "img1", widget: "image", required: false }
+              - { label: "Bloc « Des contenus qui vous servent »", name: "img2", widget: "image", required: false }
+              - { label: "Bloc « Valorisez votre image »", name: "img3", widget: "image", required: false }
