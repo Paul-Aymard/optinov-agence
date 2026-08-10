@@ -22,9 +22,11 @@ function page(body) {
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    // On normalise les éventuels doubles slashes (//api/auth → /api/auth).
+    const pathname = url.pathname.replace(/\/{2,}/g, "/");
 
     // 1) Démarrage de la connexion : redirection vers GitHub
-    if (url.pathname === "/api/auth") {
+    if (pathname === "/api/auth") {
       if (!env.GITHUB_CLIENT_ID) {
         return page("<p>Configuration manquante : GITHUB_CLIENT_ID.</p>");
       }
@@ -38,7 +40,7 @@ export default {
     }
 
     // 2) Retour de GitHub : on échange le code contre un jeton d'accès
-    if (url.pathname === "/api/callback") {
+    if (pathname === "/api/callback") {
       const code = url.searchParams.get("code");
       if (!code) return page("<p>Code d'autorisation manquant.</p>");
 
