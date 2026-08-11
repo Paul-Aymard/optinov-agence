@@ -10,6 +10,10 @@
   "assets": {
     "directory": "./out",
     "binding": "ASSETS",
-    "not_found_handling": "404-page"
+    "not_found_handling": "404-page",
+    // Force l'exécution du Worker AVANT le système de fichiers statiques pour
+    // les routes /api/* : sinon Cloudflare peut renvoyer la page 404 du site
+    // au lieu de lancer le connecteur de connexion (cause du bug de login).
+    "run_worker_first": ["/api/*"]
   }
 }
