@@ -1,15 +1,13 @@
-import fs from "node:fs";
-import path from "node:path";
-import matter from "gray-matter";
-import { marked } from "marked";
+import genere from "./generated/blog.json";
 
 /**
- * Blog — le contenu vit désormais dans des fichiers Markdown (content/blog/*.md),
- * éditables depuis le tableau de bord (CMS). Ce module les lit au build.
- * Les 3 pages qui l'utilisent (liste, article, sitemap) sont côté serveur.
+ * Blog — les articles viennent du tableau de bord (Payload) et sont écrits
+ * dans content/generated/blog.json par scripts/sync-content.mjs, au build.
+ * Le corps est déjà en HTML. Tant que rien n'a été synchronisé, la liste est
+ * vide : le site affiche un état d'attente, jamais un article inventé.
  */
 
-/** Catégories éditoriales — CDC §6.7 */
+/** Catégories éditoriales — CDC §6.7 (mêmes identifiants que le tableau de bord) */
 export const categories = [
   { id: "branding", label: "Communication & branding", service: "communication-visuelle" },
   { id: "marketing-digital", label: "Marketing digital", service: "communication-digitale" },
@@ -18,44 +16,31 @@ export const categories = [
   { id: "agence", label: "Coulisses & actualités", service: null },
 ];
 
-const BLOG_DIR = path.join(process.cwd(), "content/blog");
+const brut = Array.isArray(genere) ? genere : [];
 
-function chargerArticles() {
-  let fichiers = [];
-  try {
-    fichiers = fs.readdirSync(BLOG_DIR).filter((f) => f.endsWith(".md"));
-  } catch {
-    return [];
-  }
-
-  const items = fichiers.map((f) => {
-    const slug = f.replace(/\.md$/, "");
-    const { data, content } = matter(fs.readFileSync(path.join(BLOG_DIR, f), "utf8"));
-    return {
-      slug,
-      titre: data.titre ?? slug,
-      categorie: data.categorie || "agence",
-      extrait: data.extrait ?? "",
-      tempsLecture: Number(data.tempsLecture) || 5,
-      date: data.date || "",
-      auteur: data.auteur || "L'équipe OPTINOV",
-      aLaUne: Boolean(data.aLaUne),
-      serviceLie: data.serviceLie || null,
-      landingLiee: data.landingLiee || null,
-      image: data.image || null,
-      // Corps Markdown converti en HTML (vide tant que l'article n'est pas rédigé).
-      corps: content.trim() ? marked.parse(content) : "",
-    };
-  });
-
-  // À la une en premier, puis les plus récents (par date décroissante).
-  return items.sort((a, b) => {
+/** À la une en premier, puis les plus récents (par date décroissante). */
+export const articles = brut
+  .map((a) => ({
+    slug: a.slug,
+    titre: a.titre,
+    categorie: a.categorie || "agence",
+    extrait: a.extrait || "",
+    tempsLecture: Number(a.tempsLecture) || 5,
+    date: a.date || "",
+    auteur: a.auteur || "L'équipe OPTINOV",
+    aLaUne: Boolean(a.aLaUne),
+    serviceLie: a.serviceLie || null,
+    landingLiee: a.landingLiee || null,
+    // Image de couverture : grande pour la page article, carte pour les listes.
+    image: a.image?.url || null,
+    imageCarte: a.image?.carte || a.image?.url || null,
+    imageAlt: a.image?.alt || "",
+    corps: a.corps || "",
+  }))
+  .sort((a, b) => {
     if (a.aLaUne !== b.aLaUne) return a.aLaUne ? -1 : 1;
     return String(b.date).localeCompare(String(a.date));
   });
-}
-
-export const articles = chargerArticles();
 
 export const getArticle = (slug) => articles.find((a) => a.slug === slug);
 export const getCategorie = (id) => categories.find((c) => c.id === id);

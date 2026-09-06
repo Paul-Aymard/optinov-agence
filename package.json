@@ -4,20 +4,16 @@
   "private": true,
   "description": "Site internet officiel OPTINOV Agence & landing page PROS.CARDS — CDC v1.1",
   "scripts": {
+    "predev": "node scripts/sync-content.mjs --optionnel",
     "dev": "next dev",
+    "sync": "node scripts/sync-content.mjs",
     "build": "node scripts/sync-content.mjs && next build",
     "start": "next start",
-    "lint": "next lint",
-    "deploy": "vercel --prod"
+    "lint": "next lint"
   },
   "dependencies": {
-    "gray-matter": "^4.0.3",
-    "marked": "^18.0.9",
     "next": "^16.2.10",
     "react": "^19.2.7",
     "react-dom": "^19.2.7"
-  },
-  "devDependencies": {
-    "vercel": "^55.0.0"
   }
 }

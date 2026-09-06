@@ -17,3 +17,6 @@ deploy.log
 
 # Export statique
 /out/
+
+# Contenu synchronise depuis le tableau de bord (scripts/sync-content.mjs)
+content/generated/

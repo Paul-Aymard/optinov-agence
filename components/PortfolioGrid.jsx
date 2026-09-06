@@ -70,7 +70,13 @@ export default function PortfolioGrid() {
         <div className="grid grid-3">
           {visibles.map((p) => (
             <article className="card card--project" key={p.slug}>
-              <div className="thumb">{p.client}</div>
+              <div className="thumb" style={p.visuel ? { overflow: "hidden" } : undefined}>
+                {p.visuel ? (
+                  <img src={p.visuel.carte || p.visuel.url} alt={p.visuel.alt || p.titre} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                ) : (
+                  p.client
+                )}
+              </div>
               <div className="card__body">
                 <span className="tag">{p.typeMission}</span>
                 <h3>{p.client}</h3>

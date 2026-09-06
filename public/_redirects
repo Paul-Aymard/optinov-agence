@@ -1,2 +1,6 @@
-# Ancienne page « À propos » (/agence) renommée en /a-propos — Cloudflare Pages / Netlify.
+# Ancienne page « À propos » (/agence) renommée en /a-propos.
 /agence  /a-propos  301
+
+# Le tableau de bord n'est plus hébergé sur le site : /admin renvoie vers Payload (Render).
+/admin    https://optinov-dashboard.onrender.com/admin  302
+/admin/*  https://optinov-dashboard.onrender.com/admin  302

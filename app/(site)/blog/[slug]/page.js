@@ -9,6 +9,9 @@ import { Breadcrumb, Reveal, JsonLd, WhatsAppFloat } from "@/components/Ui";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
+  // L'export statique exige au moins un chemin : sans article, on en génère
+  // un factice que la page renvoie en 404 (slug inconnu).
+  if (articles.length === 0) return [{ slug: "a-venir" }];
   return articles.map((a) => ({ slug: a.slug }));
 }
 

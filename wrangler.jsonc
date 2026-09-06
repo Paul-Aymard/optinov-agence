@@ -1,19 +1,13 @@
 {
-  // Déploiement Cloudflare Workers : sert le site statique (dossier out/) via le
-  // binding ASSETS, et un petit Worker (worker/index.js) gère la connexion du
-  // tableau de bord (/api/auth, /api/callback). Les assets sont servis en
-  // priorité : le Worker n'est appelé que pour les routes /api/*.
+  // Déploiement Cloudflare Workers : le site est 100 % statique (dossier out/,
+  // produit par `npm run build`), servi par le système de fichiers statiques.
+  // Aucun code ne tourne côté serveur : le tableau de bord vit sur Render
+  // (voir README, « Tableau de bord »).
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "optinov-agence",
-  "main": "worker/index.js",
   "compatibility_date": "2026-07-29",
   "assets": {
     "directory": "./out",
-    "binding": "ASSETS",
-    "not_found_handling": "404-page",
-    // Force l'exécution du Worker AVANT le système de fichiers statiques pour
-    // les routes /api/* : sinon Cloudflare peut renvoyer la page 404 du site
-    // au lieu de lancer le connecteur de connexion (cause du bug de login).
-    "run_worker_first": ["/api/*"]
+    "not_found_handling": "404-page"
   }
 }

@@ -232,12 +232,19 @@ export function Carousel({ children, label }) {
 /* ------------------------------------------------------------------ *
  * Comparateur avant / après — EX-013, S
  * ------------------------------------------------------------------ */
-export function AvantApres({ avant = "Avant", apres = "Après" }) {
+export function AvantApres({ avant = "Avant", apres = "Après", avantSrc, apresSrc, avantAlt, apresAlt }) {
   const [pos, setPos] = useState(50);
+  // Avec des images (tableau de bord), chaque couche affiche la sienne ; sinon le libellé.
+  const couche = (src, alt, libelle) =>
+    src ? (
+      <img src={src} alt={alt || libelle} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+    ) : (
+      libelle
+    );
   return (
     <div className="ba">
-      <div className="ba__layer ba__before">{avant}</div>
-      <div className="ba__layer ba__after" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>{apres}</div>
+      <div className="ba__layer ba__before">{couche(avantSrc, avantAlt, avant)}</div>
+      <div className="ba__layer ba__after" style={{ clipPath: `inset(0 0 0 ${pos}%)` }}>{couche(apresSrc, apresAlt, apres)}</div>
       <div className="ba__handle" style={{ left: `${pos}%` }} aria-hidden="true" />
       <input
         type="range"

@@ -44,18 +44,53 @@ Deux **groupes de routes** portent les deux headers sans changer les URL :
 ```
 app/          routes et layouts
 components/   design system (§10.5) + composants métier
-content/      contenus — préfigure les modèles du CMS headless
-  site.js         navigation, coordonnées, méthode, valeurs
-  services.js     les 5 services au gabarit G4
-  prosCards.js    les 14 sections de la landing, offres, FAQ
-  realisations.js modèle projet, filtres service × secteur
-  blog.js         catégories et articles
-  faq.js          4 thèmes, 20 questions
+content/      contenus
+  site.js         coordonnées, réseaux, témoignages, équipe (depuis le tableau de bord), navigation, méthode, valeurs
+  services.js     les 5 services au gabarit G4 (dans le code)
+  servicesPages.js textes des pages services (dans le code)
+  prosCards.js    les 14 sections de la landing, offres, FAQ PROS.CARDS (dans le code)
+  realisations.js portfolio (depuis le tableau de bord), filtres service × secteur
+  blog.js         catégories, articles (depuis le tableau de bord)
+  faq.js          4 thèmes, questions (depuis le tableau de bord)
+  generated/      fichiers JSON écrits par la synchronisation (dont services.json) — ignorés par Git
+scripts/sync-content.mjs  la synchronisation tableau de bord -> site
 app/globals.css   design system complet (palette §10.1)
 ```
 
-Les modules de `content/` sont volontairement plats et typés par convention :
-chacun devient un modèle Strapi/Directus sans toucher aux gabarits.
+---
+
+## Tableau de bord
+
+Le contenu éditorial se gère dans le tableau de bord Payload, hébergé sur
+Render : <https://optinov-dashboard.onrender.com/admin> (l'adresse `/admin`
+du site y redirige). Son code vit dans le dépôt `optinov-tableau`.
+
+**Ce que le tableau de bord pilote** : articles du blog, illustrations des
+pages Services, réalisations du portfolio, témoignages, équipe, FAQ, et les
+paramètres du site (coordonnées, horaires, réseaux sociaux, liens PROS.CARDS,
+mentions légales). Le reste (textes des services, landing PROS.CARDS,
+méthode, valeurs) reste dans le code.
+
+**Comment une modification arrive sur le site.** Le site est statique : à
+chaque enregistrement dans le tableau de bord, celui-ci appelle le Deploy
+Hook de Cloudflare (regroupé : un seul appel deux minutes après le dernier
+enregistrement). Cloudflare relance alors `npm run build`, dont la première
+étape, `scripts/sync-content.mjs`, lit l'API du tableau de bord et écrit les
+fichiers de `content/generated/`. La modification est en ligne quelques
+minutes plus tard.
+
+**Si le tableau de bord est injoignable au build**, la synchronisation
+échoue volontairement : Cloudflare garde la version précédente en ligne
+plutôt que de publier un site au contenu vide ou périmé. Le service Render
+gratuit met jusqu'à une minute à se réveiller ; le script réessaie cinq fois.
+
+**En local**, `npm run dev` lance d'abord la synchronisation en mode
+optionnel : sans réseau, le site démarre avec le dernier contenu synchronisé
+(ou vide). Pour viser un tableau de bord lancé sur ce PC :
+
+```bash
+DASHBOARD_URL=http://localhost:3000 npm run sync
+```
 
 ---
 

@@ -107,10 +107,21 @@ export default function Agence() {
             <div className="grid grid-4">
               {equipe.map((m) => (
                 <Reveal key={m.nom} className="card card--project">
-                  <div className="thumb">{m.nom}</div>
+                  <div className="thumb" style={m.photo ? { overflow: "hidden" } : undefined}>
+                    {m.photo ? (
+                      <img src={m.photo.carte || m.photo.url} alt={m.photo.alt || m.nom} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                    ) : (
+                      m.nom
+                    )}
+                  </div>
                   <div className="card__body">
                     <h3 style={{ fontSize: "1.1rem" }}>{m.nom}</h3>
                     <p className="meta"><span>{m.role}</span></p>
+                    {m.linkedin && (
+                      <a className="link-arrow" href={m.linkedin} target="_blank" rel="noopener noreferrer">
+                        LinkedIn<span className="sr-only"> de {m.nom}</span>
+                      </a>
+                    )}
                   </div>
                 </Reveal>
               ))}

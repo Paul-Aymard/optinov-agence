@@ -1,43 +1,54 @@
 /**
  * Données transverses du site.
- * CDC v1.1 — les valeurs « [À compléter] » sont laissées telles quelles,
- * conformément à la convention de lecture (§1.3) : elles doivent être
- * arrêtées par la direction OPTINOV, pas inventées par le prestataire.
+ *
+ * Les coordonnées, horaires, réseaux sociaux, liens PROS.CARDS et mentions
+ * légales viennent du tableau de bord (global « Paramètres du site »), écrits
+ * dans content/generated/site.json par scripts/sync-content.mjs au build.
+ * Une valeur laissée vide dans le tableau de bord n'est pas affichée : jamais
+ * de « [À compléter] » à l'écran, et jamais de lien mort (voir les helpers).
  */
 
+import genere from "./generated/site.json";
+import temoignagesGeneres from "./generated/temoignages.json";
+import equipeGeneree from "./generated/equipe.json";
+
+/** Marqueur des valeurs qui restent à arrêter dans le code (offres, textes). */
 export const TODO = "[À compléter]";
 
+const g = genere && typeof genere === "object" ? genere : {};
+const v = (valeur, defaut = "") => (typeof valeur === "string" && valeur.trim() ? valeur.trim() : defaut);
+
 export const site = {
-  nom: "OPTINOV",
-  baseline: "Communication · Marketing · Transformation digitale",
+  nom: v(g.nom, "OPTINOV"),
+  baseline: v(g.baseline, "Communication · Marketing · Transformation digitale"),
+  // L'adresse du site lui-même n'est pas un contenu : elle reste dans le code.
   url: "https://optinov-agence.christkangah14.workers.dev",
-  ville: "Abidjan",
-  pays: "Côte d'Ivoire",
-  adresse: "Cocody Angré 7ᵉ Tranche, Abidjan — Côte d'Ivoire",
-  telephone: "+225 01 73 73 24 21", // mobile (= WhatsApp)
-  telephoneFixe: "+225 27 22 25 22 74", // ligne fixe
-  email: "optinovagence@gmail.com",
+  ville: v(g.ville, "Abidjan"),
+  pays: v(g.pays, "Côte d'Ivoire"),
+  adresse: v(g.adresse),
+  telephone: v(g.telephone), // mobile (= WhatsApp)
+  telephoneFixe: v(g.telephoneFixe), // ligne fixe
+  email: v(g.email),
   // EX-033 : lien wa.me pré-rempli, message contextuel injecté par page
-  whatsapp: "2250173732421", // format international sans "+", ex. 2250700000000
-  horaires: TODO,
-  // §6.9 : « délai de réponse annoncé ([À compléter], proposition : sous 24 h ouvrées) ».
-  // La proposition du CDC est reprise telle quelle, à valider au kick-off.
-  delaiReponse: "sous 24 h ouvrées",
-  rccm: TODO,
-  directeurPublication: TODO,
-  hebergeur: TODO,
-  // EX-035 : outil de prise de rendez-vous à arbitrer (Cal.com auto-hébergé ou Calendly)
-  rdvUrl: TODO,
+  whatsapp: v(g.whatsapp), // format international sans "+", ex. 2250700000000
+  horaires: v(g.horaires),
+  // §6.9 : délai de réponse annoncé
+  delaiReponse: v(g.delaiReponse, "sous 24 h ouvrées"),
+  rccm: v(g.rccm),
+  directeurPublication: v(g.directeurPublication),
+  hebergeur: v(g.hebergeur),
+  // EX-035 : outil de prise de rendez-vous (Cal.com ou Calendly)
+  rdvUrl: v(g.rdvUrl),
   // EX-026 / EX-052 : tunnel d'inscription et espace client de la plateforme PROS.CARDS
   prosCards: {
-    connexion: TODO,
-    inscription: TODO,
-    demo: TODO,
+    connexion: v(g.prosCards?.connexion),
+    inscription: v(g.prosCards?.inscription),
+    demo: v(g.prosCards?.demo),
   },
   socials: [
-    { label: "LinkedIn", court: "in", href: TODO },
-    { label: "Instagram", court: "ig", href: TODO },
-    { label: "Facebook", court: "fb", href: TODO },
+    { label: "LinkedIn", court: "in", href: v(g.reseaux?.linkedin) },
+    { label: "Instagram", court: "ig", href: v(g.reseaux?.instagram) },
+    { label: "Facebook", court: "fb", href: v(g.reseaux?.facebook) },
   ],
 };
 
@@ -95,11 +106,13 @@ export const chiffresCles = [];
 /** Logos clients du carrousel — <Image> réels à fournir. Format : { nom, src } */
 export const logosClients = [];
 
-/** Témoignages clients — §6.1 section 7. Format : { verbatim, nom, fonction, entreprise } */
-export const temoignages = [];
+/** Témoignages clients — §6.1 section 7 : depuis le tableau de bord. Format : { verbatim, nom, fonction, entreprise } */
+export const temoignages = (Array.isArray(temoignagesGeneres) ? temoignagesGeneres : []).filter(
+  (t) => t.verbatim && t.nom
+);
 
-/** Membres de l'équipe — §6.2. Format : { nom, role, photo, linkedin } */
-export const equipe = [];
+/** Membres de l'équipe — §6.2 : depuis le tableau de bord. Format : { nom, role, photo, linkedin } */
+export const equipe = (Array.isArray(equipeGeneree) ? equipeGeneree : []).filter((m) => m.nom);
 
 /** Navigation principale — EX-001 */
 export const nav = [

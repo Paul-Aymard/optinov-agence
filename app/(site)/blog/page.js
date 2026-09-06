@@ -11,8 +11,10 @@ export const metadata = {
 };
 
 export default function Blog() {
-  const aLaUne = articles.find((a) => a.aLaUne) ?? articles[0];
-  const autres = articles.filter((a) => a.slug !== aLaUne.slug);
+  // Tant qu'aucun article n'est publié dans le tableau de bord, la page
+  // affiche un état d'attente plutôt qu'un article inventé.
+  const aLaUne = articles.find((a) => a.aLaUne) ?? articles[0] ?? null;
+  const autres = aLaUne ? articles.filter((a) => a.slug !== aLaUne.slug) : [];
 
   return (
     <>
@@ -31,7 +33,8 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Article à la une */}
+      {/* Article à la une — seulement s'il existe au moins un article */}
+      {aLaUne && (
       <section className="section">
         <div className="container">
           <Reveal className="card card--project" style={{ padding: 0 }}>
@@ -60,6 +63,7 @@ export default function Blog() {
           </Reveal>
         </div>
       </section>
+      )}
 
       {/* Catégories — filtres (liens indexables plutôt que boutons JS, SEO-006) */}
       <section className="section" style={{ paddingTop: 0 }}>
@@ -79,8 +83,8 @@ export default function Blog() {
             {autres.map((a) => (
               <Reveal key={a.slug} className="card card--project">
                 <div className="thumb" style={{ overflow: "hidden" }}>
-                  {a.image ? (
-                    <img src={a.image} alt={a.titre} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  {a.imageCarte ? (
+                    <img src={a.imageCarte} alt={a.imageAlt || a.titre} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
                   ) : (
                     "Illustration"
                   )}
@@ -98,10 +102,12 @@ export default function Blog() {
             ))}
           </div>
 
-          <p className="form-note" style={{ marginTop: "2rem" }}>
-            Pagination et filtrage serveur par catégorie : à brancher sur le CMS
-            (§9.2, « Blog »). Calendrier éditorial : 2 à 4 articles par mois (SEO-009).
-          </p>
+          {articles.length === 0 && (
+            <p className="empty-state">
+              Nos premiers articles sont en cours de rédaction. Revenez bientôt, ou
+              écrivez-nous dès maintenant pour en discuter.
+            </p>
+          )}
         </div>
       </section>
 

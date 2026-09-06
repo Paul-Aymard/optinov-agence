@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { site, lienRdv, lienWhatsApp } from "@/content/site";
 import { services, getService } from "@/content/services";
 import { getPageService } from "@/content/servicesPages";
-import imagesServices from "@/content/images/services.json";
+import imagesServices from "@/content/generated/services.json";
 import { projetsParService } from "@/content/realisations";
 import {
   Breadcrumb, Reveal, Accordion, FaqJsonLd, JsonLd, WhatsAppFloat,
@@ -44,7 +44,7 @@ export default async function PageService({ params }) {
   const p = getPageService(slug);
   if (!s || !p) notFound();
 
-  // Illustrations des blocs (éditables depuis le dashboard via content/images/services.json)
+  // Illustrations des blocs, depuis le tableau de bord (content/generated/services.json, écrit au build)
   const imgs = imagesServices[slug] || {};
 
   const realisations = projetsParService(s.secteurs[0]);

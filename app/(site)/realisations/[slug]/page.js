@@ -62,14 +62,27 @@ export default async function FicheProjet({ params }) {
         </div>
       </section>
 
-      {/* Galerie / visuel principal */}
-      <section className="section">
-        <div className="container">
-          <Reveal className="hero-visual" style={{ aspectRatio: "16/9" }}>
-            <p className="ph">Galerie haute qualité — visuels et vidéos<br />{TODO}</p>
-          </Reveal>
-        </div>
-      </section>
+      {/* Galerie / visuel principal — depuis le tableau de bord */}
+      {(p.visuel || p.galerie.length > 0) && (
+        <section className="section">
+          <div className="container">
+            {p.visuel && (
+              <Reveal className="hero-visual" style={{ aspectRatio: "16/9", overflow: "hidden" }}>
+                <img src={p.visuel.url} alt={p.visuel.alt || p.titre} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+              </Reveal>
+            )}
+            {p.galerie.length > 0 && (
+              <div className="grid grid-3" style={{ marginTop: "1.5rem" }}>
+                {p.galerie.map((img, k) => (
+                  <Reveal key={k} className="thumb" style={{ overflow: "hidden" }}>
+                    <img src={img.carte || img.url} alt={img.alt || `${p.titre} — visuel ${k + 1}`} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+                  </Reveal>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
 
       {/* Contexte · Objectifs · Réponse */}
       <section className="section">
@@ -104,11 +117,8 @@ export default async function FicheProjet({ params }) {
               <h2>La refonte, curseur en main</h2>
             </Reveal>
             <Reveal>
-              <AvantApres avant="Avant" apres="Après" />
+              <AvantApres avantSrc={p.avant?.url} apresSrc={p.apres?.url} avantAlt={p.avant?.alt} apresAlt={p.apres?.alt} />
             </Reveal>
-            <p className="form-note center" style={{ marginTop: "1rem" }}>
-              Visuels avant/après du projet : {TODO}
-            </p>
           </div>
         </section>
       )}
@@ -131,23 +141,25 @@ export default async function FicheProjet({ params }) {
         </div>
       </section>
 
-      {/* Témoignage client */}
-      <section className="section">
-        <div className="container" style={{ maxWidth: "48rem" }}>
-          <Reveal>
-            <figure className="quote">
-              <blockquote>{p.temoignage.verbatim}</blockquote>
-              <figcaption>
-                <span className="avatar" aria-hidden="true">—</span>
-                <span>
-                  <strong>{p.temoignage.nom}</strong>
-                  <span>{p.temoignage.fonction}</span>
-                </span>
-              </figcaption>
-            </figure>
-          </Reveal>
-        </div>
-      </section>
+      {/* Témoignage client — affiché seulement s'il a été saisi */}
+      {p.temoignage.verbatim && (
+        <section className="section">
+          <div className="container" style={{ maxWidth: "48rem" }}>
+            <Reveal>
+              <figure className="quote">
+                <blockquote>{p.temoignage.verbatim}</blockquote>
+                <figcaption>
+                  <span className="avatar" aria-hidden="true">{(p.temoignage.nom || "—").slice(0, 2)}</span>
+                  <span>
+                    <strong>{p.temoignage.nom}</strong>
+                    <span>{p.temoignage.fonction}</span>
+                  </span>
+                </figcaption>
+              </figure>
+            </Reveal>
+          </div>
+        </section>
+      )}
 
       {/* Navigation projet précédent / suivant */}
       <section className="section section--alt">

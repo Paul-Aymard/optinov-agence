@@ -1,13 +1,12 @@
-import { TODO } from "./site";
+import genere from "./generated/realisations.json";
 
 /**
  * Portfolio — CDC §6.6 (gabarit G6).
- * Les projets réels sont [À compléter] : ils seront saisis au back-office
- * (champs structurés : client, secteur, services, année, visuels, résultats).
- * La structure ci-dessous fixe le modèle de données attendu du CMS.
+ * Les fiches viennent du tableau de bord (collection « Réalisations ») ; seules
+ * les fiches cochées « Publiée » sont synchronisées, dans content/generated/.
  */
 
-/** Filtres par type de service — EX-011 */
+/** Filtres par type de service — EX-011 (mêmes identifiants que le tableau de bord) */
 export const filtresServices = [
   { id: "visuel", label: "Communication visuelle" },
   { id: "digital", label: "Communication digitale" },
@@ -26,46 +25,32 @@ export const filtresSecteurs = [
   { id: "services", label: "Services" },
 ];
 
-/**
- * Gabarit d'un projet. Les 6 entrées ci-dessous sont des emplacements
- * structurés, non des références inventées : chaque valeur factuelle
- * (nom du client, chiffres, verbatim) reste [À compléter].
- */
-const gabaritProjet = (i, services, secteur) => ({
-  slug: `projet-${i}`,
-  client: TODO,
-  titre: TODO,
-  annee: TODO,
-  // Le type de mission se déduit du service principal : ce n'est pas une donnée
-  // factuelle à arrêter, mais une conséquence du champ « services » (§9.2).
-  typeMission: filtresServices.find((f) => f.id === services[0])?.label ?? TODO,
-  services, // ids de filtresServices
-  secteur, // id de filtresSecteurs
-  extrait: TODO,
-  contexte: TODO,
-  objectifs: [TODO, TODO, TODO],
-  reponse: TODO,
-  resultats: [
-    { valeur: TODO, label: TODO },
-    { valeur: TODO, label: TODO },
-    { valeur: TODO, label: TODO },
-  ],
-  temoignage: { verbatim: TODO, nom: TODO, fonction: TODO },
-  // EX-013 : module avant/après, activé projet par projet au back-office
-  avantApres: i % 2 === 1,
-  // EX-014 : gabarit éditorial « étude de cas longue »
-  etudeDeCas: i <= 2,
-});
+const brut = Array.isArray(genere) ? genere : [];
 
-/**
- * Aucun projet réel n'a encore été fourni. Le portfolio affiche un état vide
- * digne plutôt que six fiches remplies de « [À compléter] ».
- *
- * Pour publier un projet, ajouter ici un objet au format de `gabaritProjet`
- * en remplaçant chaque TODO par la valeur réelle — ou brancher le CMS (§9.2).
- * Exemple : gabaritProjet(1, ["visuel", "photo-video"], "btp")
- */
-export const projets = [];
+export const projets = brut.map((p) => ({
+  slug: p.slug,
+  client: p.client,
+  titre: p.titre,
+  annee: p.annee,
+  // Le type de mission se déduit du premier service choisi (§9.2).
+  typeMission: filtresServices.find((f) => f.id === p.services?.[0])?.label ?? "",
+  services: p.services || [],
+  secteur: p.secteur,
+  extrait: p.extrait,
+  contexte: p.contexte,
+  objectifs: p.objectifs || [],
+  reponse: p.reponse,
+  resultats: p.resultats || [],
+  temoignage: p.temoignage || { verbatim: "", nom: "", fonction: "" },
+  visuel: p.visuel || null,
+  galerie: p.galerie || [],
+  // EX-013 : module avant/après, activé fiche par fiche au tableau de bord
+  avantApres: Boolean(p.avantApres),
+  avant: p.avant || null,
+  apres: p.apres || null,
+  // EX-014 : gabarit éditorial « étude de cas longue »
+  etudeDeCas: Boolean(p.etudeDeCas),
+}));
 
 export const getProjet = (slug) => projets.find((p) => p.slug === slug);
 
