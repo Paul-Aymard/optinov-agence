@@ -463,6 +463,7 @@ body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px);
 .form-alert { padding: 1rem 1.15rem; border-radius: var(--r); font-size: .92rem; display: none; }
 .form-alert[data-show] { display: block; }
 .form-alert--ok { background: #e8f4ec; color: #1d5c39; border: 1px solid #bcdcc8; }
+.form-alert--error { background: #fdecea; color: #8a2a1c; border: 1px solid #f2c2bb; }
 .form-card { background: #fff; border: 1px solid var(--border); border-radius: var(--r-lg); padding: clamp(1.5rem, 3vw, 2.5rem); box-shadow: var(--shadow-md); }
 .section--navy .form-card { color: var(--text); }
 

@@ -79,6 +79,13 @@ enregistrement). Cloudflare relance alors `npm run build`, dont la première
 fichiers de `content/generated/`. La modification est en ligne quelques
 minutes plus tard.
 
+**Les formulaires** (contact, devis service, devis flotte PROS.CARDS, rappel)
+envoient chaque message dans la rubrique « Demandes » du tableau de bord, qui
+prévient l'agence par e-mail et accuse réception au prospect. L'adresse du
+tableau de bord est figée au build par `NEXT_PUBLIC_DASHBOARD_URL` (par défaut
+l'adresse Render). Si l'envoi échoue, le visiteur en est informé et renvoyé
+vers WhatsApp : jamais de faux « message bien reçu ».
+
 **Si le tableau de bord est injoignable au build**, la synchronisation
 échoue volontairement : Cloudflare garde la version précédente en ligne
 plutôt que de publier un site au contenu vide ou périmé. Le service Render

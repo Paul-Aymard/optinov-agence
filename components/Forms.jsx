@@ -12,14 +12,18 @@ import { services } from "@/content/services";
  * SEC-003, M : honeypot + vérification invisible (reCAPTCHA v3 / Turnstile),
  *   limitation de débit, assainissement et CSRF — côté serveur.
  *
- * ⚠ PÉRIMÈTRE : ce composant implémente la moitié CLIENT. La soumission POSTe
- * vers /api/formulaires, qui reste à implémenter avec le back-end (validation
- * serveur, CSRF, rate-limit, enregistrement, e-mails). Tant que la route
- * n'existe pas, le formulaire affiche l'accusé de réception sans persister.
+ * CÔTÉ SERVEUR : la soumission POSTe vers le tableau de bord (rubrique
+ * « Demandes », /api/demandes), qui valide, enregistre, limite le débit
+ * (cinq demandes par dix minutes et par personne), prévient l'agence par
+ * e-mail et accuse réception au prospect. En cas d'échec, le visiteur est
+ * prévenu et renvoyé vers WhatsApp : pas de faux succès.
  *
  * EX-047, M : aucun formulaire de commande PROS.CARDS ici. La souscription
  * individuelle passe exclusivement par le tunnel de la plateforme (EX-026).
  */
+
+/* Adresse du tableau de bord, figée dans le site au build (variable publique). */
+const DASHBOARD = (process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://optinov-dashboard.onrender.com").replace(/\/$/, "");
 
 const messages = {
   required: "Ce champ est obligatoire.",
@@ -74,6 +78,7 @@ function FormulaireBase({ type, champs, gaEvent, submitLabel, confirmation }) {
   const [erreurs, setErreurs] = useState({});
   const [envoye, setEnvoye] = useState(false);
   const [enCours, setEnCours] = useState(false);
+  const [erreurEnvoi, setErreurEnvoi] = useState(null);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -103,18 +108,50 @@ function FormulaireBase({ type, champs, gaEvent, submitLabel, confirmation }) {
     }
 
     setEnCours(true);
+    setErreurEnvoi(null);
+
+    /*
+      La demande part dans le tableau de bord (rubrique « Demandes »), qui
+      l'enregistre, prévient l'agence par e-mail et accuse réception au
+      prospect. Le service peut mettre jusqu'à une minute à se réveiller :
+      le délai d'attente est large, et le bouton l'annonce.
+    */
+    const champs = Object.fromEntries(data);
+    const demande = {
+      typeFormulaire: type,
+      nom: champs.nom,
+      telephone: champs.telephone,
+      email: champs.email || undefined,
+      entreprise: champs.entreprise || undefined,
+      sujet: champs.sujet || undefined,
+      service: champs.service || undefined,
+      budget: champs.budget || undefined,
+      effectif: champs.effectif || undefined,
+      creneau: champs.creneau || undefined,
+      message: champs.message || champs.besoin || undefined,
+      pageSource: typeof window !== "undefined" ? window.location.pathname : undefined,
+      consentement: true,
+    };
+
     try {
-      // Double routage (e-mail interne + base) et validation serveur : côté API.
-      const res = await fetch("/api/formulaires", {
+      const ctrl = new AbortController();
+      const minuteur = setTimeout(() => ctrl.abort(), 90000);
+      const res = await fetch(`${DASHBOARD}/api/demandes`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ type, ...Object.fromEntries(data) }),
+        body: JSON.stringify(demande),
+        signal: ctrl.signal,
       });
-      if (!res.ok) throw new Error("api");
-    } catch {
-      // La route n'existe pas encore : on n'invente pas un succès serveur,
-      // mais on ne bloque pas la démo de parcours. À retirer à l'intégration back-end.
-      console.warn("[OPTINOV] /api/formulaires absent — soumission non persistée.");
+      clearTimeout(minuteur);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    } catch (e) {
+      // Pas de faux succès : le prospect doit savoir que rien n'est parti.
+      console.warn("[OPTINOV] envoi de la demande échoué :", String(e));
+      setEnCours(false);
+      setErreurEnvoi(
+        "L'envoi n'a pas abouti. Réessayez dans un instant, ou écrivez-nous directement sur WhatsApp."
+      );
+      return;
     }
 
     // EX-040 : événement de conversion GA4
@@ -157,8 +194,14 @@ function FormulaireBase({ type, champs, gaEvent, submitLabel, confirmation }) {
         {erreurs.consentement && <p className="error-msg" role="alert">{erreurs.consentement}</p>}
       </div>
 
+      {erreurEnvoi && (
+        <div className="form-alert form-alert--error" data-show="" role="alert" style={{ marginBottom: "1rem" }}>
+          <strong>Message non envoyé.</strong> {erreurEnvoi}
+        </div>
+      )}
+
       <button type="submit" className="btn btn--gold" disabled={enCours} data-ga={gaEvent}>
-        {enCours ? "Envoi en cours…" : submitLabel}
+        {enCours ? "Envoi en cours… (jusqu'à une minute)" : submitLabel}
       </button>
 
       <p className="form-note">
