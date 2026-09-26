@@ -408,14 +408,43 @@ body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px);
   font-family: var(--font-title); font-size: 1.06rem; font-weight: 700; color: var(--navy); min-height: 44px;
 }
 .accordion__btn:hover { color: var(--or-600); }
-.accordion__btn .plus { position: relative; width: 18px; height: 18px; flex: none; }
-.accordion__btn .plus::before, .accordion__btn .plus::after {
-  content: ""; position: absolute; inset: 50% 0 auto 0; height: 2px; background: var(--or); border-radius: 2px;
+/* Le « + » vit dans une pastille ronde qui s'allume à l'ouverture. */
+.accordion__btn .plus {
+  position: relative; width: 36px; height: 36px; flex: none; border-radius: 50%;
+  border: 1px solid var(--border); background: var(--white);
+  transition: background var(--t), border-color var(--t);
 }
-.accordion__btn .plus::after { transform: rotate(90deg); transition: transform var(--t); }
+.accordion__btn:hover .plus { border-color: var(--or); }
+.accordion__btn[aria-expanded="true"] .plus { background: var(--or); border-color: var(--or); }
+/* Sur fond Bleu Nuit, la pastille blanche ferait une tache : on la creuse. */
+.section--navy .accordion__btn .plus { background: transparent; border-color: rgba(255,255,255,.25); }
+.accordion__btn .plus::before, .accordion__btn .plus::after {
+  content: ""; position: absolute; top: 50%; left: 50%; width: 14px; height: 2px; margin: -1px 0 0 -7px;
+  background: var(--or); border-radius: 2px; transition: transform var(--t), background var(--t);
+}
+.accordion__btn .plus::after { transform: rotate(90deg); }
+/* Ouvert : la barre verticale se couche — le « + » devient un « − » blanc. */
+.accordion__btn[aria-expanded="true"] .plus::before,
+.accordion__btn[aria-expanded="true"] .plus::after { background: var(--white); }
 .accordion__btn[aria-expanded="true"] .plus::after { transform: rotate(0); }
-.accordion__panel { display: none; padding: 0 3rem 1.5rem .25rem; color: var(--text-muted); }
-.accordion__panel[data-open] { display: block; }
+
+/* Le panneau se déplie au lieu d'apparaître : une grille dont l'unique rangée
+   passe de 0fr à 1fr, ce qui anime la hauteur réelle du contenu sans avoir à
+   deviner un max-height. `visibility` garde le texte fermé hors du parcours
+   clavier et des lecteurs d'écran, comme le faisait `display: none`. */
+.accordion__panel {
+  display: grid; grid-template-rows: 0fr;
+  transition: grid-template-rows 350ms cubic-bezier(.4, 0, .2, 1);
+}
+.accordion__panel[data-open] { grid-template-rows: 1fr; }
+.accordion__inner {
+  overflow: hidden; visibility: hidden; color: var(--text-muted);
+  transition: visibility 0s linear 350ms;
+}
+.accordion__panel[data-open] .accordion__inner { visibility: visible; transition-delay: 0s; }
+/* Marge intérieure portée par l'enfant : sur le panneau, elle resterait
+   visible même replié et l'accordéon ne se fermerait jamais tout à fait. */
+.accordion__inner > * { padding: 0 3rem 1.5rem .25rem; }
 
 /* ---------- 13. Onglets ---------- */
 .tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 2rem; border-bottom: 1px solid var(--border); }

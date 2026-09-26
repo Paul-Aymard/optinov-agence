@@ -118,7 +118,12 @@ export function Accordion({ items, defaultOpen = -1 }) {
               aria-labelledby={`${base}-btn-${i}`}
               {...(ouvert ? { "data-open": "" } : {})}
             >
-              <p style={{ margin: 0 }}><Lignes>{it.r}</Lignes></p>
+              {/* Enfant intermédiaire obligatoire : le panneau est une grille
+                  qui passe de 0fr à 1fr, c'est lui qui masque le débordement
+                  pendant que la hauteur se déplie. */}
+              <div className="accordion__inner">
+                <p style={{ margin: 0 }}><Lignes>{it.r}</Lignes></p>
+              </div>
             </div>
           </div>
         );
