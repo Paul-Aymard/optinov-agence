@@ -122,6 +122,12 @@ export default async function PageService({ params }) {
           <div className="container svc-acte__grid">
             <div className="svc-acte__texte">
               <Reveal className="svc-acte__head">
+                {/* Numéro de l'acte : rythme le récit comme la méthodologie
+                    numérotée de sweetglobe.eu, citée par le client. Le style
+                    .acte-num existait déjà sans être posé nulle part. */}
+                <span className="acte-num" aria-hidden="true">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
                 <h2>{acte.titre}</h2>
               </Reveal>
               <Reveal className="svc-acte__body">
