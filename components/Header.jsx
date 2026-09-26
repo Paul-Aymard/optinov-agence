@@ -5,9 +5,14 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { site, nav, lienRdv, lienWhatsApp, estRenseigne } from "@/content/site";
 
+/** Largeur a partir de laquelle la navigation complete tient sur une ligne.
+ *  Mesure reelle : logo 216 + liens 659 + CTA 127 + gouttieres 80 = ~1163 px.
+ *  En dessous, on bascule sur le tiroir (burger). */
+const BP_DESKTOP = "(min-width: 1180px)";
+
 /**
  * Header fixe (sticky) — EX-001, M
- * Menu mobile burger plein écran — EX-002, M
+ * Tiroir mobile / tablette — EX-002, M
  * Méga-menu Services / Solutions, navigable au clavier (UX-008).
  */
 export default function Header() {
@@ -15,6 +20,7 @@ export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [openSub, setOpenSub] = useState(null);
   const navRef = useRef(null);
+  const burgerRef = useRef(null);
 
   // Referme tout au changement de page
   useEffect(() => {
@@ -22,10 +28,23 @@ export default function Header() {
     setOpenSub(null);
   }, [pathname]);
 
-  // Verrouille le scroll quand le panneau mobile est ouvert
+  // Le tiroir n'existe pas sur grand ecran : on le referme au passage en desktop,
+  // sinon <body> reste verrouille avec un burger devenu invisible.
   useEffect(() => {
+    const mq = window.matchMedia(BP_DESKTOP);
+    const onChange = (e) => { if (e.matches) setMenuOpen(false); };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  // Verrouille le scroll quand le tiroir est ouvert (html + body : iOS ignore body seul)
+  useEffect(() => {
+    document.documentElement.classList.toggle("menu-open", menuOpen);
     document.body.classList.toggle("menu-open", menuOpen);
-    return () => document.body.classList.remove("menu-open");
+    return () => {
+      document.documentElement.classList.remove("menu-open");
+      document.body.classList.remove("menu-open");
+    };
   }, [menuOpen]);
 
   // Échap referme ; clic extérieur referme le sous-menu
@@ -33,7 +52,10 @@ export default function Header() {
     const onKey = (e) => {
       if (e.key === "Escape") {
         setOpenSub(null);
-        setMenuOpen(false);
+        if (menuOpen) {
+          setMenuOpen(false);
+          burgerRef.current?.focus();
+        }
       }
     };
     const onClick = (e) => {
@@ -45,13 +67,21 @@ export default function Header() {
       document.removeEventListener("keydown", onKey);
       document.removeEventListener("click", onClick);
     };
-  }, []);
+  }, [menuOpen]);
 
   const isCurrent = (href) =>
     href === "/" ? pathname === "/" : pathname.startsWith(href);
 
   return (
-    <header className="header">
+    <header className="header" data-menu={menuOpen ? "open" : "closed"}>
+      {/* Voile : ferme le tiroir au clic a cote (UX-008). Sous le tiroir, sous la barre. */}
+      <div
+        className="nav-voile"
+        hidden={!menuOpen}
+        onClick={() => setMenuOpen(false)}
+        aria-hidden="true"
+      />
+
       <div className="container header__inner">
         {/* Logo officiel OPTINOV (public/logo-optinov.png, 800×200, fond transparent). */}
         <Link href="/" className="logo" aria-label="OPTINOV — accueil">
@@ -103,7 +133,7 @@ export default function Header() {
             )}
           </ul>
 
-          {/* CTA repliés dans le panneau mobile — EX-002 */}
+          {/* CTA repliés dans le tiroir — EX-002 */}
           <div className="nav__cta">
             {estRenseigne(site.whatsapp) && (
               <a
@@ -124,13 +154,14 @@ export default function Header() {
 
         {/* CTA permanent or, à droite — EX-001 */}
         {/* Sans module de RDV branché (EX-035), le CTA mène au formulaire de contact. */}
-        <a className="btn btn--gold" href={lienRdv()} data-ga="cta_rdv">
+        <a className="btn btn--gold header__cta" href={lienRdv()} data-ga="cta_rdv">
           {estRenseigne(site.rdvUrl) ? "Prendre rendez-vous" : "Nous contacter"}
         </a>
 
         <button
           type="button"
           className="burger"
+          ref={burgerRef}
           aria-expanded={menuOpen}
           aria-controls="menu-principal"
           onClick={() => setMenuOpen((v) => !v)}

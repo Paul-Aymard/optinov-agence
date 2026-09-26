@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { lienPlateforme } from "@/content/site";
 import { ancres } from "@/content/prosCards";
 
@@ -19,8 +19,39 @@ import { ancres } from "@/content/prosCards";
 export default function HeaderLite() {
   const [open, setOpen] = useState(false);
 
+  // Le verrou de defilement suit l'etat React (il etait bascule a la main dans
+  // le onClick, et se desynchronisait des qu'une ancre refermait le tiroir).
+  useEffect(() => {
+    document.documentElement.classList.toggle("menu-open", open);
+    document.body.classList.toggle("menu-open", open);
+    return () => {
+      document.documentElement.classList.remove("menu-open");
+      document.body.classList.remove("menu-open");
+    };
+  }, [open]);
+
+  // Le tiroir n'existe pas au-dela du point de bascule : on le referme.
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1180px)");
+    const onChange = (e) => { if (e.matches) setOpen(false); };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") setOpen(false); };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
-    <header className="header header--lite">
+    <header className="header header--lite" data-menu={open ? "open" : "closed"}>
+      <div
+        className="nav-voile"
+        hidden={!open}
+        onClick={() => setOpen(false)}
+        aria-hidden="true"
+      />
       <div className="container header__inner">
         <Link href="/" className="logo" aria-label="OPTINOV — retour au site">
           <span className="logo__mark" aria-hidden="true">OP</span>
@@ -50,7 +81,7 @@ export default function HeaderLite() {
         </nav>
 
         {/* EX-026 : redirige vers le tunnel d'inscription de la plateforme */}
-        <a className="btn btn--gold" href={lienPlateforme("inscription")} data-ga="cta_creer_carte">
+        <a className="btn btn--gold header__cta" href={lienPlateforme("inscription")} data-ga="cta_creer_carte">
           Créer ma carte
         </a>
 
@@ -59,10 +90,7 @@ export default function HeaderLite() {
           className="burger"
           aria-expanded={open}
           aria-controls="menu-principal"
-          onClick={() => {
-            setOpen((v) => !v);
-            document.body.classList.toggle("menu-open");
-          }}
+          onClick={() => setOpen((v) => !v)}
         >
           <span aria-hidden="true" />
           <span className="sr-only">{open ? "Fermer le menu" : "Ouvrir le menu"}</span>

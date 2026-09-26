@@ -219,6 +219,7 @@ button { font: inherit; }
 .submenu a { min-height: 44px; padding: .5rem .8rem; font-size: .9rem; }
 
 .header .btn { margin-left: .6rem; }
+.nav-voile { display: none; }
 .burger {
   display: none; width: 48px; height: 48px; margin-left: auto; background: none; border: 0; cursor: pointer;
   align-items: center; justify-content: center; border-radius: var(--r);
@@ -229,31 +230,92 @@ button { font: inherit; }
 }
 .burger span::before { transform: translateY(-7px); }
 .burger span::after { transform: translateY(5px); }
-body.menu-open .burger span { background: transparent; }
-body.menu-open .burger span::before { transform: rotate(45deg); }
-body.menu-open .burger span::after { transform: rotate(-45deg) translateY(-2px); }
+.header[data-menu="open"] .burger span { background: transparent; }
+.header[data-menu="open"] .burger span::before { transform: rotate(45deg); }
+.header[data-menu="open"] .burger span::after { transform: rotate(-45deg) translateY(-2px); }
 
-@media (max-width: 1023px) {
+/* --- Tiroir de navigation (mobile + tablette) -------------------------------
+   Bascule a 1180px : en dessous, logo + 7 liens + CTA reclament ~1163px et le
+   CTA sortait de l'ecran, coupe par `overflow-x: clip`.
+
+   IMPORTANT : `.header` porte un `backdrop-filter`, ce qui en fait le bloc
+   conteneur de ses descendants `position: fixed`. Le panneau ne pouvait donc
+   pas se caler sur le viewport via `inset: var(--header-h) 0 0 0` : il heritait
+   de la hauteur du header (76px) et le menu debordait par-dessus la page.
+   On lui donne une hauteur explicite ; le header etant colle en haut (top: 0),
+   le calcul reste juste avec ou sans `backdrop-filter`. */
+@media (max-width: 1179px) {
   .burger { display: flex; }
-  .nav {
-    position: fixed; inset: var(--header-h) 0 0 0; background: var(--bg);
-    padding: 1.5rem var(--gut) 2rem; overflow-y: auto;
-    transform: translateX(100%); transition: transform var(--t); margin: 0;
+
+  .nav-voile {
+    display: block;
+    position: fixed;
+    top: var(--header-h); left: 0; right: 0;
+    height: calc(100dvh - var(--header-h));
+    background: rgba(15, 30, 61, .45);
+    opacity: 0; transition: opacity var(--t);
+    border: 0; padding: 0; margin: 0;
   }
-  body.menu-open { overflow: hidden; }
-  body.menu-open .nav { transform: none; }
+  .nav-voile[hidden] { display: none; }
+  .header[data-menu="open"] .nav-voile { opacity: 1; }
+
+  .nav {
+    position: fixed;
+    top: var(--header-h); bottom: auto;
+    right: 0; left: auto;
+    width: min(400px, 88vw);
+    height: calc(100dvh - var(--header-h));
+    background: var(--bg);
+    border-left: 1px solid var(--border);
+    box-shadow: var(--shadow-lg);
+    padding: 1.5rem var(--gut) max(2rem, env(safe-area-inset-bottom));
+    padding-right: max(var(--gut), env(safe-area-inset-right));
+    overflow-y: auto; overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(100%);
+    transition: transform var(--t), visibility var(--t);
+    margin: 0;
+    /* Ferme = hors du flux tabulaire et de l'arbre d'accessibilite.
+       Sans cela, le clavier entrait dans un menu invisible hors ecran. */
+    visibility: hidden;
+  }
+  .header[data-menu="open"] .nav { transform: none; visibility: visible; }
+  /* Tiroir ferme = rien de focalisable. Les regles desktop du sous-menu
+     (`visibility: visible`, plus specifiques) rendaient les 6 liens Services
+     encore atteignables au clavier dans un panneau hors ecran. */
+  .header[data-menu="closed"] .nav,
+  .header[data-menu="closed"] .nav .submenu,
+  .header[data-menu="closed"] .nav a,
+  .header[data-menu="closed"] .nav button { visibility: hidden; }
+
+  /* Verrou de defilement : <html> aussi, iOS ignore <body> seul. */
+  html.menu-open, body.menu-open { overflow: hidden; }
+
   .nav > ul { flex-direction: column; align-items: stretch; gap: 0; }
   .nav a, .has-sub > button { width: 100%; padding: .95rem .4rem; font-size: 1.05rem; text-align: left; border-bottom: 1px solid var(--border); border-radius: 0; }
-  /* Bouton PROS.CARDS bleu dans le menu mobile : arrondi propre, sans séparateur. */
+  /* Bouton PROS.CARDS bleu dans le tiroir : arrondi propre, sans separateur. */
   .nav a[href="/solutions/pros-cards"] { border-radius: 10px; border-bottom: 0; justify-content: center; text-align: center; margin-top: .5rem; padding-block: .8rem; }
   .has-sub > button { justify-content: space-between; }
   .submenu { position: static; transform: none; opacity: 1; visibility: visible; box-shadow: none; border: 0; padding: 0 0 .5rem 1rem; display: none; min-width: 0; }
   .has-sub[data-open="true"] .submenu { display: block; transform: none; }
   .submenu a { border-bottom: 0; font-size: .95rem; padding: .6rem .4rem; }
-  .header .btn { display: none; }
+  .header__cta { display: none; }
   .nav__cta { display: grid; gap: .75rem; margin-top: 1.75rem; }
+
+  /* Landing PROS.CARDS : le logo sur deux lignes + la baseline poussaient la
+     barre a ~81px, au-dela de --header-h (76px) sur lequel le tiroir se cale ;
+     le panneau mordait alors sur l'en-tete. */
+  .header--lite .logo { font-size: 1.05rem; line-height: 1.25; }
+  .header--lite .logo small { display: none; }
 }
-@media (min-width: 1024px) { .nav__cta { display: none; } }
+
+/* Petits ecrans : le tiroir prend toute la largeur, il n'y a pas la place
+   pour un voile exploitable a cote. */
+@media (max-width: 480px) {
+  .nav { width: 100%; border-left: 0; }
+}
+
+@media (min-width: 1180px) { .nav-voile { display: none; } .nav__cta { display: none; } }
 
 /* ---------- 6. Fil d'Ariane — EX-004 ---------- */
 .breadcrumb { background: var(--bg-alt); border-bottom: 1px solid var(--border); font-size: .85rem; }
