@@ -10,8 +10,9 @@
   --navy: #0F1E3D;      /* Bleu Nuit OPTINOV */
   --navy-700: #0a1730;
   --navy-300: #3b4d70;
-  --or: #FC6303;        /* Orange OPTINOV — boutons, accents, éléments interactifs */
-  --or-600: #C24D03;    /* Orange assombri pour texte/liens (contraste AA sur blanc) */
+  --or: #ee7217;        /* Orange OPTINOV — boutons, accents, éléments interactifs */
+  --or-600: #B85912;    /* Orange assombri pour texte/liens (4,69:1 sur blanc — AA) */
+  --or-300: #F39C5D;    /* Orange éclairci pour texte sur fond Bleu Nuit */
   --or-100: #FFE7D3;
   --bg: #FAFBFC;
   --bg-alt: #F2F4F8;
@@ -27,11 +28,11 @@
   --accent: var(--or);
   --accent-visuelle: #7C3AED;   /* Communication visuelle — violet */
   --accent-digitale: #2563EB;   /* Communication digitale — bleu */
-  --accent-marketing: #FC6303;  /* Marketing & stratégie — orange institutionnel */
+  --accent-marketing: var(--or);    /* Marketing & stratégie — orange institutionnel */
   --accent-performance: #16A34A;/* Performance & automatisation — vert */
   --accent-photo: #111111;      /* Photo & vidéo — noir dominant */
   /* Lueur orange « ampoule allumée » — survol des fonds bleu entreprise. */
-  --glow-orange: 0 0 30px rgba(252,99,3,.7), 0 14px 34px rgba(252,99,3,.35);
+  --glow-orange: 0 0 30px rgba(238,114,23,.7), 0 14px 34px rgba(238,114,23,.35);
 
   /* Typographie — CDC 10.2. Les variables --font-playfair / --font-inter sont
      injectées par next/font : woff2 auto-hébergés, sous-ensemblés, swap. */
@@ -128,7 +129,7 @@ button { font: inherit; }
   display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .14em;
   text-transform: uppercase; color: var(--or-600); margin-bottom: .8rem;
 }
-.section--navy .eyebrow { color: #FF9D4D; }
+.section--navy .eyebrow { color: var(--or-300); }
 .lead { font-size: clamp(1.03rem, .98rem + .3vw, 1.2rem); color: var(--text-muted); }
 .section--navy .lead { color: #b9c2d4; }
 
@@ -516,7 +517,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   display: flex; flex-direction: column; gap: .8rem; position: relative;
 }
 .phone::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 70px; height: 5px; border-radius: 4px; background: #24304a; }
-.phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #0F1E3D, #24365f); border: 1px solid rgba(252,99,3,.4); border-radius: 12px; padding: 1rem; color: #fff; }
+.phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #0F1E3D, #24365f); border: 1px solid rgba(238,114,23,.4); border-radius: 12px; padding: 1rem; color: #fff; }
 .phone__card .av { width: 44px; height: 44px; border-radius: 50%; background: var(--or); color: var(--navy); display: grid; place-items: center; font-weight: 700; margin-bottom: .6rem; }
 .phone__card b { display: block; font-size: .95rem; }
 .phone__card em { font-style: normal; font-size: .75rem; color: #9fabc2; }
@@ -796,7 +797,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .pilier { --pilier-accent: var(--or-600); }
 #pilier-visibilite     { --pilier-accent: #2563EB; } /* bleu   */
 #pilier-image          { --pilier-accent: #7C3AED; } /* violet */
-#pilier-valorisation   { --pilier-accent: #F97316; } /* orange */
+#pilier-valorisation   { --pilier-accent: var(--or);  } /* orange */
 #pilier-digitalisation { --pilier-accent: #16A34A; } /* vert   */
 /* Pastilles colorées : fond teinté, texte saturé, petit point en tête. */
 .pilier ul li {
@@ -977,7 +978,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .service-page--sombre .svc-hero .lead,
 .service-page--sombre .svc-hero p,
 .service-page--sombre .svc-transition p { color: #c9c9c9; }
-.service-page--sombre .svc-vision { background: rgba(252,99,3,.14); border-color: rgba(252,99,3,.4); color: #eee; }
+.service-page--sombre .svc-vision { background: rgba(238,114,23,.14); border-color: rgba(238,114,23,.4); color: #eee; }
 .service-page--sombre .svc-vision span { color: #bdbdbd; }
 
 @media (min-width: 640px) {
