@@ -12,7 +12,6 @@
   --navy-300: #3b4d70;
   --or: #ee7217;        /* Orange OPTINOV — boutons, accents, éléments interactifs */
   --or-600: #B85912;    /* Orange assombri pour texte/liens (4,69:1 sur blanc — AA) */
-  --or-300: #F39C5D;    /* Orange éclairci pour texte sur fond Bleu Nuit */
   --or-100: #FFE7D3;
   --bg: #FAFBFC;
   --bg-alt: #F2F4F8;
@@ -129,7 +128,9 @@ button { font: inherit; }
   display: inline-block; font-size: .78rem; font-weight: 600; letter-spacing: .14em;
   text-transform: uppercase; color: var(--or-600); margin-bottom: .8rem;
 }
-.section--navy .eyebrow { color: var(--or-300); }
+/* Sur le Bleu Nuit, l'orange de marque passe direct : 5,54:1, largement AA.
+   Le client demande cette teinte exacte pour « Notre méthode propriétaire ». */
+.section--navy .eyebrow { color: var(--or); }
 .lead { font-size: clamp(1.03rem, .98rem + .3vw, 1.2rem); color: var(--text-muted); }
 .section--navy .lead { color: #b9c2d4; }
 
