@@ -19,7 +19,10 @@ import { Lignes, Vision } from "@/components/Lignes";
  *  1 Hero  ·  1b Sélecteur d'objectif  ·  2 Problème (6 défis)  ·
  *  3 « La croissance ne s'improvise pas »  ·  4 Méthode V.I.S.I.O.N.  ·
  *  5 Les 4 piliers (résultats)  ·  6 Nos solutions  ·  7 Réalisations via VISION  ·
- *  8 Pourquoi OPTINOV  ·  9 Ils nous font confiance  ·  10 FAQ  ·  11 CTA final
+ *  8 Nos clients  ·  9 Pourquoi OPTINOV  ·  10 FAQ  ·  11 CTA final
+ *
+ * « Nos clients » précède « Pourquoi OPTINOV » à la demande du client : la
+ * preuve par les références vient avant l'argumentaire.
  */
 export const metadata = {
   title: { absolute: "OPTINOV — La méthode V.I.S.I.O.N. pour votre croissance" },
@@ -261,31 +264,13 @@ export default function Accueil() {
         </div>
       </section>
 
-      {/* ---------- 8. Pourquoi choisir OPTINOV ---------- */}
-      <section className="section section--alt">
-        <div className="container">
-          <Reveal className="section-head center">
-            <span className="eyebrow">Notre différence</span>
-            <h2>Pourquoi choisir OPTINOV&nbsp;?</h2>
-          </Reveal>
-          {/* Rangée du haut : 2 cartes larges sur toute la largeur */}
-          <div className="grid grid-2 cartes-anim solutions-grille">
-            {pourquoiOptinov.slice(0, 2).map(cartePourquoi)}
-          </div>
-          {/* Rangée du bas : les 3 autres cartes */}
-          <div className="grid grid-3 cartes-anim solutions-grille solutions-grille--bas">
-            {pourquoiOptinov.slice(2).map(cartePourquoi)}
-          </div>
-        </div>
-      </section>
-
-      {/* ---------- 9. Ils nous font confiance ---------- */}
+      {/* ---------- 8. Nos clients ---------- */}
       {(chiffresCles.length > 0 || logosClients.length > 0 || temoignages.length > 0) ? (
-        <section className="section">
+        <section className="section section--alt">
           <div className="container">
             <Reveal className="section-head center">
-              <span className="eyebrow">Confiance</span>
-              <h2>Ils nous font confiance</h2>
+              <span className="eyebrow">Nos clients</span>
+              <h2>La confiance de nos clients, notre fierté</h2>
             </Reveal>
             {chiffresCles.length > 0 && (
               <div className="stats" style={{ marginBottom: "2.5rem" }}>
@@ -320,18 +305,39 @@ export default function Accueil() {
           </div>
         </section>
       ) : (
-        <section className="section">
+        <section className="section section--alt">
           <div className="container" style={{ maxWidth: "72rem", textAlign: "center" }}>
             <Reveal>
-              <span className="eyebrow">Confiance</span>
-              <h2 className="titre-1ligne">Et si le prochain logo affiché ici était le vôtre&nbsp;?</h2>
+              <span className="eyebrow">Nos clients</span>
+              {/* Même titre que la variante garnie : sans lui, la demande du
+                  client resterait invisible tant qu'aucune référence n'est
+                  publiée dans le tableau de bord. */}
+              <h2 className="titre-1ligne">La confiance de nos clients, notre fierté</h2>
               <p className="lead">
-                <Lignes>Nous serions heureux de découvrir votre entreprise et de mettre la méthode V.I.S.I.O.N. au service de vos ambitions.</Lignes>
+                <Lignes>Et si le prochain logo affiché ici était le vôtre ? Nous serions heureux de découvrir votre entreprise et de mettre la méthode V.I.S.I.O.N. au service de vos ambitions.</Lignes>
               </p>
             </Reveal>
           </div>
         </section>
       )}
+
+      {/* ---------- 9. Pourquoi choisir OPTINOV ---------- */}
+      <section className="section">
+        <div className="container">
+          <Reveal className="section-head center">
+            <span className="eyebrow">Notre différence</span>
+            <h2>Pourquoi choisir OPTINOV&nbsp;?</h2>
+          </Reveal>
+          {/* Rangée du haut : 2 cartes larges sur toute la largeur */}
+          <div className="grid grid-2 cartes-anim solutions-grille">
+            {pourquoiOptinov.slice(0, 2).map(cartePourquoi)}
+          </div>
+          {/* Rangée du bas : les 3 autres cartes */}
+          <div className="grid grid-3 cartes-anim solutions-grille solutions-grille--bas">
+            {pourquoiOptinov.slice(2).map(cartePourquoi)}
+          </div>
+        </div>
+      </section>
 
       {/* ---------- 10. FAQ (orientée méthode) ---------- */}
       <section className="section section--alt">
