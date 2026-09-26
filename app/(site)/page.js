@@ -356,7 +356,7 @@ export default function Accueil() {
       {/* ---------- 11. CTA final ---------- */}
       <section className="section" id="contact">
         <div className="container">
-          <div className="cta-band">
+          <div className="cta-band cta-band--compact">
             <div className="hero__grid">
               <div>
                 <h2><Vision>Prêt à appliquer la méthode V.I.S.I.O.N. à votre entreprise&nbsp;?</Vision></h2>
