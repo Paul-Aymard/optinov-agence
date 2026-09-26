@@ -21,8 +21,10 @@ const v = (valeur, defaut = "") => (typeof valeur === "string" && valeur.trim() 
 export const site = {
   nom: v(g.nom, "OPTINOV"),
   baseline: v(g.baseline, "Communication · Marketing · Transformation digitale"),
-  // L'adresse du site lui-même n'est pas un contenu : elle reste dans le code.
-  url: "https://optinov-agence.christkangah14.workers.dev",
+  // L'adresse du site n'est pas un contenu : elle vient de l'hébergeur
+  // (NEXT_PUBLIC_SITE_URL), pour que les URL canoniques, le sitemap et les
+  // balises Open Graph suivent automatiquement le domaine servi.
+  url: (process.env.NEXT_PUBLIC_SITE_URL || "https://optinov-agence.christkangah14.workers.dev").replace(/\/$/, ""),
   ville: v(g.ville, "Abidjan"),
   pays: v(g.pays, "Côte d'Ivoire"),
   adresse: v(g.adresse),
