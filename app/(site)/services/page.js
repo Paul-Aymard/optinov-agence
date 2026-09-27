@@ -12,7 +12,7 @@ import { Breadcrumb, Reveal, Accordion, FaqJsonLd, WhatsAppFloat } from "@/compo
 export const metadata = {
   title: "Nos services",
   description:
-    "Identité de marque, communication digitale, marketing & stratégie, performance & automatisation, photo & vidéo corporate : cinq expertises au service de vos résultats.",
+    "Identité de marque, communication digitale, marketing & stratégie, automatisation & IA, photo & vidéo : cinq expertises au service de vos résultats.",
   alternates: { canonical: "/services" },
 };
 

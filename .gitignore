@@ -20,3 +20,4 @@ deploy.log
 
 # Contenu synchronise depuis le tableau de bord (scripts/sync-content.mjs)
 content/generated/
+.claude/
