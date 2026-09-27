@@ -135,7 +135,8 @@ export const nav = [
   { label: "PROS.CARDS", href: "https://recette.pros.cards/", externe: true },
   { label: "Réalisations", href: "/realisations" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  // Pas d'entrée « Contact » : le bouton « Nous contacter » du header mène déjà
+  // au formulaire (lienRdv), un lien en double juste à côté était redondant.
 ];
 
 /** Méthode — §6.1 section 5 */

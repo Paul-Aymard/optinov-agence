@@ -6,9 +6,10 @@ import { useEffect, useRef, useState } from "react";
 import { site, nav, lienRdv, lienWhatsApp, estRenseigne } from "@/content/site";
 
 /** Largeur a partir de laquelle la navigation complete tient sur une ligne.
- *  Mesure reelle : logo 216 + liens 659 + CTA 127 + gouttieres 80 = ~1163 px.
- *  En dessous, on bascule sur le tiroir (burger). */
-const BP_DESKTOP = "(min-width: 1180px)";
+ *  Mesure reelle : logo 216 + 6 liens ~585 + CTA 127 + gouttieres 80 = ~1090 px
+ *  (le lien « Contact » a ete retire : le CTA « Nous contacter » suffit).
+ *  En dessous, on bascule sur le tiroir (burger). Meme valeur dans globals.css. */
+const BP_DESKTOP = "(min-width: 1100px)";
 
 /**
  * Header fixe (sticky) — EX-001, M

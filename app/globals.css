@@ -253,12 +253,13 @@ button { font: inherit; }
 .header[data-menu="open"] .burger span::after { transform: rotate(-45deg) translateY(-2px); }
 
 /* --- Tiroir de navigation (mobile + tablette) -------------------------------
-   Bascule a 1180px : en dessous, logo + 7 liens + CTA reclament ~1163px et le
-   CTA sortait de l'ecran, coupe par `overflow-x: clip`.
+   Bascule a 1100px : en dessous, logo + 6 liens + CTA reclament ~1090px et le
+   CTA sortait de l'ecran, coupe par `overflow-x: clip`. (Meme valeur que
+   BP_DESKTOP dans components/Header.jsx.)
 
    Le flou de .header vit sur ::before (voir plus haut) : le tiroir et le voile
    sont donc bien positionnes par rapport a l'ecran. */
-@media (max-width: 1179px) {
+@media (max-width: 1099px) {
   .burger { display: flex; }
 
   .nav-voile {
@@ -337,7 +338,7 @@ button { font: inherit; }
   .nav { width: 100%; border-left: 0; }
 }
 
-@media (min-width: 1180px) { .nav-voile { display: none; } .nav__cta { display: none; } }
+@media (min-width: 1100px) { .nav-voile { display: none; } .nav__cta { display: none; } }
 
 /* ---------- 6. Fil d'Ariane — EX-004 ---------- */
 .breadcrumb { background: var(--bg-alt); border-bottom: 1px solid var(--border); font-size: .85rem; }
