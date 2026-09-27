@@ -190,12 +190,11 @@ button { font: inherit; }
 .nav a:hover, .nav a[aria-current="page"] { background: var(--bg-alt); color: var(--or-600); }
 .nav a[aria-current="page"] { font-weight: 600; }
 /* Onglet PROS.CARDS mis en avant comme un bouton — bleu nuit du logo (#0F1E3D). */
-.nav a[href="/solutions/pros-cards"] {
+.nav a.nav__pros {
   background: #0F1E3D; color: #fff; font-weight: 700;
   padding-inline: 1.05rem; border-radius: 100px;
 }
-.nav a[href="/solutions/pros-cards"]:hover,
-.nav a[href="/solutions/pros-cards"][aria-current="page"] {
+.nav a.nav__pros:hover {
   background: #1B2A4A; color: #fff;
 }
 
@@ -294,7 +293,7 @@ button { font: inherit; }
   .nav > ul { flex-direction: column; align-items: stretch; gap: 0; }
   .nav a, .has-sub > button { width: 100%; padding: .95rem .4rem; font-size: 1.05rem; text-align: left; border-bottom: 1px solid var(--border); border-radius: 0; }
   /* Bouton PROS.CARDS bleu dans le tiroir : arrondi propre, sans separateur. */
-  .nav a[href="/solutions/pros-cards"] { border-radius: 10px; border-bottom: 0; justify-content: center; text-align: center; margin-top: .5rem; padding-block: .8rem; }
+  .nav a.nav__pros { border-radius: 10px; border-bottom: 0; justify-content: center; text-align: center; margin-top: .5rem; padding-block: .8rem; }
   .has-sub > button { justify-content: space-between; }
   .submenu { position: static; transform: none; opacity: 1; visibility: visible; box-shadow: none; border: 0; padding: 0 0 .5rem 1rem; display: none; min-width: 0; }
   .has-sub[data-open="true"] .submenu { display: block; transform: none; }

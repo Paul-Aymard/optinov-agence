@@ -131,7 +131,8 @@ export const nav = [
       { label: "Photo & Vidéo Corporate", href: "/services/photo-video" },
     ],
   },
-  { label: "PROS.CARDS", href: "/solutions/pros-cards" },
+  // Onglet-bouton : ouvre la plateforme PROS.CARDS (nouvel onglet), pas la landing.
+  { label: "PROS.CARDS", href: "https://recette.pros.cards/", externe: true },
   { label: "Réalisations", href: "/realisations" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },

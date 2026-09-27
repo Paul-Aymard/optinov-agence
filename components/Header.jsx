@@ -123,6 +123,12 @@ export default function Header() {
                     ))}
                   </ul>
                 </li>
+              ) : item.externe ? (
+                <li key={item.href}>
+                  <a className="nav__pros" href={item.href} target="_blank" rel="noopener noreferrer" data-ga="cta_pros_cards">
+                    {item.label}
+                  </a>
+                </li>
               ) : (
                 <li key={item.href}>
                   <Link href={item.href} aria-current={isCurrent(item.href) ? "page" : undefined}>
