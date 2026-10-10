@@ -127,7 +127,8 @@ export default function Header() {
               ) : item.externe ? (
                 <li key={item.href}>
                   <a className="nav__pros" href={item.href} target="_blank" rel="noopener noreferrer" data-ga="cta_pros_cards">
-                    {item.label}
+                    {/* Le logo Pros.Cards remplace le libellé (demande client) ; le texte reste pour les lecteurs d'écran. */}
+                    <img src="/logo-proscards.png" alt={item.label} width="800" height="200" />
                   </a>
                 </li>
               ) : (

@@ -85,11 +85,15 @@ export default function Agence() {
             <span className="eyebrow">Nos valeurs</span>
             <h2>Ce sur quoi nous ne transigeons pas</h2>
           </Reveal>
-          <div className="grid grid-4">
+          {/* Valeurs en cercles (maquette direction) : anneau orange en pointillés
+              qui tourne lentement, et s'accélère au survol. */}
+          <div className="valeurs-cercles">
             {valeurs.map((v) => (
-              <Reveal key={v.titre} className="card">
-                <h3>{v.titre}</h3>
-                <p><Lignes>{v.texte}</Lignes></p>
+              <Reveal key={v.titre} className="valeur-cercle">
+                <div className="valeur-cercle__disque">
+                  <h3>{v.titre}</h3>
+                  <p><Lignes>{v.texte}</Lignes></p>
+                </div>
               </Reveal>
             ))}
           </div>

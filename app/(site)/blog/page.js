@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { articles, categories, getCategorie } from "@/content/blog";
 import { Breadcrumb, Reveal, WhatsAppFloat } from "@/components/Ui";
+import BlogListe, { MetaArticle } from "@/components/BlogListe";
 
 /** Blog — liste (G7) — CDC §6.7 */
 export const metadata = {
@@ -33,74 +34,34 @@ export default function Blog() {
         </div>
       </section>
 
-      {/* Article à la une — seulement s'il existe au moins un article */}
+      {/* Article à la une — seulement s'il existe au moins un article.
+          Présentation inspirée de skyrocketmonster.com/fr/blog (demande direction). */}
       {aLaUne && (
-      <section className="section">
+      <section className="section blog-une-section">
         <div className="container">
-          <Reveal className="card card--project" style={{ padding: 0 }}>
-            <div className="hero__grid" style={{ gap: 0, alignItems: "stretch" }}>
-              <div className="thumb" style={{ borderRadius: "var(--r-lg) 0 0 var(--r-lg)", margin: 0, aspectRatio: "auto", minHeight: "18rem", overflow: "hidden" }}>
-                {aLaUne.image ? (
-                  <img src={aLaUne.image} alt={aLaUne.titre} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                ) : (
-                  "Illustration de l’article"
-                )}
-              </div>
-              <div style={{ padding: "clamp(1.5rem, 3vw, 2.5rem)", display: "flex", flexDirection: "column", justifyContent: "center" }}>
-                <span className="tag">À la une · {getCategorie(aLaUne.categorie)?.label}</span>
-                <h2>{aLaUne.titre}</h2>
-                <p>{aLaUne.extrait}</p>
-                <p className="meta">
-                  <span>{aLaUne.tempsLecture} min de lecture</span>
-                </p>
-                <div style={{ marginTop: "1rem" }}>
-                  <Link className="btn btn--gold btn--sm" href={`/blog/${aLaUne.slug}`}>
-                    Lire l&apos;article
-                  </Link>
-                </div>
-              </div>
+          <Reveal as="article" className="blog-une">
+            <Link href={`/blog/${aLaUne.slug}`} className="blog-une__img" tabIndex={-1} aria-hidden="true">
+              {aLaUne.image ? <img src={aLaUne.image} alt="" /> : <span>OPTINOV</span>}
+            </Link>
+            <div className="blog-une__texte">
+              <span className="blog-carte__cat">À la une · {getCategorie(aLaUne.categorie)?.label}</span>
+              <h2>{aLaUne.titre}</h2>
+              {aLaUne.extrait && <p>{aLaUne.extrait}</p>}
+              <MetaArticle date={aLaUne.date} tempsLecture={aLaUne.tempsLecture} />
+              <Link className="btn btn--gold blog-une__btn" href={`/blog/${aLaUne.slug}`}>
+                Lire l&apos;article <span className="blog-fleche" aria-hidden="true">→</span>
+              </Link>
             </div>
           </Reveal>
         </div>
       </section>
       )}
 
-      {/* Catégories — filtres (liens indexables plutôt que boutons JS, SEO-006) */}
-      <section className="section" style={{ paddingTop: 0 }}>
+      {/* Catégories en pastilles, grille de 3 colonnes, pagination par flèches.
+          Le corps HTML des articles n'est pas envoyé au navigateur avec la liste. */}
+      <section className="section" style={{ paddingTop: aLaUne ? ".5rem" : undefined }}>
         <div className="container">
-          <nav className="filters" aria-label="Catégories du blog">
-            <Link className="btn btn--sm btn--navy" href="/blog" style={{ borderRadius: "100px" }}>
-              Toutes les catégories
-            </Link>
-            {categories.map((c) => (
-              <Link key={c.id} className="btn btn--sm btn--ghost" href={`/blog?categorie=${c.id}`} style={{ borderRadius: "100px" }}>
-                {c.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="grid grid-3">
-            {autres.map((a) => (
-              <Reveal key={a.slug} className="card card--project">
-                <div className="thumb" style={{ overflow: "hidden" }}>
-                  {a.imageCarte ? (
-                    <img src={a.imageCarte} alt={a.imageAlt || a.titre} loading="lazy" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
-                  ) : (
-                    "Illustration"
-                  )}
-                </div>
-                <div className="card__body">
-                  <span className="tag">{getCategorie(a.categorie)?.label}</span>
-                  <h3 style={{ fontSize: "1.15rem" }}>{a.titre}</h3>
-                  <p>{a.extrait}</p>
-                  <p className="meta">
-                    <span>{a.tempsLecture} min</span>
-                  </p>
-                  <Link className="link-arrow" href={`/blog/${a.slug}`}>Lire l&apos;article</Link>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          {autres.length > 0 && <BlogListe articles={autres.map(({ corps, ...carte }) => carte)} categories={categories} />}
 
           {articles.length === 0 && (
             <p className="empty-state">

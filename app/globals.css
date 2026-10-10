@@ -10,9 +10,10 @@
   --navy: #0F1E3D;      /* Bleu Nuit OPTINOV */
   --navy-700: #0a1730;
   --navy-300: #3b4d70;
-  --or: #ee7217;        /* Orange OPTINOV — boutons, accents, éléments interactifs */
-  --or-600: #B85912;    /* Orange assombri pour texte/liens (4,69:1 sur blanc — AA) */
-  --or-100: #FFE7D3;
+  --or: #fc6303;        /* Orange PROS.CARDS (charte commune) — boutons, accents, éléments interactifs */
+  --or-600: #fc6303;    /* Demande client : toutes les écritures orange en #fc6303, comme PROS.CARDS */
+  --or-700: #c74e02;    /* Orange foncé PROS.CARDS — survol des boutons pleins */
+  --or-100: #FFE6D5;
   --bg: #FAFBFC;
   --bg-alt: #F2F4F8;
   --text: #222222;      /* Anthracite */
@@ -31,7 +32,7 @@
   --accent-performance: #16A34A;/* Performance & automatisation — vert */
   --accent-photo: #111111;      /* Photo & vidéo — noir dominant */
   /* Lueur orange « ampoule allumée » — survol des fonds bleu entreprise. */
-  --glow-orange: 0 0 30px rgba(238,114,23,.7), 0 14px 34px rgba(238,114,23,.35);
+  --glow-orange: 0 0 30px rgba(252,99,3,.7), 0 14px 34px rgba(252,99,3,.35);
 
   /* Typographie — CDC 10.2. Les variables --font-playfair / --font-inter sont
      injectées par next/font : woff2 auto-hébergés, sous-ensemblés, swap. */
@@ -88,7 +89,7 @@ h1 { font-size: var(--h1); }
 h2 { font-size: var(--h2); }
 h3 { font-size: var(--h3); }
 p { margin: 0 0 1.1em; }
-a { color: var(--navy); text-decoration-color: rgba(184, 134, 11, .5); text-underline-offset: 3px; }
+a { color: var(--navy); text-decoration-color: rgba(252, 99, 3, .5); text-underline-offset: 3px; }
 a:hover { color: var(--or-600); }
 ul, ol { padding-left: 1.15em; }
 button { font: inherit; }
@@ -157,7 +158,7 @@ button { font: inherit; }
 }
 .btn:active { transform: translateY(1px); }
 .btn--gold { background: var(--or); color: #fff; box-shadow: var(--shadow-sm); }
-.btn--gold:hover { background: var(--or-600); color: #fff; box-shadow: var(--shadow-md); }
+.btn--gold:hover { background: var(--or-700); color: #fff; box-shadow: var(--shadow-md); }
 .btn--navy { background: var(--navy); color: #fff; }
 .btn--navy:hover { background: var(--navy-700); color: #fff; }
 .btn--ghost { border-color: currentColor; color: var(--navy); background: transparent; }
@@ -208,13 +209,16 @@ button { font: inherit; }
 }
 .nav a:hover, .nav a[aria-current="page"] { background: var(--bg-alt); color: var(--or-600); }
 .nav a[aria-current="page"] { font-weight: 600; }
-/* Onglet PROS.CARDS mis en avant comme un bouton — bleu nuit du logo (#0F1E3D). */
+/* Onglet PROS.CARDS : le logo Pros.Cards dans une pastille blanche (demande client). */
 .nav a.nav__pros {
-  background: #0F1E3D; color: #fff; font-weight: 700;
-  padding-inline: 1.05rem; border-radius: 100px;
+  background: #fff; padding: .3rem .85rem; border-radius: 12px;
+  border: 1px solid var(--border); box-shadow: var(--shadow-sm);
+  transition: transform var(--t-fast), box-shadow var(--t-fast), border-color var(--t-fast);
 }
+.nav a.nav__pros img { display: block; height: 28px; width: auto; }
 .nav a.nav__pros:hover {
-  background: #1B2A4A; color: #fff;
+  background: #fff; border-color: rgba(252,99,3,.45);
+  box-shadow: 0 8px 20px rgba(252,99,3,.18); transform: translateY(-1px);
 }
 
 /* Méga-menu */
@@ -313,8 +317,9 @@ button { font: inherit; }
 
   .nav > ul { flex-direction: column; align-items: stretch; gap: 0; }
   .nav a, .has-sub > button { width: 100%; padding: .95rem .4rem; font-size: 1.05rem; text-align: left; border-bottom: 1px solid var(--border); border-radius: 0; }
-  /* Bouton PROS.CARDS bleu dans le tiroir : arrondi propre, sans separateur. */
-  .nav a.nav__pros { border-radius: 10px; border-bottom: 0; justify-content: center; text-align: center; margin-top: .5rem; padding-block: .8rem; }
+  /* Logo PROS.CARDS dans le tiroir : centre, arrondi, sans separateur. */
+  .nav a.nav__pros { border-radius: 10px; justify-content: center; margin-top: .5rem; padding-block: .7rem; border: 1px solid var(--border); }
+  .nav a.nav__pros img { height: 32px; }
   .has-sub > button { justify-content: space-between; }
   .submenu { position: static; transform: none; opacity: 1; visibility: visible; box-shadow: none; border: 0; padding: 0 0 .5rem 1rem; display: none; min-width: 0; }
   .has-sub[data-open="true"] .submenu { display: block; transform: none; }
@@ -374,7 +379,7 @@ button { font: inherit; }
 }
 .hero-visual::after {
   content: ""; position: absolute; inset: 0;
-  background: radial-gradient(120% 90% at 80% 10%, rgba(184,134,11,.35), transparent 60%);
+  background: radial-gradient(120% 90% at 80% 10%, rgba(252,99,3,.35), transparent 60%);
 }
 .hero-visual .ph { color: rgba(255,255,255,.35); font-size: .8rem; letter-spacing: .16em; text-transform: uppercase; z-index: 1; text-align: center; padding: 1rem; }
 
@@ -588,7 +593,7 @@ button.link-arrow { background: none; border: 0; padding: 0; cursor: pointer; fo
 }
 .field textarea { min-height: 130px; resize: vertical; }
 .field input:focus, .field select:focus, .field textarea:focus {
-  outline: none; border-color: var(--or); box-shadow: 0 0 0 3px rgba(184,134,11,.18);
+  outline: none; border-color: var(--or); box-shadow: 0 0 0 3px rgba(252,99,3,.18);
 }
 .field[data-state="error"] input, .field[data-state="error"] select, .field[data-state="error"] textarea { border-color: var(--error); }
 .field[data-state="success"] input, .field[data-state="success"] select, .field[data-state="success"] textarea { border-color: var(--success); }
@@ -673,7 +678,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   display: flex; flex-direction: column; gap: .8rem; position: relative;
 }
 .phone::before { content: ""; position: absolute; top: 10px; left: 50%; transform: translateX(-50%); width: 70px; height: 5px; border-radius: 4px; background: #24304a; }
-.phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #0F1E3D, #24365f); border: 1px solid rgba(238,114,23,.4); border-radius: 12px; padding: 1rem; color: #fff; }
+.phone__card { margin-top: 1.4rem; background: linear-gradient(145deg, #0F1E3D, #24365f); border: 1px solid rgba(252,99,3,.4); border-radius: 12px; padding: 1rem; color: #fff; }
 .phone__card .av { width: 44px; height: 44px; border-radius: 50%; background: var(--or); color: var(--navy); display: grid; place-items: center; font-weight: 700; margin-bottom: .6rem; }
 .phone__card b { display: block; font-size: .95rem; }
 .phone__card em { font-style: normal; font-size: .75rem; color: #9fabc2; }
@@ -711,17 +716,21 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .footer__grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr)); }
 .footer__grid > div:first-child { grid-column: span 1; }
 @media (min-width: 900px) { .footer__grid { grid-template-columns: 1.5fr 1fr 1fr 1.5fr; } }
-.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
-/* UX-008 : les liens du footer sont aussi des cibles tactiles (>= 44px) */
+.footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .15rem; }
+/* Espacement revu (direction) : un seul rythme vertical pour toutes les lignes,
+   texte simple ou lien, au lieu de liens de 44 px à côté d'une adresse serrée.
+   Sur écran tactile, les liens retrouvent leur cible de 44 px (UX-008). */
 .footer a {
-  display: inline-flex; align-items: center; min-height: 44px;
-  color: #9fabc2; text-decoration: none; font-size: .9rem;
+  display: inline-flex; align-items: center; min-height: 32px;
+  color: #9fabc2; text-decoration: none; font-size: .9rem; line-height: 1.4;
 }
+@media (pointer: coarse) { .footer a { min-height: 44px; } }
 .footer a:hover { color: var(--or); }
-.footer li { display: flex; }
+.footer li { display: flex; align-items: center; min-height: 32px; font-size: .9rem; line-height: 1.4; }
 .footer .logo { color: #fff; }
 .footer .logo__mark { background: #fff; color: var(--navy); }
-.footer p { font-size: .9rem; }
+.footer p { font-size: .9rem; line-height: 1.6; margin: 0 0 .9rem; }
+.footer h4 { margin-bottom: .85rem; }
 .socials { display: flex; gap: .6rem; margin-top: 1rem; }
 .socials a {
   width: 44px; height: 44px; border-radius: 8px; border: 1px solid rgba(255,255,255,.15); /* UX-008 */
@@ -1151,7 +1160,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .service-page--sombre .svc-hero .lead,
 .service-page--sombre .svc-hero p,
 .service-page--sombre .svc-transition p { color: #c9c9c9; }
-.service-page--sombre .svc-vision { background: rgba(238,114,23,.14); border-color: rgba(238,114,23,.4); color: #eee; }
+.service-page--sombre .svc-vision { background: rgba(252,99,3,.14); border-color: rgba(252,99,3,.4); color: #eee; }
 .service-page--sombre .svc-vision span { color: #bdbdbd; }
 
 @media (min-width: 640px) {
@@ -1170,49 +1179,73 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .section--constat .section-head { margin-bottom: clamp(2.5rem, 5vw, 3.75rem); }
 .mot-vision { color: var(--or-600); font-weight: 800; }
 
-/* Cadrans du constat : fond bleu nuit du logo, barre orange qui apparaît en haut au survol */
+/* Cadrans du constat : fond bleu nuit du logo.
+   Survol revu (le halo orange était jugé trop fort) : un trait orange fin se
+   dessine à gauche, un reflet discret traverse la carte, le titre glisse d'un
+   cran. L'orange reste un accent, plus un fond lumineux. */
 .card--constat {
-  position: relative; overflow: hidden;
+  position: relative; overflow: hidden; isolation: isolate;
   background: #0F1E3D; border-color: transparent;
   padding: clamp(1.6rem, 3vw, 2.25rem);
-  transition: transform var(--t), box-shadow var(--t);
+  transition: transform .45s cubic-bezier(.22,.61,.36,1), box-shadow .45s ease, background .45s ease;
 }
-.card--constat h3 { color: #fff; font-size: 1.28rem; margin-bottom: .55rem; }
-.card--constat p { color: #c2cbdc; font-size: 1rem; }
+.card--constat h3 { color: #fff; font-size: 1.28rem; margin-bottom: .55rem; transition: transform .45s cubic-bezier(.22,.61,.36,1); }
+.card--constat p { color: #c2cbdc; font-size: 1rem; transition: color .45s ease; }
 .card--constat::before {
-  content: ""; position: absolute; inset: 0 0 auto 0; height: 5px;
-  background: var(--or); transform: scaleX(0); transform-origin: left;
-  transition: transform .4s cubic-bezier(.22,.61,.36,1);
+  content: ""; position: absolute; inset: 1.4rem auto 1.4rem 0; width: 4px; height: auto; border-radius: 0 4px 4px 0;
+  background: var(--or); transform: scaleY(0); transform-origin: top;
+  transition: transform .5s cubic-bezier(.22,.61,.36,1);
 }
-.card--constat:hover::before { transform: scaleX(1); }
-.card--constat:hover { transform: translateY(-5px); box-shadow: var(--glow-orange); }
+.card--constat::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(115deg, transparent 30%, rgba(255,255,255,.07) 50%, transparent 70%);
+  transform: translateX(-100%); transition: transform .9s ease;
+}
+.card--constat:hover, .card--constat:focus-within {
+  transform: translateY(-4px); background: #13254a;
+  box-shadow: 0 16px 34px rgba(15,30,61,.28), 0 4px 14px rgba(252,99,3,.12);
+}
+.card--constat:hover::before, .card--constat:focus-within::before { transform: scaleY(1); }
+.card--constat:hover::after { transform: translateX(100%); }
+.card--constat:hover h3 { transform: translateX(6px); }
+.card--constat:hover p { color: #dfe5f0; }
 
-/* --- Piliers (résultats) : compacts sur une ligne, expansion au survol --- */
+/* --- Piliers (résultats) : compacts sur une ligne, expansion au survol ---
+   Correctif direction : un seul bloc s'ouvre, uniquement sous le curseur, et se
+   referme en le quittant. Le défaut venait de `.card { height: 100% }` : quand
+   le bloc survolé grandissait, la rangée de la grille grandissait avec lui et
+   les trois autres s'étiraient à sa hauteur, comme s'ils s'ouvraient aussi.
+   `height: auto` laisse chaque bloc à sa propre hauteur. */
 .piliers-grid { align-items: start; }
 .pilier {
-  text-align: center; padding: 1.6rem 1.2rem;
+  height: auto; text-align: center; padding: 1.6rem 1.2rem; cursor: default;
   transition: transform .4s cubic-bezier(.22,.61,.36,1), box-shadow .4s ease;
 }
+.pilier:focus { outline: none; }
+.pilier:focus-visible { outline: 3px solid var(--or); outline-offset: 3px; }
 .pilier .emoji { font-size: 2.1rem; margin-bottom: .55rem; transition: transform .4s ease; }
 .pilier h3 { font-size: 1.04rem; }
 .pilier__accroche { color: var(--or-600); font-weight: 600; font-size: .9rem; margin-top: .35rem; }
 .pilier ul { justify-content: center; }
 .pilier__resultat { margin-top: 1rem; font-size: .9rem; }
 .pilier__resultat strong { color: var(--navy); }
+/* Ouverture fluide en hauteur réelle (grille 0fr → 1fr), sans plafond arbitraire. */
 .pilier__details {
-  max-height: 0; opacity: 0; overflow: hidden;
-  transition: max-height .5s ease, opacity .4s ease, margin-top .4s ease;
+  display: grid; grid-template-rows: 0fr; opacity: 0; margin-top: 0;
+  transition: grid-template-rows .5s cubic-bezier(.22,.61,.36,1), opacity .35s ease, margin-top .5s ease;
 }
-.pilier:hover, .pilier:focus-within {
-  transform: translateY(-6px) scale(1.03); box-shadow: var(--shadow-lg); z-index: 3;
+.pilier__inner { min-height: 0; overflow: hidden; }
+/* :focus-visible (clavier) et non :focus-within : un clic souris ne laisse plus
+   le bloc ouvert après le départ du curseur. */
+.pilier:hover, .pilier:focus-visible {
+  transform: translateY(-6px); box-shadow: var(--shadow-lg); z-index: 3;
 }
-.pilier:hover .emoji, .pilier:focus-within .emoji { transform: scale(1.15); }
-.pilier:hover .pilier__details, .pilier:focus-within .pilier__details {
-  max-height: 520px; opacity: 1; margin-top: .85rem;
+.pilier:hover .pilier__details, .pilier:focus-visible .pilier__details {
+  grid-template-rows: 1fr; opacity: 1; margin-top: .85rem;
 }
 /* Sur écran tactile (pas de survol) : on affiche les détails en permanence. */
 @media (hover: none) {
-  .pilier__details { max-height: none; opacity: 1; margin-top: .85rem; }
+  .pilier__details { grid-template-rows: 1fr; opacity: 1; margin-top: .85rem; }
 }
 
 /* --- Solutions : cartes un peu plus grandes --- */
@@ -1270,8 +1303,34 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .vision-mini.is-in span:nth-child(5) { animation-delay: .32s; }
 .vision-mini.is-in span:nth-child(6) { animation-delay: .40s; }
 .vision-mini span:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); color: var(--navy); }
+
+/* Parcours V.I.S.I.O.N. (accueil, Réalisations) : après l'entrée en cascade,
+   les six étapes s'allument l'une après l'autre en boucle (9 s le cycle),
+   comme un projet qui avance. L'initiale reste orange en permanence. */
+.vision-mini--parcours span {
+  position: relative; background: #fff; padding: .45rem .95rem; font-size: .82rem;
+  border-color: var(--border);
+}
+.vision-mini--parcours span b { color: var(--or); font-weight: 800; }
+.vision-mini--parcours.is-in span {
+  animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both, etapeActive 9s ease-in-out 1.2s infinite;
+}
+.vision-mini--parcours.is-in span:nth-child(2) { animation-delay: .08s, 2.7s; }
+.vision-mini--parcours.is-in span:nth-child(3) { animation-delay: .16s, 4.2s; }
+.vision-mini--parcours.is-in span:nth-child(4) { animation-delay: .24s, 5.7s; }
+.vision-mini--parcours.is-in span:nth-child(5) { animation-delay: .32s, 7.2s; }
+.vision-mini--parcours.is-in span:nth-child(6) { animation-delay: .40s, 8.7s; }
+@keyframes etapeActive {
+  0%, 18%, 100% { background: #fff; border-color: var(--border); color: var(--navy-300); transform: none; box-shadow: none; }
+  5%, 13% {
+    background: var(--or-100); border-color: var(--or); color: var(--navy);
+    transform: translateY(-3px); box-shadow: 0 6px 16px rgba(252,99,3,.18);
+  }
+}
+/* Au survol de la rangée, la boucle s'arrête : on lit tranquillement. */
+.vision-mini--parcours:hover span { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) {
-  .vision-mini span { opacity: 1 !important; transform: none !important; }
+  .vision-mini span { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
 
 /* Listes d'items en bleu nuit du logo + animation au survol (services concernés). */
@@ -1340,3 +1399,135 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 /* FAQ des pages Services : questions et réponses un peu plus grandes. */
 .service-page .accordion__btn { font-size: 1.2rem; }
 .service-page .accordion__panel { font-size: 1.02rem; }
+
+/* =============================================================
+ * 27. À propos — valeurs en cercles (PDF « NOUVELLE MODIF AGENCE »)
+ * Un disque blanc entouré d'un anneau orange en pointillés. L'anneau tourne
+ * lentement en continu ; au survol il accélère, le disque se soulève et le
+ * titre passe à l'orange. Entrée : les cercles apparaissent en cascade.
+ * ============================================================= */
+/* 1, 2 puis 4 colonnes : jamais de cercle seul sur sa rangée. */
+.valeurs-cercles { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); justify-items: center; grid-template-columns: 1fr; }
+@media (min-width: 560px) { .valeurs-cercles { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .valeurs-cercles { grid-template-columns: repeat(4, 1fr); } }
+.valeur-cercle {
+  position: relative; width: min(100%, 17rem); aspect-ratio: 1; padding: 14px;
+  border-radius: 50%;
+}
+.valeur-cercle::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  border: 2.5px dashed var(--or);
+  animation: anneauTourne 28s linear infinite;
+  transition: border-color .4s ease;
+}
+.valeur-cercle__disque {
+  position: relative; width: 100%; height: 100%; border-radius: 50%;
+  background: #fff; box-shadow: var(--shadow-sm);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 1.4rem 1.6rem;
+  transition: transform .5s cubic-bezier(.22,.61,.36,1), box-shadow .5s ease;
+}
+.valeur-cercle__disque h3 { font-size: 1.2rem; margin-bottom: .4rem; transition: color .35s ease; }
+.valeur-cercle__disque p { font-size: .86rem; line-height: 1.45; color: var(--text-muted); margin: 0; }
+.valeur-cercle:hover::before { animation-duration: 6s; }
+.valeur-cercle:hover .valeur-cercle__disque {
+  transform: translateY(-6px) scale(1.03); box-shadow: 0 16px 36px rgba(15,30,61,.14);
+}
+.valeur-cercle:hover h3 { color: var(--or-600); }
+@keyframes anneauTourne { to { transform: rotate(360deg); } }
+/* Entrée en cascade (chaque cercle est un data-reveal). */
+@media (scripting: enabled) { .valeurs-cercles > [data-reveal] { transform: scale(.88); } }
+.valeurs-cercles > [data-reveal].is-in { transform: none; transition: opacity .6s ease, transform .7s cubic-bezier(.34,1.56,.64,1); }
+.valeurs-cercles > [data-reveal]:nth-child(2) { transition-delay: .1s; }
+.valeurs-cercles > [data-reveal]:nth-child(3) { transition-delay: .2s; }
+.valeurs-cercles > [data-reveal]:nth-child(4) { transition-delay: .3s; }
+@media (prefers-reduced-motion: reduce) {
+  .valeur-cercle::before { animation: none; }
+}
+
+/* =============================================================
+ * 28. Blog — présentation inspirée de skyrocketmonster.com/fr/blog
+ * Article à la une (image + texte), pastilles de catégories, grille de
+ * 3 colonnes, pagination par flèches. Au survol : l'image zoome, la carte
+ * se soulève et la flèche glisse vers la droite.
+ * ============================================================= */
+.blog-une {
+  display: grid; gap: clamp(1.5rem, 4vw, 3.5rem); align-items: center;
+  padding-bottom: clamp(2rem, 4vw, 3rem); border-bottom: 1px solid var(--border);
+}
+@media (min-width: 860px) { .blog-une { grid-template-columns: 1.1fr 1fr; } }
+.blog-une__img, .blog-carte__img {
+  display: grid; place-items: center; overflow: hidden; border-radius: 18px;
+  background: linear-gradient(135deg, var(--navy), #24365f); color: rgba(255,255,255,.35);
+  font-weight: 800; letter-spacing: .2em;
+}
+.blog-une__img { aspect-ratio: 16 / 10; text-decoration: none; }
+.blog-une-section { padding-bottom: 0; }
+.blog-une__img img, .blog-carte__img img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform .7s cubic-bezier(.22,.61,.36,1);
+}
+.blog-une:hover .blog-une__img img { transform: scale(1.06); }
+.blog-une__texte h2 { font-size: clamp(1.7rem, 1.2rem + 1.8vw, 2.5rem); line-height: 1.12; margin: .5rem 0 .9rem; }
+.blog-une__texte > p { color: var(--text-muted); }
+.blog-une__btn { margin-top: 1.2rem; gap: .55rem; }
+
+.blog-carte__cat {
+  display: block; font-size: .74rem; font-weight: 800; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--or-600);
+}
+.blog-meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: .6rem;
+  font-size: .8rem; color: var(--text-muted); margin: .8rem 0 0;
+}
+.blog-meta span[aria-hidden] { color: var(--border); }
+.blog-fleche { display: inline-block; color: var(--or); font-weight: 700; transition: transform .35s cubic-bezier(.22,.61,.36,1); }
+.blog-une:hover .blog-fleche, .blog-carte:hover .blog-fleche { transform: translateX(6px); }
+.blog-une__btn .blog-fleche { color: inherit; }
+
+.blog-pastilles {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: .55rem;
+  padding-block: clamp(1.25rem, 2.5vw, 2rem); margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+  border-bottom: 1px solid var(--border);
+}
+.blog-pastilles button {
+  min-height: 40px; padding: .45rem 1.1rem; border-radius: 100px; cursor: pointer;
+  background: #fff; border: 1px solid var(--border); color: var(--navy);
+  font: inherit; font-size: .85rem; font-weight: 500;
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+.blog-pastilles button:hover { border-color: var(--or); transform: translateY(-2px); }
+.blog-pastilles button[aria-pressed="true"] { background: var(--or); border-color: var(--or); color: #fff; font-weight: 600; }
+
+.blog-grille { display: grid; gap: clamp(1.5rem, 3vw, 2.25rem); grid-template-columns: 1fr; }
+@media (min-width: 640px) { .blog-grille { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .blog-grille { grid-template-columns: repeat(3, 1fr); } }
+.blog-carte__lien {
+  display: flex; flex-direction: column; height: 100%; color: inherit; text-decoration: none;
+  transition: transform .45s cubic-bezier(.22,.61,.36,1);
+}
+.blog-carte__img { aspect-ratio: 16 / 10; margin-bottom: 1rem; box-shadow: var(--shadow-sm); transition: box-shadow .45s ease; }
+.blog-carte:hover .blog-carte__lien { transform: translateY(-5px); color: inherit; }
+.blog-carte:hover .blog-carte__img { box-shadow: var(--shadow-md); }
+.blog-carte:hover .blog-carte__img img { transform: scale(1.08); }
+.blog-carte h3 { font-family: var(--font-body); font-weight: 800; font-size: 1.12rem; line-height: 1.3; margin: .45rem 0 .5rem; transition: color .3s ease; }
+.blog-carte:hover h3 { color: var(--or-600); }
+.blog-carte__extrait {
+  font-size: .9rem; color: var(--text-muted); margin: 0;
+  display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.blog-carte__pied { margin-top: auto; display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+
+.blog-pagination { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: clamp(2rem, 4vw, 3rem); }
+.blog-pagination__btn {
+  width: 48px; height: 48px; border-radius: 50%; cursor: pointer;
+  background: #fff; border: 1.5px solid var(--navy); color: var(--navy);
+  font-size: 1.5rem; line-height: 1; display: grid; place-items: center; padding-bottom: 3px;
+  transition: background var(--t-fast), color var(--t-fast), border-color var(--t-fast), transform var(--t-fast);
+}
+.blog-pagination__btn:hover:not(:disabled) { background: var(--or); border-color: var(--or); color: #fff; transform: scale(1.08); }
+.blog-pagination__btn:disabled { opacity: .3; cursor: default; }
+.blog-pagination__num { font-size: .9rem; color: var(--text-muted); min-width: 3rem; text-align: center; }
+@media (prefers-reduced-motion: reduce) {
+  .blog-une__img img, .blog-carte__img img, .blog-carte__lien, .blog-fleche { transition: none; }
+}

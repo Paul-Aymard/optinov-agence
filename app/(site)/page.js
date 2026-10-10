@@ -175,18 +175,21 @@ export default function Accueil() {
           </Reveal>
           <div className="grid grid-4 piliers-grid">
             {piliers.map((p) => (
-              <Reveal key={p.id} className="card pilier" id={`pilier-${p.id}`} style={{ scrollMarginTop: "90px" }}>
+              /* tabIndex : le bloc s'ouvre aussi au clavier (Tab), comme au survol. */
+              <Reveal key={p.id} className="card pilier" id={`pilier-${p.id}`} tabIndex={0} style={{ scrollMarginTop: "90px" }}>
                 <span className="emoji" aria-hidden="true">{p.icone}</span>
                 <h3>{p.titre}</h3>
                 <p className="pilier__accroche">{p.accroche}</p>
                 <div className="pilier__details">
-                  <p><Lignes>{p.texte}</Lignes></p>
-                  <ul>
-                    {p.moyens.map((m) => <li key={m}>{m}</li>)}
-                  </ul>
-                  <p className="pilier__resultat">
-                    <strong>Résultat&nbsp;:</strong> {p.resultat}
-                  </p>
+                  <div className="pilier__inner">
+                    <p><Lignes>{p.texte}</Lignes></p>
+                    <ul>
+                      {p.moyens.map((m) => <li key={m}>{m}</li>)}
+                    </ul>
+                    <p className="pilier__resultat">
+                      <strong>Résultat&nbsp;:</strong> {p.resultat}
+                    </p>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -226,14 +229,21 @@ export default function Accueil() {
             </p>
           </Reveal>
 
-          {/* Rappel de la méthode en action */}
-          <Reveal className="center vision-mini" style={{ justifyContent: "center", marginBottom: "2.5rem" }}>
-            <span>Voir&nbsp;: le besoin</span>
-            <span>Imaginer&nbsp;: la stratégie</span>
-            <span>Structurer&nbsp;: les supports</span>
-            <span>Implémenter&nbsp;: la réalisation</span>
-            <span>Optimiser&nbsp;: le suivi</span>
-            <span>Nourrir&nbsp;: l&apos;accompagnement</span>
+          {/* Rappel de la méthode en action : les étapes s'allument tour à tour,
+              comme un projet qui avance (initiale V.I.S.I.O.N. en orange). */}
+          <Reveal className="center vision-mini vision-mini--parcours" style={{ justifyContent: "center", marginBottom: "2.5rem" }}>
+            {[
+              ["Voir", "le besoin"],
+              ["Imaginer", "la stratégie"],
+              ["Structurer", "les supports"],
+              ["Implémenter", "la réalisation"],
+              ["Optimiser", "le suivi"],
+              ["Nourrir", "l'accompagnement"],
+            ].map(([verbe, objet]) => (
+              <span key={verbe}>
+                <b>{verbe[0]}</b>{verbe.slice(1)}&nbsp;: {objet}
+              </span>
+            ))}
           </Reveal>
 
           {projets.length > 0 ? (
