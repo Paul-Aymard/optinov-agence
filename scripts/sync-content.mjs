@@ -34,7 +34,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const DASH = (process.env.DASHBOARD_URL || 'https://optinov-dashboard.onrender.com').replace(/\/$/, '')
+const DASH = (process.env.DASHBOARD_URL || 'https://optinov-tableau.vercel.app').replace(/\/$/, '')
 const OPTIONNEL = process.argv.includes('--optionnel') || process.env.SYNC_OPTIONNEL === '1'
 const ROOT = process.cwd()
 const GENERE = path.join(ROOT, 'content/generated')

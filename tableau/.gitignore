@@ -67,3 +67,6 @@ CLAUDE.md
 # precedent posee par deployer.sh le temps de reconstruire.
 /tmp/
 /.next.precedent/
+# Aucun fichier de secrets dans Git (le modele .env.example, lui, reste suivi).
+.env*
+!.env.example

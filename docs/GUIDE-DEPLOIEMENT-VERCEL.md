@@ -127,8 +127,8 @@ manque à l'appel.
   ],
   "redirects": [
     { "source": "/agence", "destination": "/a-propos", "permanent": true },
-    { "source": "/admin", "destination": "https://optinov-dashboard.onrender.com/admin", "permanent": false },
-    { "source": "/admin/:chemin*", "destination": "https://optinov-dashboard.onrender.com/admin", "permanent": false }
+    { "source": "/admin", "destination": "https://optinov-tableau.vercel.app/admin", "permanent": false },
+    { "source": "/admin/:chemin*", "destination": "https://optinov-tableau.vercel.app/admin", "permanent": false }
   ]
 }
 ```
@@ -218,7 +218,7 @@ ajoutez les trois lignes suivantes. Cochez les trois environnements
 | --- | --- | --- |
 | `SYNC_OPTIONNEL` | `1` | Rend la synchronisation des contenus facultative, pour que le build n'échoue pas tant que le tableau de bord est hors service (point 2.1). **À retirer** dès que le tableau de bord répond. |
 | `NEXT_PUBLIC_SITE_URL` | l'adresse finale du site | Alimente les URL canoniques, le sitemap et les balises Open Graph (point 2.3). |
-| `NEXT_PUBLIC_DASHBOARD_URL` | `https://optinov-dashboard.onrender.com` | Adresse où les formulaires du site envoient les demandes. |
+| `NEXT_PUBLIC_DASHBOARD_URL` | `https://optinov-tableau.vercel.app` | Adresse où les formulaires du site envoient les demandes. |
 
 Pour `NEXT_PUBLIC_SITE_URL` : si vous n'avez pas encore branché votre nom de
 domaine, mettez l'adresse `.vercel.app` que Vercel vous attribue, puis

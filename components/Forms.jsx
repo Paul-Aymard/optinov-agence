@@ -23,7 +23,7 @@ import { services } from "@/content/services";
  */
 
 /* Adresse du tableau de bord, figée dans le site au build (variable publique). */
-const DASHBOARD = (process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://optinov-dashboard.onrender.com").replace(/\/$/, "");
+const DASHBOARD = (process.env.NEXT_PUBLIC_DASHBOARD_URL || "https://optinov-tableau.vercel.app").replace(/\/$/, "");
 
 const messages = {
   required: "Ce champ est obligatoire.",

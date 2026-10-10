@@ -2,5 +2,5 @@
 /agence  /a-propos  301
 
 # Le tableau de bord n'est plus hébergé sur le site : /admin renvoie vers Payload (Render).
-/admin    https://optinov-dashboard.onrender.com/admin  302
-/admin/*  https://optinov-dashboard.onrender.com/admin  302
+/admin    https://optinov-tableau.vercel.app/admin  302
+/admin/*  https://optinov-tableau.vercel.app/admin  302

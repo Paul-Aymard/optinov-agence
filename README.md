@@ -62,8 +62,15 @@ app/globals.css   design system complet (palette §10.1)
 ## Tableau de bord
 
 Le contenu éditorial se gère dans le tableau de bord Payload, hébergé sur
-Render : <https://optinov-dashboard.onrender.com/admin> (l'adresse `/admin`
-du site y redirige). Son code vit dans le dépôt `optinov-tableau`.
+Vercel : <https://optinov-tableau.vercel.app/admin> (l'adresse `/admin`
+du site y redirige). Son code vit dans le dossier `tableau/` de ce même dépôt
+(projet Vercel séparé, dossier racine `tableau`), avec sa base PostgreSQL et
+ses images sur Cloudinary. Voir `tableau/README.md` pour le lancer en local.
+
+```
+/            le site vitrine (Next.js, pages statiques)  → projet Vercel « optinov-agence »
+tableau/     le tableau de bord (Payload CMS + PostgreSQL) → projet Vercel « optinov-tableau »
+```
 
 **Ce que le tableau de bord pilote** : articles du blog, illustrations des
 pages Services, réalisations du portfolio, témoignages, équipe, FAQ, et les
