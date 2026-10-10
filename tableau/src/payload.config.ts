@@ -18,6 +18,8 @@ import { Equipe } from './collections/Equipe'
 import { Faq } from './collections/Faq'
 import { Realisations } from './collections/Realisations'
 import { Temoignages } from './collections/Temoignages'
+import { SectionsRealisations } from './collections/SectionsRealisations'
+import { Clients } from './collections/Clients'
 import { Parametres } from './globals/Parametres'
 import { ServiceImages } from './globals/ServiceImages'
 
@@ -148,7 +150,9 @@ export default buildConfig({
     // Contenus
     Blog,
     Realisations,
+    SectionsRealisations,
     Temoignages,
+    Clients,
     Equipe,
     Faq,
     // Commercial

@@ -60,18 +60,32 @@ export const SERVICES = [
 /** Les trois emplacements d'image d'un service, dans l'ordre des blocs. */
 export const EMPLACEMENTS = ['img1', 'img2', 'img3'] as const
 
-// Un groupe de 3 images pour un service donné.
+// Un groupe de 3 images pour un service donné, plus l'image du dos de sa carte
+// sur la page « Nos services » (la carte se retourne au survol).
 const blocsService = (service: (typeof SERVICES)[number]) => ({
   name: service.slug,
   type: 'group' as const,
   label: service.nom,
-  fields: EMPLACEMENTS.map((name, i) => ({
-    name,
-    type: 'upload' as const,
-    relationTo: 'media' as const,
-    label: service.blocs[i],
-    required: false,
-  })),
+  fields: [
+    ...EMPLACEMENTS.map((name, i) => ({
+      name,
+      type: 'upload' as const,
+      relationTo: 'media' as const,
+      label: service.blocs[i],
+      required: false,
+    })),
+    {
+      name: 'carte',
+      type: 'upload' as const,
+      relationTo: 'media' as const,
+      label: 'Dos de la carte (page « Nos services »)',
+      required: false,
+      admin: {
+        description:
+          'Image affichée quand la carte du service se retourne au survol, avec le bouton « Découvrir ». Format paysage conseillé.',
+      },
+    },
+  ],
 })
 
 export const ServiceImages: GlobalConfig = {

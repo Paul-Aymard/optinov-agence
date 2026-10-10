@@ -121,6 +121,18 @@ export const Realisations: CollectionConfig = {
       ],
     },
     {
+      // Bandeaux de la page Réalisations (collection « Sections de réalisations »).
+      name: 'sections',
+      type: 'relationship',
+      relationTo: 'sections-realisations',
+      hasMany: true,
+      label: 'Sections de la page Réalisations',
+      admin: {
+        description:
+          'Dans quelle(s) section(s) la réalisation apparaît sur la page Réalisations. Son nom de client s’affiche sous l’image.',
+      },
+    },
+    {
       name: 'extrait',
       type: 'textarea',
       label: 'Accroche (une ou deux phrases)',

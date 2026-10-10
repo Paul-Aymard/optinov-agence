@@ -1,4 +1,5 @@
 import genere from "./generated/realisations.json";
+import sectionsGenerees from "./generated/sections-realisations.json";
 
 /**
  * Portfolio — CDC §6.6 (gabarit G6).
@@ -35,6 +36,8 @@ export const projets = brut.map((p) => ({
   // Le type de mission se déduit du premier service choisi (§9.2).
   typeMission: filtresServices.find((f) => f.id === p.services?.[0])?.label ?? "",
   services: p.services || [],
+  // Sections de la page Réalisations auxquelles la fiche est rattachée (identifiants).
+  sections: p.sections || [],
   secteur: p.secteur,
   extrait: p.extrait,
   contexte: p.contexte,
@@ -51,6 +54,13 @@ export const projets = brut.map((p) => ({
   // EX-014 : gabarit éditorial « étude de cas longue »
   etudeDeCas: Boolean(p.etudeDeCas),
 }));
+
+/**
+ * Bandeaux de la page Réalisations (collection « Sections de réalisations » du
+ * tableau de bord), dans l'ordre choisi par l'admin. Format : { id, titre, sens }
+ * — sens : "gauche-droite" ou "droite-gauche".
+ */
+export const sectionsRealisations = Array.isArray(sectionsGenerees) ? sectionsGenerees : [];
 
 export const getProjet = (slug) => projets.find((p) => p.slug === slug);
 

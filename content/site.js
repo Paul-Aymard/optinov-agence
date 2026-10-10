@@ -10,6 +10,7 @@
 
 import genere from "./generated/site.json";
 import temoignagesGeneres from "./generated/temoignages.json";
+import clientsGeneres from "./generated/clients.json";
 import equipeGeneree from "./generated/equipe.json";
 
 /** Marqueur des valeurs qui restent à arrêter dans le code (offres, textes). */
@@ -105,8 +106,13 @@ export const socialsRenseignes = () => site.socials.filter((s) => estRenseigne(s
  */
 export const chiffresCles = [];
 
-/** Logos clients du carrousel — <Image> réels à fournir. Format : { nom, src } */
-export const logosClients = [];
+/**
+ * Logos clients — section « Nos clients » de l'accueil, depuis le tableau de bord
+ * (collection « Clients »). Format : { nom, src, lien } — lien vide = logo non cliquable.
+ */
+export const logosClients = (Array.isArray(clientsGeneres) ? clientsGeneres : [])
+  .filter((c) => c.nom && c.logo?.url)
+  .map((c) => ({ nom: c.nom, src: c.logo.carte || c.logo.url, lien: c.lien || "" }));
 
 /** Témoignages clients — §6.1 section 7 : depuis le tableau de bord. Format : { verbatim, nom, fonction, entreprise } */
 export const temoignages = (Array.isArray(temoignagesGeneres) ? temoignagesGeneres : []).filter(
@@ -132,7 +138,7 @@ export const nav = [
     ],
   },
   // Onglet-bouton : ouvre la plateforme PROS.CARDS (nouvel onglet), pas la landing.
-  { label: "PROS.CARDS", href: "https://recette.pros.cards/", externe: true },
+  { label: "PROS.CARDS", href: "https://pros.cards/", externe: true },
   { label: "Réalisations", href: "/realisations" },
   { label: "Blog", href: "/blog" },
   // Pas d'entrée « Contact » : le bouton « Nous contacter » du header mène déjà

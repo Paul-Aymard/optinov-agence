@@ -69,7 +69,9 @@ export interface Config {
   collections: {
     blog: Blog;
     realisations: Realisation;
+    'sections-realisations': SectionsRealisation;
     temoignages: Temoignage;
+    clients: Client;
     equipe: Equipe;
     faq: Faq;
     demandes: Demande;
@@ -84,7 +86,9 @@ export interface Config {
   collectionsSelect: {
     blog: BlogSelect<false> | BlogSelect<true>;
     realisations: RealisationsSelect<false> | RealisationsSelect<true>;
+    'sections-realisations': SectionsRealisationsSelect<false> | SectionsRealisationsSelect<true>;
     temoignages: TemoignagesSelect<false> | TemoignagesSelect<true>;
+    clients: ClientsSelect<false> | ClientsSelect<true>;
     equipe: EquipeSelect<false> | EquipeSelect<true>;
     faq: FaqSelect<false> | FaqSelect<true>;
     demandes: DemandesSelect<false> | DemandesSelect<true>;
@@ -259,6 +263,10 @@ export interface Realisation {
    */
   services: ('visuel' | 'digital' | 'marketing' | 'ia' | 'photo-video')[];
   secteur: 'btp' | 'distribution' | 'immobilier' | 'sante' | 'institution' | 'services';
+  /**
+   * Dans quelle(s) section(s) la réalisation apparaît sur la page Réalisations. Son nom de client s’affiche sous l’image.
+   */
+  sections?: (number | SectionsRealisation)[] | null;
   extrait: string;
   visuel?: (number | null) | Media;
   galerie?: (number | Media)[] | null;
@@ -304,6 +312,30 @@ export interface Realisation {
   createdAt: string;
 }
 /**
+ * Les bandeaux de la page Réalisations. Rattachez ensuite chaque réalisation à sa ou ses sections depuis sa fiche.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sections-realisations".
+ */
+export interface SectionsRealisation {
+  id: number;
+  /**
+   * Affiché dans le bandeau arrondi, ex. « Gadgets publicitaires ».
+   */
+  titre: string;
+  /**
+   * Le défilement automatique démarre à partir de la 4ᵉ image de la section.
+   */
+  sens: 'gauche-droite' | 'droite-gauche';
+  /**
+   * Du plus petit au plus grand.
+   */
+  ordre?: number | null;
+  visible?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * Les témoignages clients affichés sur la page d’accueil.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -319,6 +351,30 @@ export interface Temoignage {
    * Un témoignage ne se publie pas sans accord écrit du client, conservé par l’agence.
    */
   consentement: boolean;
+  /**
+   * Du plus petit au plus grand.
+   */
+  ordre?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Les logos des clients et partenaires, affichés sur la page d’accueil. La section reste masquée tant qu’il n’y en a aucun.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients".
+ */
+export interface Client {
+  id: number;
+  nom: string;
+  /**
+   * De préférence un PNG ou SVG sur fond transparent.
+   */
+  logo: number | Media;
+  /**
+   * Adresse complète, ex. https://www.client.ci. Laisser vide : le logo ne sera pas cliquable.
+   */
+  lien?: string | null;
   /**
    * Du plus petit au plus grand.
    */
@@ -460,8 +516,16 @@ export interface PayloadLockedDocument {
         value: number | Realisation;
       } | null)
     | ({
+        relationTo: 'sections-realisations';
+        value: number | SectionsRealisation;
+      } | null)
+    | ({
         relationTo: 'temoignages';
         value: number | Temoignage;
+      } | null)
+    | ({
+        relationTo: 'clients';
+        value: number | Client;
       } | null)
     | ({
         relationTo: 'equipe';
@@ -558,6 +622,7 @@ export interface RealisationsSelect<T extends boolean = true> {
   annee?: T;
   services?: T;
   secteur?: T;
+  sections?: T;
   extrait?: T;
   visuel?: T;
   galerie?: T;
@@ -596,6 +661,18 @@ export interface RealisationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "sections-realisations_select".
+ */
+export interface SectionsRealisationsSelect<T extends boolean = true> {
+  titre?: T;
+  sens?: T;
+  ordre?: T;
+  visible?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "temoignages_select".
  */
 export interface TemoignagesSelect<T extends boolean = true> {
@@ -604,6 +681,18 @@ export interface TemoignagesSelect<T extends boolean = true> {
   entreprise?: T;
   verbatim?: T;
   consentement?: T;
+  ordre?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "clients_select".
+ */
+export interface ClientsSelect<T extends boolean = true> {
+  nom?: T;
+  logo?: T;
+  lien?: T;
   ordre?: T;
   updatedAt?: T;
   createdAt?: T;
@@ -784,26 +873,46 @@ export interface ServiceImage {
     img1?: (number | null) | Media;
     img2?: (number | null) | Media;
     img3?: (number | null) | Media;
+    /**
+     * Image affichée quand la carte du service se retourne au survol, avec le bouton « Découvrir ». Format paysage conseillé.
+     */
+    carte?: (number | null) | Media;
   };
   'communication-digitale'?: {
     img1?: (number | null) | Media;
     img2?: (number | null) | Media;
     img3?: (number | null) | Media;
+    /**
+     * Image affichée quand la carte du service se retourne au survol, avec le bouton « Découvrir ». Format paysage conseillé.
+     */
+    carte?: (number | null) | Media;
   };
   'marketing-strategie'?: {
     img1?: (number | null) | Media;
     img2?: (number | null) | Media;
     img3?: (number | null) | Media;
+    /**
+     * Image affichée quand la carte du service se retourne au survol, avec le bouton « Découvrir ». Format paysage conseillé.
+     */
+    carte?: (number | null) | Media;
   };
   'automatisation-ia'?: {
     img1?: (number | null) | Media;
     img2?: (number | null) | Media;
     img3?: (number | null) | Media;
+    /**
+     * Image affichée quand la carte du service se retourne au survol, avec le bouton « Découvrir ». Format paysage conseillé.
+     */
+    carte?: (number | null) | Media;
   };
   'photo-video'?: {
     img1?: (number | null) | Media;
     img2?: (number | null) | Media;
     img3?: (number | null) | Media;
+    /**
+     * Image affichée quand la carte du service se retourne au survol, avec le bouton « Découvrir ». Format paysage conseillé.
+     */
+    carte?: (number | null) | Media;
   };
   updatedAt?: string | null;
   createdAt?: string | null;
@@ -873,6 +982,7 @@ export interface ServiceImagesSelect<T extends boolean = true> {
         img1?: T;
         img2?: T;
         img3?: T;
+        carte?: T;
       };
   'communication-digitale'?:
     | T
@@ -880,6 +990,7 @@ export interface ServiceImagesSelect<T extends boolean = true> {
         img1?: T;
         img2?: T;
         img3?: T;
+        carte?: T;
       };
   'marketing-strategie'?:
     | T
@@ -887,6 +998,7 @@ export interface ServiceImagesSelect<T extends boolean = true> {
         img1?: T;
         img2?: T;
         img3?: T;
+        carte?: T;
       };
   'automatisation-ia'?:
     | T
@@ -894,6 +1006,7 @@ export interface ServiceImagesSelect<T extends boolean = true> {
         img1?: T;
         img2?: T;
         img3?: T;
+        carte?: T;
       };
   'photo-video'?:
     | T
@@ -901,6 +1014,7 @@ export interface ServiceImagesSelect<T extends boolean = true> {
         img1?: T;
         img2?: T;
         img3?: T;
+        carte?: T;
       };
   updatedAt?: T;
   createdAt?: T;

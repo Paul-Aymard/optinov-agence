@@ -51,6 +51,8 @@ const VIDES = {
   'temoignages.json': [],
   'equipe.json': [],
   'faq.json': [],
+  'sections-realisations.json': [],
+  'clients.json': [],
 }
 
 // ------------------------------------------------------------------ Réseau
@@ -185,6 +187,8 @@ function servicesDepuis(data) {
     const grp = data?.[s] || {}
     out[s] = {}
     for (const e of EMPLACEMENTS) out[s][e] = image(grp[e])?.url || ''
+    // Dos de la carte du service sur la page « Nos services » (carte qui se retourne).
+    out[s].carte = image(grp.carte)?.carte || ''
   }
   return out
 }
@@ -210,6 +214,8 @@ const realisationDepuis = (d) => ({
   client: texte(d.client),
   annee: texte(d.annee),
   services: Array.isArray(d.services) ? d.services : [],
+  // Sections de la page Réalisations (identifiants, cf. sections-realisations.json).
+  sections: (d.sections || []).map((x) => (typeof x === 'object' ? x?.id : x)).filter((x) => x != null),
   secteur: texte(d.secteur),
   extrait: texte(d.extrait),
   contexte: texte(d.contexte),
@@ -229,6 +235,20 @@ const realisationDepuis = (d) => ({
   avant: image(d.avantApres?.avant),
   apres: image(d.avantApres?.apres),
   etudeDeCas: Boolean(d.etudeDeCas),
+})
+
+/** Bandeau de la page Réalisations : titre et sens du défilement. */
+const sectionDepuis = (d) => ({
+  id: d.id,
+  titre: texte(d.titre),
+  sens: d.sens === 'droite-gauche' ? 'droite-gauche' : 'gauche-droite',
+})
+
+/** Logo client (section « Nos clients » de l'accueil). */
+const clientDepuis = (d) => ({
+  nom: texte(d.nom),
+  logo: image(d.logo),
+  lien: /^https?:///.test(texte(d.lien)) ? texte(d.lien) : '',
 })
 
 const temoignageDepuis = (d) => ({
@@ -277,13 +297,15 @@ async function synchroniser() {
   // Une première requête seule : elle réveille le service Render s'il dort.
   const parametres = await fetchJSON(`${DASH}/api/globals/parametres?depth=0`)
 
-  const [services, blog, realisations, temoignages, equipe, faq] = await Promise.all([
+  const [services, blog, realisations, temoignages, equipe, faq, sections, clients] = await Promise.all([
     fetchJSON(`${DASH}/api/globals/service-images?depth=1`),
     fetchJSON(`${DASH}/api/blog?limit=200&depth=1&sort=-date`),
     fetchJSON(`${DASH}/api/realisations?limit=200&depth=1&sort=ordre&where[publiee][equals]=true`),
     fetchJSON(`${DASH}/api/temoignages?limit=200&depth=0&sort=ordre`),
     fetchJSON(`${DASH}/api/equipe?limit=200&depth=1&sort=ordre`),
     fetchJSON(`${DASH}/api/faq?limit=500&depth=0&sort=ordre`),
+    fetchJSON(`${DASH}/api/sections-realisations?limit=100&depth=0&sort=ordre&where[visible][equals]=true`),
+    fetchJSON(`${DASH}/api/clients?limit=200&depth=1&sort=ordre`),
   ])
 
   ecrire('site.json', siteDepuis(parametres || {}))
@@ -292,13 +314,16 @@ async function synchroniser() {
   ecrire('temoignages.json', (temoignages?.docs || []).map(temoignageDepuis))
   ecrire('equipe.json', (equipe?.docs || []).map(membreDepuis))
   ecrire('faq.json', (faq?.docs || []).map(questionDepuis))
+  ecrire('sections-realisations.json', (sections?.docs || []).map(sectionDepuis).filter((x) => x.titre))
+  ecrire('clients.json', (clients?.docs || []).map(clientDepuis).filter((c) => c.logo))
 
   fs.mkdirSync(path.dirname(SERVICES_JSON), { recursive: true })
   fs.writeFileSync(SERVICES_JSON, JSON.stringify(servicesDepuis(services), null, 2) + '\n')
 
   console.log(
     `[sync] Terminé : ${blog?.docs?.length ?? 0} article(s), ${realisations?.docs?.length ?? 0} réalisation(s), ` +
-      `${temoignages?.docs?.length ?? 0} témoignage(s), ${equipe?.docs?.length ?? 0} membre(s), ${faq?.docs?.length ?? 0} question(s).`,
+      `${temoignages?.docs?.length ?? 0} témoignage(s), ${equipe?.docs?.length ?? 0} membre(s), ${faq?.docs?.length ?? 0} question(s), ` +
+      `${sections?.docs?.length ?? 0} section(s) de réalisations, ${clients?.docs?.length ?? 0} logo(s) client.`,
   )
 }
 
