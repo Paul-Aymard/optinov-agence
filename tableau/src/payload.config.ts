@@ -290,8 +290,6 @@ export default buildConfig({
       // pour que le schéma de la base soit le même dans tous les environnements
       // (migration 20261010_224830_media_prefix_vercel_blob : colonne media.prefix).
       alwaysInsertFields: true,
-      // Deux images au même nom ne s'écrasent pas.
-      addRandomSuffix: true,
     }),
   ],
 })
