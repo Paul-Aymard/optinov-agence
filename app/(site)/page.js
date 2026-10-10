@@ -75,7 +75,7 @@ export default function Accueil() {
             <span className="eyebrow">OPTINOV · Communication &amp; croissance</span>
             <h1>Votre croissance commence par une vision claire.</h1>
             <p className="lead">
-              <Lignes>Les entreprises qui réussissent ne se contentent pas de communiquer : elles suivent une méthode. Découvrez comment OPTINOV transforme vos ambitions en résultats durables.</Lignes>
+              <Lignes>Les entreprises qui grandissent ne communiquent pas au hasard : elles suivent une méthode. La nôtre transforme vos ambitions en résultats concrets et durables.</Lignes>
             </p>
             <div className="btn-group" style={{ marginTop: "1.8rem" }}>
               <a className="btn btn--gold" href="#methode"><Vision>Découvrir la méthode V.I.S.I.O.N.</Vision></a>
@@ -89,8 +89,8 @@ export default function Accueil() {
       <section className="section" style={{ paddingBlock: "clamp(2rem, 4vw, 3rem)" }}>
         <div className="container">
           <Reveal className="section-head center" style={{ marginBottom: "1.75rem" }}>
-            <h2 style={{ fontSize: "1.4rem" }}>Quel est votre objectif de croissance ?</h2>
-            <p className="lead"><Lignes>Choisissez votre priorité : la méthode V.I.S.I.O.N. vous montre comment nous vous y menons.</Lignes></p>
+            <h2 style={{ fontSize: "1.4rem" }}>Quelle est votre priorité aujourd&apos;hui ?</h2>
+            <p className="lead"><Lignes>Choisissez un objectif : nous vous montrons comment l&apos;atteindre.</Lignes></p>
           </Reveal>
           <Reveal className="objectifs">
             {objectifs.map((o) => (
@@ -110,10 +110,10 @@ export default function Accueil() {
             <span className="eyebrow">Le constat</span>
             <h2 className="titre-1ligne">Pourquoi tant d&apos;entreprises peinent-elles à se développer&nbsp;?</h2>
             <p className="lead">
-              Beaucoup investissent dans des actions isolées — un logo, un site, une
-              campagne — utiles, mais qui produisent rarement leur plein potentiel
-              lorsqu&apos;elles ne s&apos;inscrivent pas dans une{" "}
-              <strong className="mot-vision">vision d&apos;ensemble</strong>.
+              Beaucoup d&apos;entreprises multiplient les actions isolées&nbsp;: un logo,
+              un site, une campagne. Chacune est utile, mais sans{" "}
+              <strong className="mot-vision">vision d&apos;ensemble</strong>, elles donnent
+              rarement tout leur potentiel.
             </p>
           </Reveal>
           <div className="grid grid-3">
@@ -134,10 +134,10 @@ export default function Accueil() {
             <span className="eyebrow">Notre conviction</span>
             <h2>La croissance ne s&apos;improvise pas.</h2>
             <p className="lead">
-              <Lignes>Une croissance durable ne repose pas sur une succession d&apos;actions isolées, mais sur une vision claire, une stratégie adaptée et une exécution maîtrisée. C&apos;est pourquoi nous avons développé une méthode qui accompagne les entreprises à chaque étape de leur évolution.</Lignes>
+              <Lignes>Elle repose sur trois choses : une vision claire, une stratégie adaptée et une exécution maîtrisée. C&apos;est pour cela que nous avons créé une méthode qui vous accompagne à chaque étape.</Lignes>
             </p>
             <p style={{ marginTop: "1.5rem" }}>
-              <a className="link-arrow" href="#methode"><Vision>Découvrez la méthode V.I.S.I.O.N.</Vision></a>
+              <a className="link-arrow" href="#methode">Voir la méthode étape par étape</a>
             </p>
           </Reveal>
         </div>
@@ -147,18 +147,18 @@ export default function Accueil() {
       <section className="section section--navy" id="methode">
         <div className="container">
           <Reveal className="section-head center">
-            <span className="eyebrow">Notre méthode propriétaire</span>
-            <h2><Vision>Découvrez la méthode V.I.S.I.O.N.</Vision></h2>
+            <span className="eyebrow">Notre méthode</span>
+            <h2><Vision>La méthode V.I.S.I.O.N.</Vision></h2>
             <p className="lead">
-              Six étapes qui donnent du sens à chaque action et assurent la cohérence
-              de chaque projet — de la réflexion stratégique à l&apos;amélioration continue.
+              Six étapes pour que chaque action ait un sens et que tout votre projet
+              reste cohérent, du premier diagnostic au suivi dans la durée.
             </p>
           </Reveal>
           <Reveal>
             <VisionMethod />
           </Reveal>
           <div className="center" style={{ marginTop: "2.5rem" }}>
-            <a className="btn btn--gold" href="#piliers">Ce que cette méthode permet</a>
+            <a className="btn btn--gold" href="#piliers">Ce que la méthode vous apporte</a>
           </div>
         </div>
       </section>
@@ -168,9 +168,9 @@ export default function Accueil() {
         <div className="container">
           <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Les résultats</span>
-            <h2 className="titre-1ligne">Ce que la méthode vous permet d&apos;accomplir</h2>
+            <h2 className="titre-1ligne">Ce que la méthode vous permet d&apos;obtenir</h2>
             <p className="lead">
-              <Lignes>Une méthode n&apos;a de valeur que par ses résultats. Nos expertises ne sont pas une fin&nbsp;: ce sont des moyens au service de votre croissance.</Lignes>
+              <Lignes>Une méthode ne vaut que par ses résultats. Nos expertises sont des moyens, votre croissance est le but.</Lignes>
             </p>
           </Reveal>
           <div className="grid grid-4 piliers-grid">
@@ -202,9 +202,9 @@ export default function Accueil() {
         <div className="container">
           <Reveal className="section-head center section-head--ligne">
             <span className="eyebrow">Nos solutions</span>
-            <h2 className="titre-1ligne">Des solutions pensées pour chaque étape de votre croissance</h2>
+            <h2 className="titre-1ligne">Nos solutions, étape par étape</h2>
             <p className="lead">
-              <Lignes>Chaque solution s&apos;intègre naturellement à la méthode V.I.S.I.O.N. Les pastilles indiquent les étapes qu&apos;elle sert.</Lignes>
+              <Lignes>Les lettres au-dessus de chaque solution indiquent les étapes de la méthode qu&apos;elle couvre.</Lignes>
             </p>
           </Reveal>
           {/* Rangée du haut : 2 cartes larges (paysage) sur toute la largeur */}
@@ -225,7 +225,7 @@ export default function Accueil() {
             <span className="eyebrow">Réalisations</span>
             <h2 className="titre-1ligne">Des projets qui donnent vie aux ambitions de nos clients</h2>
             <p className="lead">
-              <Lignes>Nos études de cas ne montrent pas seulement un résultat&nbsp;: elles racontent le projet à travers les étapes de V.I.S.I.O.N., pour montrer la méthode réellement appliquée.</Lignes>
+              <Lignes>Chaque étude de cas raconte le projet étape par étape, pour montrer la méthode V.I.S.I.O.N. appliquée sur le terrain.</Lignes>
             </p>
           </Reveal>
 
@@ -329,22 +329,7 @@ export default function Accueil() {
             )}
           </div>
         </section>
-      ) : (
-        <section className="section section--alt">
-          <div className="container" style={{ maxWidth: "72rem", textAlign: "center" }}>
-            <Reveal>
-              <span className="eyebrow">Nos clients</span>
-              {/* Même titre que la variante garnie : sans lui, la demande du
-                  client resterait invisible tant qu'aucune référence n'est
-                  publiée dans le tableau de bord. */}
-              <h2 className="titre-1ligne">La confiance de nos clients, notre fierté</h2>
-              <p className="lead">
-                <Lignes>Et si le prochain logo affiché ici était le vôtre ? Nous serions heureux de découvrir votre entreprise et de mettre la méthode V.I.S.I.O.N. au service de vos ambitions.</Lignes>
-              </p>
-            </Reveal>
-          </div>
-        </section>
-      )}
+      ) : null /* Décision direction : section masquée tant qu'elle est vide. */}
 
       {/* ---------- 9. Pourquoi choisir OPTINOV ---------- */}
       <section className="section">
@@ -369,7 +354,7 @@ export default function Accueil() {
         <div className="container" style={{ maxWidth: "56rem" }}>
           <Reveal className="section-head center">
             <span className="eyebrow">Questions fréquentes</span>
-            <h2>Vous avez des questions&nbsp;? Nous avons les réponses.</h2>
+            <h2>Vos questions, nos réponses</h2>
           </Reveal>
           <Accordion items={faqAccueil} variante="glisse" />
           <p className="center" style={{ marginTop: "2rem" }}>
@@ -384,9 +369,9 @@ export default function Accueil() {
           <div className="cta-band cta-band--compact">
             <div className="hero__grid">
               <div>
-                <h2><Vision>Prêt à appliquer la méthode V.I.S.I.O.N. à votre entreprise&nbsp;?</Vision></h2>
+                <h2>Prêt à faire grandir votre entreprise&nbsp;?</h2>
                 <p className="lead">
-                  <Lignes>Chaque grande réussite commence par un premier échange. Parlons de vos objectifs&nbsp;: nous vous montrerons comment nous vous y menons.</Lignes>
+                  <Lignes>Tout commence par un échange. Parlez-nous de vos objectifs&nbsp;: nous vous montrons comment les atteindre avec la méthode V.I.S.I.O.N.</Lignes>
                 </p>
                 <div className="btn-group" style={{ marginTop: "1.5rem" }}>
                   <a className="btn btn--gold" href={lienRdv()} data-ga="cta_rdv">{CTA_PROJET}</a>
