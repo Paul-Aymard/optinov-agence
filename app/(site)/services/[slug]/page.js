@@ -54,7 +54,7 @@ export default async function PageService({ params }) {
     "@context": "https://schema.org",
     "@type": "Service",
     name: s.titre,
-    description: s.description,
+    description: s.sousTitre,
     serviceType: s.titre,
     provider: { "@type": "Organization", name: site.nom, url: site.url },
     areaServed: { "@type": "Country", name: "Côte d'Ivoire" },

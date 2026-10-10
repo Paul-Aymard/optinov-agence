@@ -15,7 +15,7 @@ export const services = [
     sousTitre:
       "Identité de marque, logo, charte graphique et supports print conçus pour durer et pour vendre.",
     description:
-      "Identité de marque, logos, chartes graphiques, supports print et design éditorial.",
+      "Une identité que l'on reconnaît au premier coup d'œil, sur tous vos supports.",
     livrablesTypes: ["Logo & charte graphique", "Supports print", "Design éditorial"],
     douleurs: [
       {
@@ -60,7 +60,7 @@ export const services = [
       { titre: "Livraison & suivi", texte: "Remise des sources, passation aux équipes, accompagnement au déploiement.", delai: TODO },
     ],
     faq: [
-      { q: "Combien de propositions de logo présentez-vous ?", r: "Trois territoires visuels distincts au premier jalon, puis une seule direction approfondie. Multiplier les pistes dilue la réflexion plus qu'il ne rassure." },
+      { q: "Combien de propositions de logo présentez-vous ?", r: "Plusieurs pistes distinctes au départ, puis une seule direction approfondie. Multiplier les propositions disperse la réflexion plus qu'elle ne rassure." },
       { q: "Cédez-vous les fichiers sources ?", r: "Oui, systématiquement, ainsi que les droits d'exploitation. Vous n'êtes jamais captif d'OPTINOV pour modifier vos propres supports." },
       { q: "Gérez-vous l'impression ?", r: "Nous préparons les fichiers aux normes de vos imprimeurs et pouvons piloter la production et le contrôle qualité si vous le souhaitez." },
       { q: "Quel est le délai moyen pour une identité complète ?", r: "Le calendrier est arrêté au brief, selon le périmètre et la réactivité des validations." },
@@ -76,7 +76,7 @@ export const services = [
     sousTitre:
       "Réseaux sociaux, création de contenus, community management et campagnes sponsorisées pilotées par les résultats.",
     description:
-      "Gestion des réseaux sociaux, création de contenus, community management, campagnes sponsorisées.",
+      "Une présence en ligne qui attire des clients, pas seulement des vues.",
     livrablesTypes: ["Stratégie éditoriale", "Community management", "Campagnes sponsorisées"],
     douleurs: [
       { titre: "Vous publiez sans savoir pourquoi", texte: "Un post par semaine parce qu'il en faut un. Aucune ligne, aucun objectif, aucune mesure." },
@@ -110,10 +110,10 @@ export const services = [
       { titre: "Mesure & suivi", texte: "Reporting mensuel, ajustement de la ligne et des budgets.", delai: TODO },
     ],
     faq: [
-      { q: "Sur quels réseaux faut-il être présent ?", r: "Sur ceux où se trouvent vos clients, rarement sur tous. L'audit tranche cette question avant que le premier contenu soit produit." },
+      { q: "Sur quels réseaux faut-il être présent ?", r: "Sur ceux où se trouvent vos clients, rarement sur tous. Le diagnostic répond à cette question avant le premier contenu." },
       { q: "Qui valide les publications ?", r: "Vous. Le calendrier éditorial est validé à l'avance, publication par publication, dans un espace partagé." },
-      { q: "Le budget publicitaire est-il inclus ?", r: "Non. Nos honoraires couvrent la stratégie, la création et le pilotage ; le budget média est versé directement aux régies." },
-      { q: "À partir de quand voit-on des résultats ?", r: "L'organique demande de la constance ; le sponsorisé produit des signaux plus rapides. Les jalons sont fixés au brief." },
+      { q: "Le budget publicitaire est-il inclus ?", r: "Non. Nos honoraires couvrent la stratégie, la création et le suivi ; le budget publicitaire est payé directement aux plateformes (Facebook, Google…)." },
+      { q: "À partir de quand voit-on des résultats ?", r: "Les publications classiques demandent de la régularité ; la publicité donne des premiers signaux plus vite. Les étapes sont fixées dès le départ." },
     ],
     secteurs: ["digital"],
   },
@@ -126,7 +126,7 @@ export const services = [
     sousTitre:
       "Positionnement, plans de communication, stratégie de marque et lancement de produits.",
     description:
-      "Positionnement, plans de communication, stratégie de marque, lancement de produits.",
+      "Savoir à qui parler, quoi dire et où investir avant d'agir.",
     livrablesTypes: ["Positionnement", "Plan de communication", "Lancement produit"],
     douleurs: [
       { titre: "Vous parlez à tout le monde, donc à personne", texte: "Un discours généraliste qui n'accroche aucun segment en particulier." },
@@ -160,10 +160,10 @@ export const services = [
       { titre: "Plan & suivi", texte: "Plan de communication daté, indicateurs, points de pilotage.", delai: TODO },
     ],
     faq: [
-      { q: "Faut-il une stratégie avant de refaire son logo ?", r: "Oui. Une identité visuelle traduit un positionnement ; sans lui, elle ne traduit qu'un goût. Nous refusons régulièrement des refontes tant que le cadrage n'est pas fait." },
+      { q: "Faut-il une stratégie avant de refaire son logo ?", r: "Oui. Une identité visuelle traduit un positionnement ; sans lui, elle ne traduit qu'un goût. C'est pourquoi nous recommandons de clarifier votre stratégie avant toute refonte." },
       { q: "Travaillez-vous avec nos équipes internes ?", r: "Systématiquement. Le plan est construit en atelier avec vos commerciaux : ce sont eux qui connaissent les objections réelles." },
-      { q: "Le plan est-il figé pour un an ?", r: "Non. Il est révisé aux points de pilotage trimestriels en fonction des indicateurs." },
-      { q: "Quel est le coût d'une mission de cadrage ?", r: "Le périmètre est chiffré après un premier échange gratuit." },
+      { q: "Le plan est-il figé pour un an ?", r: "Non. Il est revu régulièrement, en fonction des résultats obtenus." },
+      { q: "Quel est le coût d'une mission de cadrage ?", r: "Il est chiffré après un premier échange, selon l'ampleur de la mission." },
     ],
     secteurs: ["marketing"],
   },
@@ -176,7 +176,7 @@ export const services = [
     sousTitre:
       "Automatisation des tâches, workflows, assistants intelligents et outils sur mesure pour gagner du temps et simplifier votre organisation.",
     description:
-      "Automatisation des tâches répétitives, workflows, assistants intelligents et outils no-code pour une entreprise plus simple à gérer.",
+      "Moins de tâches répétitives, plus de temps pour développer votre activité.",
     livrablesTypes: ["Chatbot & assistant IA", "Workflows automatisés", "Intégrations no-code"],
     douleurs: [
       { titre: "Vos équipes recopient des données", texte: "Du formulaire au tableur, du tableur au CRM. Des heures par semaine, sans valeur ajoutée." },
@@ -212,8 +212,8 @@ export const services = [
     faq: [
       { q: "Nos données sont-elles envoyées à des tiers ?", r: "Le choix des modèles et de leur hébergement fait partie du cadrage. Les traitements sensibles peuvent rester sur des infrastructures que vous maîtrisez." },
       { q: "Faut-il remplacer nos outils actuels ?", r: "Non. L'automatisation se branche sur l'existant. Remplacer un outil est une décision séparée, qui ne relève pas de la mission." },
-      { q: "Et si le gain n'est pas au rendez-vous ?", r: "Le prototype est testé sur un périmètre restreint avant tout déploiement. Un cas d'usage qui ne tient pas ses promesses n'est pas généralisé." },
-      { q: "Quel retour sur investissement peut-on attendre ?", r: "Il est chiffré cas par cas, à partir du temps réellement mesuré en phase de cartographie." },
+      { q: "Et si le gain n'est pas au rendez-vous ?", r: "Chaque solution est d'abord testée à petite échelle. Si elle ne tient pas ses promesses, elle n'est pas étendue." },
+      { q: "Quel retour sur investissement peut-on attendre ?", r: "Il est estimé au cas par cas, à partir du temps réellement passé sur les tâches à automatiser." },
     ],
     secteurs: ["ia"],
   },
@@ -226,7 +226,7 @@ export const services = [
     sousTitre:
       "Shootings corporate, captation d'événements, films institutionnels et publicitaires, motion design.",
     description:
-      "Shootings corporate, captation d'événements, vidéos institutionnelles et publicitaires, motion design.",
+      "Des images professionnelles qui font vivre votre entreprise et vos événements.",
     livrablesTypes: ["Shooting corporate", "Film institutionnel", "Motion design"],
     douleurs: [
       { titre: "Vos visuels viennent d'une banque d'images", texte: "Des sourires génériques que vos concurrents utilisent aussi. Personne n'y croit." },
@@ -262,8 +262,8 @@ export const services = [
     faq: [
       { q: "Combien de temps dure un shooting corporate ?", r: "Généralement une demi-journée à une journée, selon le nombre de portraits et de lieux." },
       { q: "Les images sont-elles libres de droits ?", r: "Les droits d'exploitation vous sont cédés pour les usages définis au contrat. Les autorisations de droit à l'image des personnes filmées sont collectées lors du tournage." },
-      { q: "Fournissez-vous les rushs ?", r: "Sur demande, avec la photothèque triée. Les rushs bruts représentent un volume important : leur remise est prévue au contrat." },
-      { q: "Pouvez-vous filmer un événement au pied levé ?", r: "Une captation sans repérage est possible mais dégrade la qualité. Nous préférons un repérage, même court, la veille." },
+      { q: "Fournissez-vous les fichiers bruts (rushs) ?", r: "Sur demande, avec la sélection des meilleures images. Les fichiers bruts pèsent lourd : leur remise est prévue au contrat." },
+      { q: "Pouvez-vous filmer un événement au pied levé ?", r: "C'est possible, mais la qualité s'en ressent. Nous préférons repérer les lieux, même rapidement, la veille." },
     ],
     secteurs: ["photo-video"],
   },

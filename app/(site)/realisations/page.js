@@ -19,10 +19,10 @@ export default function Realisations() {
         <div className="container">
           <Reveal>
             <span className="eyebrow">Réalisations</span>
-            <h1>Ce que nous avons livré, et ce que ça a produit</h1>
+            <h1>Ce que nous avons livré, et ce que cela a produit</h1>
             <p className="lead">
-              Chaque projet est présenté avec son contexte, notre réponse et les résultats
-              obtenus. Sans arrondir les chiffres.
+              Nos projets, classés par catégorie. Chaque fiche présente le contexte,
+              notre réponse et les résultats obtenus, sans arrondir les chiffres.
             </p>
           </Reveal>
         </div>
@@ -53,7 +53,7 @@ export default function Realisations() {
         <div className="container">
           <CtaBand
             titre="Vous avez un projet similaire ?"
-            texte="Décrivez-le en deux lignes. Nous vous dirons franchement si nous sommes les bons interlocuteurs."
+            texte="Décrivez-le en quelques lignes. Nous vous dirons franchement si nous sommes les bons interlocuteurs."
             contexte="un projet similaire à vos réalisations"
           />
         </div>

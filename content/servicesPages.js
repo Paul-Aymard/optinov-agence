@@ -15,12 +15,12 @@ export const pagesServices = {
     architecture: "Un atelier de création",
     accentVar: "--accent-visuelle",
     visionLettres: "I · S · I",
-    visionEtapes: "Identifier · Structurer · Implémenter",
+    visionEtapes: "Imaginer · Structurer · Implémenter",
     heroTitre: "Une idée prend vie",
     heroParas: [
       "Chaque grande marque commence par une idée.",
-      "Avant de dessiner un logo, nous cherchons à comprendre votre entreprise : sa vision, ses valeurs, son ambition et ce qui la rend unique.",
-      "C'est cette réflexion qui donne naissance à une identité authentique et durable.",
+      "Avant de dessiner un logo, nous cherchons à comprendre votre entreprise : sa vision, ses valeurs, ses ambitions et ce qui la rend unique.",
+      "C'est de cette réflexion que naît une identité authentique et durable.",
     ],
     heroCta: { label: "Créer mon identité", href: "#devis" },
     actes: [
@@ -28,7 +28,7 @@ export const pagesServices = {
         titre: "L'identité prend forme",
         paras: [
           "Une identité forte ne se résume pas à un logo.",
-          "Elle se construit à travers des éléments qui parlent d'une seule voix.",
+          "Elle repose sur un ensemble d'éléments qui parlent d'une seule voix.",
         ],
         liste: [
           { cle: "Logo" }, { cle: "Couleurs" }, { cle: "Typographies" },
@@ -41,16 +41,16 @@ export const pagesServices = {
         titre: "Votre marque prend la parole",
         paras: [
           "Une identité réussie fonctionne partout.",
-          "Du smartphone à l'enseigne, en passant par vos cartes de visite, vos réseaux sociaux et vos brochures, votre image reste cohérente et immédiatement reconnaissable.",
+          "De l'écran du téléphone à l'enseigne, en passant par vos cartes de visite, vos réseaux sociaux et vos brochures, votre image reste cohérente et se reconnaît tout de suite.",
         ],
       },
       {
         titre: "La preuve par nos réalisations",
         paras: [
           "Chaque projet est différent. Chaque identité raconte une histoire.",
-          "Découvrez comment nous avons accompagné des entreprises, institutions, promoteurs, commerçants et entrepreneurs dans la création de leur image.",
+          "Découvrez comment nous avons aidé des entreprises, des institutions, des commerçants et des entrepreneurs à créer leur image.",
         ],
-        chute: "Les réalisations deviennent les meilleurs arguments.",
+        chute: "Nos réalisations parlent mieux que nous.",
         realisations: true,
       },
     ],
@@ -58,9 +58,7 @@ export const pagesServices = {
       titre: "Donnez une identité à vos ambitions",
       paras: [
         "Une entreprise remarquable commence par une identité remarquable.",
-        "Nous ne créons pas simplement des visuels.",
-        "Nous construisons une image qui inspire confiance, affirme votre différence et accompagne votre développement.",
-        "Il est temps de révéler votre identité.",
+        "Nous ne créons pas seulement des visuels : nous construisons une image qui inspire confiance, affirme votre différence et accompagne votre développement.",
       ],
       ctaPrincipal: { label: "Créer mon identité visuelle", href: "#devis" },
       ctaSecondaire: { label: "Découvrir nos réalisations", href: "/realisations" },
@@ -85,8 +83,8 @@ export const pagesServices = {
     heroTitre: "La première rencontre",
     heroParas: [
       "Tout commence par un premier clic.",
-      "Aujourd'hui, vos futurs clients vous découvrent bien avant de vous rencontrer. Une recherche Google, une publication sur les réseaux sociaux ou une recommandation suffit à déclencher leur intérêt.",
-      "La question est simple : que découvrent-ils lorsqu'ils tombent sur votre entreprise ?",
+      "Vos futurs clients vous découvrent bien avant de vous rencontrer : une recherche Google, une publication, une recommandation.",
+      "La vraie question : que voient-ils quand ils tombent sur votre entreprise ?",
     ],
     heroCta: { label: "Développer ma visibilité", href: "#devis" },
     actes: [
@@ -94,7 +92,7 @@ export const pagesServices = {
         titre: "Chaque point de contact compte",
         paras: [
           "Votre présence digitale ne se limite pas à un réseau social.",
-          "Elle se construit sur un écosystème cohérent où chaque canal joue un rôle.",
+          "Elle repose sur plusieurs canaux qui travaillent ensemble, chacun avec son rôle.",
         ],
         liste: [
           { icone: "🌐", cle: "Site internet", valeur: "Inspirer confiance" },
@@ -103,14 +101,14 @@ export const pagesServices = {
           { icone: "📢", cle: "Publicités", valeur: "Générer des opportunités" },
           { icone: "✉️", cle: "Emailing", valeur: "Fidéliser vos contacts" },
         ],
-        chute: "Ensemble, ils créent une expérience fluide et professionnelle.",
+        chute: "Ensemble, ils donnent de vous une image professionnelle et cohérente.",
       },
       {
         titre: "De la visibilité à la confiance",
         paras: [
           "Être visible ne suffit plus.",
           "Vos contenus doivent rassurer, convaincre et donner envie de passer à l'action.",
-          "Nous créons des publications, des campagnes et des contenus qui renforcent votre crédibilité et transforment l'intérêt en prise de contact.",
+          "Nous créons des publications et des campagnes qui renforcent votre crédibilité et transforment l'intérêt en prise de contact.",
         ],
         parcours: ["Découverte", "Intérêt", "Confiance", "Contact"],
       },
@@ -127,9 +125,8 @@ export const pagesServices = {
     manifeste: {
       titre: "Faites grandir votre présence digitale",
       paras: [
-        "Chaque publication est une opportunité. Chaque interaction est une occasion de convaincre. Chaque jour sans stratégie digitale est une opportunité laissée à vos concurrents.",
-        "Construisons ensemble une communication qui attire, engage et transforme vos futurs clients en clients fidèles.",
-        "Votre visibilité mérite une stratégie à la hauteur de vos ambitions.",
+        "Chaque publication est une occasion de convaincre. Chaque jour sans stratégie digitale laisse le terrain à vos concurrents.",
+        "Construisons ensemble une communication qui attire vos futurs clients et les transforme en clients fidèles.",
       ],
       ctaPrincipal: { label: "Développer ma communication digitale", href: "#devis" },
       ctaSecondaire: { label: "Demander un diagnostic", href: "/contact" },
@@ -137,7 +134,7 @@ export const pagesServices = {
     transition: {
       paras: [
         "Être visible est une étape. Grandir est un choix.",
-        "Transformez votre visibilité en une stratégie capable d'accélérer durablement votre développement.",
+        "Transformez votre visibilité en une stratégie qui accélère durablement votre développement.",
       ],
       bouton: { label: "Découvrir Marketing & stratégie", href: "/services/marketing-strategie" },
     },
@@ -150,7 +147,7 @@ export const pagesServices = {
     architecture: "Le cockpit du dirigeant",
     accentVar: "--accent-marketing",
     visionLettres: "V · I · O",
-    visionEtapes: "Vision · Identifier · Optimiser",
+    visionEtapes: "Voir · Imaginer · Optimiser",
     heroTitre: "Savoir où vous voulez aller",
     heroParas: [
       "Une entreprise avance mieux lorsqu'elle sait où elle va.",
@@ -164,14 +161,14 @@ export const pagesServices = {
         paras: [
           "Toutes les décisions n'ont pas le même impact.",
           "Faut-il lancer un nouveau service ? Communiquer davantage ? Cibler de nouveaux clients ?",
-          "Nous analysons votre situation pour vous proposer les solutions les plus adaptées.",
+          "Nous analysons votre situation pour vous aider à choisir les bonnes priorités.",
         ],
       },
       {
         titre: "Passer à l'action",
         paras: [
           "Une bonne idée ne suffit pas. Il faut un plan.",
-          "Nous construisons avec vous une feuille de route claire pour savoir quoi faire, quand le faire et comment le faire.",
+          "Nous construisons avec vous une feuille de route claire : quoi faire, quand et comment.",
         ],
         chute: "Chaque action vous rapproche de vos objectifs.",
       },
@@ -182,7 +179,7 @@ export const pagesServices = {
           "Plus de visibilité", "Plus de clients", "Une meilleure organisation",
           "Des actions plus efficaces", "Une croissance durable",
         ],
-        chute: "Nous suivons vos résultats pour ajuster les actions lorsque c'est nécessaire.",
+        chute: "Nous suivons vos résultats et ajustons les actions quand c'est nécessaire.",
         realisations: true,
       },
     ],
@@ -190,7 +187,7 @@ export const pagesServices = {
       titre: "Faisons grandir votre entreprise",
       paras: [
         "Chaque entreprise peut évoluer.",
-        "Avec une bonne direction, chaque décision devient une opportunité de progresser.",
+        "Avec un cap clair, chaque décision devient une occasion de progresser.",
         "Construisons ensemble une stratégie adaptée à vos ambitions.",
       ],
       ctaPrincipal: { label: "Construire ma stratégie", href: "#devis" },
@@ -216,8 +213,8 @@ export const pagesServices = {
     heroTitre: "Retrouvez du temps pour l'essentiel",
     heroParas: [
       "Votre entreprise mérite plus de temps pour grandir.",
-      "Chaque jour, vous consacrez des heures à répondre aux emails, préparer des devis, rechercher des informations ou relancer des clients.",
-      "Imaginez si une partie de ces tâches pouvait se faire automatiquement. Vous gagneriez du temps pour vous concentrer sur ce qui compte vraiment : développer votre activité.",
+      "Chaque jour, des heures partent dans les e-mails, les devis, la recherche d'informations et les relances clients.",
+      "Et si une partie de ces tâches se faisait toute seule ? Vous auriez enfin le temps de vous concentrer sur l'essentiel : développer votre activité.",
     ],
     heroCta: { label: "Améliorer mon organisation", href: "#devis" },
     actes: [
@@ -252,8 +249,8 @@ export const pagesServices = {
       {
         titre: "Plus de performance, moins de contraintes",
         paras: [
-          "Lorsque les tâches répétitives prennent moins de place, votre entreprise devient plus performante.",
-          "Vous gagnez du temps, en efficacité, en confort de travail, en qualité de service et en capacité de développement.",
+          "Quand les tâches répétitives prennent moins de place, votre entreprise devient plus performante.",
+          "Vous gagnez en temps, en efficacité, en confort de travail, en qualité de service et en capacité à vous développer.",
         ],
         chute: "Votre équipe se concentre sur les missions qui créent réellement de la valeur.",
       },
@@ -310,7 +307,7 @@ export const pagesServices = {
         liste: [
           { icone: "📱", cle: "Réseaux sociaux" },
           { icone: "🌐", cle: "Site internet" },
-          { icone: "📑", cle: "Rapports d'activités" },
+          { icone: "📑", cle: "Rapports d'activité" },
           { icone: "🖼️", cle: "Supports de communication" },
           { icone: "🎬", cle: "Films récapitulatifs" },
         ],
@@ -319,7 +316,7 @@ export const pagesServices = {
       {
         titre: "Valorisez votre image",
         paras: [
-          "Une entreprise qui montre ce qu'elle réalise inspire davantage confiance.",
+          "Une entreprise qui montre ce qu'elle fait inspire davantage confiance.",
           "Des images professionnelles permettent de :",
         ],
         checklist: [
@@ -328,7 +325,7 @@ export const pagesServices = {
           "mettre en avant vos réalisations",
           "communiquer avec plus d'impact",
         ],
-        chute: "Parce qu'une belle image reste souvent plus longtemps dans les mémoires qu'un long discours.",
+        chute: "Une belle image reste plus longtemps en mémoire qu'un long discours.",
         realisations: true,
       },
     ],
@@ -347,7 +344,7 @@ export const pagesServices = {
     transition: {
       paras: [
         "Derrière chaque projet réussi se trouve une méthode.",
-        "Découvrez comment notre méthode V.I.S.I.O.N. guide chacun de nos accompagnements, de la première idée jusqu'aux résultats.",
+        "Découvrez comment la méthode V.I.S.I.O.N. guide chacun de nos projets, de la première idée jusqu'aux résultats.",
       ],
       bouton: { label: "Découvrir la méthode V.I.S.I.O.N.", href: "/#methode" },
     },

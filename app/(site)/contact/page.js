@@ -25,8 +25,8 @@ export default function Contact() {
             <span className="eyebrow">Contact</span>
             <h1>Parlons de votre projet</h1>
             <p className="lead">
-              Trente minutes suffisent pour savoir si nous sommes faits pour travailler
-              ensemble. Choisissez le canal qui vous arrange.
+              Un premier échange suffit pour savoir si nous sommes faits pour travailler
+              ensemble. Choisissez le moyen qui vous arrange.
             </p>
           </Reveal>
         </div>

@@ -27,8 +27,8 @@ export default function Blog() {
             <span className="eyebrow">Le blog</span>
             <h1>Ce que nous apprenons, nous l&apos;écrivons</h1>
             <p className="lead">
-              Guides pratiques, comparatifs et retours de terrain sur la communication et
-              le digital en Afrique francophone.
+              Guides pratiques, comparatifs et retours d&apos;expérience sur la communication
+              et le digital en Afrique de l&apos;Ouest.
             </p>
           </Reveal>
         </div>
@@ -79,8 +79,8 @@ export default function Blog() {
             <span className="eyebrow">Newsletter</span>
             <h2>Un e-mail par mois, pas davantage</h2>
             <p className="lead">
-              Nos analyses sur la communication et le digital, sans promotion déguisée.
-              Le formulaire est en pied de page.
+              Nos analyses sur la communication et le digital, sans publicité déguisée.
+              Inscrivez-vous en bas de page.
             </p>
           </Reveal>
         </div>

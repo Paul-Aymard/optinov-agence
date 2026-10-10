@@ -33,7 +33,7 @@ export const pointsSolution = [
 
 /** §7.2 — 4. Fonctionnement (4 étapes) */
 export const etapes = [
-  { titre: "Choisissez votre offre", texte: "Essentiel, Professionnel ou Entreprise, selon vos besoins." },
+  { titre: "Choisissez votre formule", texte: "Freemium, Startup, Business ou Entreprise, selon vos besoins." },
   { titre: "Créez votre compte et payez en ligne", texte: "Un formulaire court, un paiement sécurisé sur la plateforme." },
   { titre: "Votre compte est activé instantanément", texte: "Aucune validation manuelle, aucun délai d'attente." },
   { titre: "Créez et personnalisez votre carte", texte: "Depuis votre tableau de bord, modifiable à tout moment avec prise en compte instantanée." },
@@ -122,67 +122,88 @@ export const casUsage = [
 ];
 
 /**
- * §7.2 — 10. Tarifs. Administrable depuis le back-office (EX-023).
- * Montants [À compléter] : ils doivent être arrêtés par la direction.
- * Le CTA redirige vers le tunnel d'inscription avec l'offre pré-sélectionnée (EX-026).
+ * §7.2 — 10. Tarifs : les 4 formules RÉELLEMENT commercialisées sur pros.cards,
+ * reprises à l'identique du catalogue de la plateforme
+ * (procard/packages/db/prisma/plans-data.ts, v2.2) : noms, prix annuels et
+ * libellés. Si le catalogue change là-bas, il faut le reporter ici.
+ * Le CTA redirige vers le tunnel d'inscription avec la formule pré-sélectionnée
+ * (EX-026) ; Entreprise passe par le devis flotte (équipe à équiper).
+ * `montant` (F CFA / an) ne sert qu'au balisage Schema.org.
  */
 export const offres = [
   {
-    id: "essentiel",
-    nom: "Essentiel",
-    prix: TODO,
-    periode: "/ mois",
-    pitch: "Pour démarrer avec une carte digitale complète.",
-    inclus: [
-      "Carte digitale personnalisée",
-      "QR Code",
-      "Partage vCard",
-      "Réseaux sociaux",
-      "Appel et e-mail en 1 clic",
-    ],
-    exclus: ["Carte NFC physique", "Statistiques détaillées", "Gestion des collaborateurs"],
-    nfc: "Carte NFC physique en option",
-    cta: "Commencer maintenant",
+    id: "freemium",
+    nom: "Freemium",
+    prix: "Gratuit",
+    montant: 0,
+    periode: "",
+    pitch: "Pour découvrir PROS.CARDS avec une carte simple.",
+    inclus: ["Photo & logo", "1 téléphone", "1 WhatsApp", "1 e-mail", "QR code", "vCard"],
+    exclus: [],
+    nfc: "Filigrane PROS.CARDS sur la carte",
+    cta: "Essayer gratuitement",
     misEnAvant: false,
   },
   {
-    id: "professionnel",
-    nom: "Professionnel",
-    prix: TODO,
-    periode: "/ mois",
-    pitch: "Pour les indépendants et commerciaux qui prospectent au quotidien.",
+    id: "startup",
+    nom: "Startup",
+    prix: "10 000 F",
+    montant: 10000,
+    periode: "/ an",
+    pitch: "Une carte digitale complète et entièrement personnalisée.",
     inclus: [
-      "Tout l'Essentiel",
-      "Carte NFC physique incluse",
-      "Documents, catalogues et vidéos",
-      "Liens de paiement",
-      "Prise de rendez-vous et formulaires",
-      "Statistiques de consultation",
+      "1 carte de visite digitale",
+      "Personnalisation complète (photo, logo, couleurs…)",
+      "Coordonnées et réseaux sociaux illimités",
+      "Liens personnalisés illimités",
+      "QR code personnalisé et vCard",
+      "Galerie photos & vidéos",
+      "Présentation de vos services",
     ],
-    exclus: ["Gestion des collaborateurs"],
-    nfc: "Carte NFC incluse",
+    exclus: [],
+    nfc: "Carte NFC en option",
     cta: "Commencer maintenant",
     misEnAvant: true,
     badge: "Recommandé",
   },
   {
-    id: "entreprise",
-    nom: "Entreprise",
-    prix: TODO,
-    periode: "/ utilisateur / mois",
-    pitch: "Pour équiper une équipe de 5 à 100 commerciaux.",
+    id: "business",
+    nom: "Business",
+    prix: "25 000 F",
+    montant: 25000,
+    periode: "/ an",
+    pitch: "Pour les professionnels qui partagent leur carte au quotidien.",
     inclus: [
-      "Tout le Professionnel",
-      "Espace administrateur entreprise",
-      "Création des comptes collaborateurs",
-      "Création, modification, suspension et suppression des cartes",
-      "Cohérence de marque sur la flotte",
-      "Tarification par volume",
-      "Conseiller dédié",
+      "1 carte NFC Premium incluse",
+      "1 lot de 100 cartes de visite papier",
+      "Cartes supplémentaires depuis votre espace",
+      "Documents (PDF) et bannières publicitaires",
+      "Formulaire de prise de rendez-vous",
+      "Support prioritaire",
     ],
     exclus: [],
-    nfc: "Cartes NFC pour toute l'équipe",
-    cta: "Demander un devis flotte",
+    nfc: "Carte NFC Premium incluse",
+    cta: "Commencer maintenant",
+    misEnAvant: false,
+  },
+  {
+    id: "entreprise",
+    nom: "Entreprise",
+    prix: "30 000 F",
+    montant: 30000,
+    periode: "/ an",
+    pitch: "Pour équiper toute une équipe, avec une identité commune.",
+    inclus: [
+      "Jusqu'à 1 000 cartes (et plus)",
+      "Tableau de bord administrateur",
+      "Création et gestion des comptes collaborateurs",
+      "Charte graphique et logo de l'entreprise sur toutes les cartes",
+      "Synchronisation automatique des informations",
+      "Accompagnement personnalisé et support dédié",
+    ],
+    exclus: [],
+    nfc: "1 lot de 100 cartes papier inclus",
+    cta: "Demander un devis équipe",
     misEnAvant: false,
     devis: true, // renvoie vers le formulaire de devis flotte, pas vers le tunnel
   },
@@ -192,16 +213,16 @@ export const offres = [
 export const faqProsCards = [
   { q: "Faut-il installer une application ?", r: "Non, ni pour vous ni pour votre interlocuteur. La carte s'ouvre dans le navigateur, sur tous les smartphones." },
   { q: "Tous les téléphones lisent-ils le NFC ?", r: "La quasi-totalité des smartphones récents, iPhone comme Android. Pour les rares appareils sans NFC, le QR code imprimé au dos de la carte prend le relais." },
-  { q: "Combien de temps pour créer ma carte ?", r: "Quelques minutes. Le compte est activé automatiquement à la validation du paiement : vous accédez immédiatement à votre tableau de bord." },
+  { q: "Combien de temps pour créer ma carte ?", r: "Quelques minutes. Le compte est activé automatiquement, dès l'inscription pour la formule Freemium ou à la validation du paiement pour les autres : vous accédez immédiatement à votre tableau de bord." },
   { q: "Puis-je modifier mes informations après coup ?", r: "Autant de fois que vous le souhaitez. Les modifications sont prises en compte instantanément, sans réimpression ni intervention d'OPTINOV." },
-  { q: "Qui crée la carte : vous ou OPTINOV ?", r: "Vous. PROS.CARDS est une plateforme en libre-service : OPTINOV développe, exploite et supporte la plateforme, mais n'intervient pas dans la création de votre carte." },
-  { q: "Quelles statistiques sont disponibles ?", r: "Le nombre de consultations de votre carte, leur évolution dans le temps, et les contenus les plus consultés. Les statistiques détaillées sont incluses à partir de l'offre Professionnelle." },
+  { q: "Qui crée la carte : vous ou OPTINOV ?", r: "Vous. PROS.CARDS est une plateforme en libre-service : OPTINOV développe et maintient la plateforme, mais n'intervient pas dans la création de votre carte." },
+  { q: "Quelles statistiques sont disponibles ?", r: "Le nombre de consultations de votre carte, leur évolution dans le temps, et les contenus les plus consultés. Le détail disponible dépend de votre formule." },
   { q: "Comment fonctionne l'offre Entreprise ?", r: "Le responsable crée un compte Entreprise et devient administrateur de son espace. Il crée les comptes de ses collaborateurs, qui personnalisent chacun leur carte, et peut créer, modifier, suspendre ou supprimer les cartes de son équipe." },
   { q: "Que se passe-t-il quand un collaborateur quitte l'entreprise ?", r: "L'administrateur suspend ou supprime sa carte depuis son espace. Le lien cesse immédiatement de fonctionner — contrairement aux cartes papier déjà distribuées." },
   { q: "Quels moyens de paiement acceptez-vous ?", r: "Les moyens de paiement disponibles sont ceux proposés par le tunnel d'inscription de la plateforme." },
   { q: "Puis-je résilier mon abonnement ?", r: "Les conditions de résiliation figurent aux conditions générales de la plateforme PROS.CARDS." },
   { q: "La carte NFC est-elle livrée ?", r: "Oui, à l'adresse indiquée à la souscription, après validation du paiement." },
-  { q: "Mes données sont-elles protégées ?", r: "La plateforme est développée, exploitée et supportée par OPTINOV à Abidjan, dans le respect de la loi ivoirienne n° 2013-450 et du RGPD pour les visiteurs de l'Union européenne." },
+  { q: "Mes données sont-elles protégées ?", r: "La plateforme est développée, hébergée et maintenue par OPTINOV à Abidjan, dans le respect de la loi ivoirienne n° 2013-450 et du RGPD pour les visiteurs de l'Union européenne." },
 ];
 
 /**

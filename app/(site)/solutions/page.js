@@ -25,8 +25,8 @@ export default function HubSolutions() {
             <span className="eyebrow">Solutions</span>
             <h1>Nos solutions numériques</h1>
             <p className="lead">
-              Quand un besoin revient chez tous nos clients, nous en faisons un produit.
-              Développé, exploité et supporté par OPTINOV, depuis Abidjan.
+              Quand un même besoin revient chez nos clients, nous en faisons un produit,
+              développé, maintenu et accompagné par OPTINOV depuis Abidjan.
             </p>
           </Reveal>
         </div>

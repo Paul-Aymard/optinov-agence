@@ -63,7 +63,8 @@ export default function LandingProsCards() {
     offers: offres.map((o) => ({
       "@type": "Offer",
       name: o.nom,
-      // Le prix reste [À compléter] : on ne publie pas de donnée structurée fausse.
+      // Prix annuels du catalogue pros.cards (content/prosCards.js).
+      price: o.montant,
       priceCurrency: "XOF",
       availability: "https://schema.org/InStock",
     })),
@@ -84,7 +85,7 @@ export default function LandingProsCards() {
             <div className="btn-group" style={{ marginTop: "1.8rem" }}>
               <a
                 className="btn btn--gold"
-                href={urlInscription("professionnel", "hero")}
+                href={urlInscription("startup", "hero")}
                 data-ga="cta_creer_carte_hero"
               >
                 Créer ma carte en quelques minutes
@@ -170,7 +171,7 @@ export default function LandingProsCards() {
             ))}
           </div>
           <div className="center" style={{ marginTop: "2.5rem" }}>
-            <a className="btn btn--gold" href={urlInscription("professionnel", "fonctionnement")} data-ga="cta_creer_carte_etapes">
+            <a className="btn btn--gold" href={urlInscription("startup", "fonctionnement")} data-ga="cta_creer_carte_etapes">
               Créer ma carte
             </a>
           </div>
@@ -298,13 +299,14 @@ export default function LandingProsCards() {
         <div className="container">
           <Reveal className="section-head center">
             <span className="eyebrow">Tarifs</span>
-            <h2>Trois offres, aucune surprise</h2>
+            <h2>Quatre formules, aucune surprise</h2>
             <p className="lead">
-              Montants et options NFC administrables depuis le back-office (EX-023).
+              Des prix annuels clairs, affichés avant toute inscription. Commencez
+              gratuitement, puis passez à la formule qui vous correspond.
             </p>
           </Reveal>
 
-          <div className="grid grid-3">
+          <div className="grid grid-4">
             {offres.map((o) => (
               <Reveal
                 key={o.id}
@@ -313,8 +315,7 @@ export default function LandingProsCards() {
                 {o.badge && <span className="badge">{o.badge}</span>}
                 <h3>{o.nom}</h3>
                 <p style={{ fontSize: ".9rem" }}>{o.pitch}</p>
-                {/* Montants [À compléter] au CDC §7.2 : on affiche « Tarif à venir »
-                    plutôt qu'un prix inventé, et on masque la périodicité. */}
+                {/* Prix du catalogue pros.cards ; « Tarif à venir » si un montant manque. */}
                 <div className="price">
                   {prixIndicatif(o.prix)}
                   {estRenseigne(o.prix) && <small>{o.periode}</small>}
@@ -398,7 +399,7 @@ export default function LandingProsCards() {
               validé, carte disponible. Pour une équipe, un conseiller vous accompagne.
             </p>
             <div className="btn-group" style={{ marginTop: "1.5rem" }}>
-              <a className="btn btn--gold" href={urlInscription("professionnel", "cta-final")} data-ga="cta_creer_compte_final">
+              <a className="btn btn--gold" href={urlInscription("startup", "cta-final")} data-ga="cta_creer_compte_final">
                 Créer mon compte
               </a>
               <a
@@ -439,7 +440,7 @@ export default function LandingProsCards() {
             <span className="eyebrow">Contact</span>
             <h2>Une plateforme, une équipe, une ville</h2>
             <p className="lead">
-              PROS.CARDS est développée, exploitée et supportée par OPTINOV, à Abidjan.
+              PROS.CARDS est développée, maintenue et accompagnée par OPTINOV, à Abidjan.
               Abonnements, licences, paiements et support client : tout est géré ici.
             </p>
             {(estRenseigne(site.telephone) || estRenseigne(site.email)) && (

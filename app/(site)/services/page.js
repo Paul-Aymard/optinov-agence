@@ -68,9 +68,9 @@ export default function HubServices() {
             <span className="eyebrow">Nos services</span>
             <h1>Cinq expertises, une chaîne complète</h1>
             <p className="lead">
-              De la plateforme de marque à la campagne diffusée, nous couvrons tout ce qui
-              fait qu&apos;une communication produit des résultats — et rien de ce qui ne
-              sert qu&apos;à remplir un devis.
+              De l&apos;identité de votre marque jusqu&apos;à la campagne diffusée, nous couvrons
+              tout ce qui fait qu&apos;une communication produit des résultats. Une seule
+              équipe, un seul interlocuteur.
             </p>
           </Reveal>
         </div>
@@ -98,12 +98,12 @@ export default function HubServices() {
             <span className="eyebrow">Par où commencer ?</span>
             <h2>Vous ne savez pas de quel service vous avez besoin ?</h2>
             <p className="lead">
-              C&apos;est le cas de la plupart de nos clients au premier rendez-vous. Nous
-              commençons alors par un audit de communication : trente minutes pour
-              comprendre, un document pour trancher.
+              C&apos;est le cas de la plupart de nos clients au départ. Nous commençons
+              alors par un diagnostic de votre communication, pour vous dire clairement
+              par où commencer.
             </p>
             <div className="btn-group" style={{ marginTop: "1.5rem" }}>
-              <a className="btn btn--gold" href={lienRdv()} data-ga="cta_rdv">Demander un audit</a>
+              <a className="btn btn--gold" href={lienRdv()} data-ga="cta_rdv">Demander un diagnostic</a>
               <Link className="btn btn--ghost" href="/contact">Nous écrire</Link>
             </div>
           </Reveal>
@@ -129,11 +129,11 @@ export default function HubServices() {
         <div className="container" style={{ maxWidth: "56rem" }}>
           <Reveal className="section-head center">
             <span className="eyebrow">Questions fréquentes</span>
-            <h2>Trois réponses avant de nous appeler</h2>
+            <h2>Trois questions qu&apos;on nous pose souvent</h2>
           </Reveal>
           <Accordion items={faqCourteServices} variante="fondu" />
           <p style={{ marginTop: "2rem", textAlign: "center" }}>
-            <Link className="link-arrow" href="/faq">Consulter la FAQ complète</Link>
+            <Link className="link-arrow" href="/faq">Voir toutes les questions</Link>
           </p>
         </div>
       </section>
