@@ -76,6 +76,21 @@ async function fetchJSON(url, { attempts = 5, timeoutMs = 70000 } = {}) {
   throw new Error(`Tableau de bord injoignable : ${url} (${derniere})`)
 }
 
+/**
+ * Collections ajoutées après coup (sections de réalisations, logos clients) :
+ * un tableau de bord pas encore redéployé ne les connaît pas (404). Le site se
+ * construit alors avec une liste vide au lieu d'échouer : l'ordre de mise en
+ * ligne site / tableau de bord n'a plus d'importance.
+ */
+async function fetchOptionnel(url) {
+  try {
+    return await fetchJSON(url, { attempts: 2 })
+  } catch (e) {
+    console.warn(`[sync] ${url} indisponible, liste vide utilisée : ${e.message}`)
+    return { docs: [] }
+  }
+}
+
 // ------------------------------------------------------------------ Images
 
 const urlTaille = (media, taille) => media?.sizes?.[taille]?.url || media?.url || ''
@@ -304,8 +319,8 @@ async function synchroniser() {
     fetchJSON(`${DASH}/api/temoignages?limit=200&depth=0&sort=ordre`),
     fetchJSON(`${DASH}/api/equipe?limit=200&depth=1&sort=ordre`),
     fetchJSON(`${DASH}/api/faq?limit=500&depth=0&sort=ordre`),
-    fetchJSON(`${DASH}/api/sections-realisations?limit=100&depth=0&sort=ordre&where[visible][equals]=true`),
-    fetchJSON(`${DASH}/api/clients?limit=200&depth=1&sort=ordre`),
+    fetchOptionnel(`${DASH}/api/sections-realisations?limit=100&depth=0&sort=ordre&where[visible][equals]=true`),
+    fetchOptionnel(`${DASH}/api/clients?limit=200&depth=1&sort=ordre`),
   ])
 
   ecrire('site.json', siteDepuis(parametres || {}))
