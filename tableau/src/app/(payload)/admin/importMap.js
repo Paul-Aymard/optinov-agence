@@ -26,6 +26,7 @@ import { Icon as Icon_dfe4008080d895d460898c3a6155e9ba } from '../../../componen
 import { Logo as Logo_91a09b539d3c86b0aebf520e7564ce08 } from '../../../components/admin/Logo'
 import { MenuCompte as MenuCompte_03e6ba131ac197cfc1362ae1cee939a6 } from '../../../components/admin/MenuCompte'
 import { PiedDePage as PiedDePage_00af865bf2a9e060ba67cefa58103378 } from '../../../components/admin/PiedDePage'
+import { VercelBlobClientUploadHandler as VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e } from '@payloadcms/storage-vercel-blob/client'
 import { TableauDeBord as TableauDeBord_094e17e2e67dcd7198efc4269aecfac5 } from '../../../components/admin/TableauDeBord'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
@@ -59,6 +60,7 @@ export const importMap = {
   "/components/admin/Logo#Logo": Logo_91a09b539d3c86b0aebf520e7564ce08,
   "/components/admin/MenuCompte#MenuCompte": MenuCompte_03e6ba131ac197cfc1362ae1cee939a6,
   "/components/admin/PiedDePage#PiedDePage": PiedDePage_00af865bf2a9e060ba67cefa58103378,
+  "@payloadcms/storage-vercel-blob/client#VercelBlobClientUploadHandler": VercelBlobClientUploadHandler_16c82c5e25f430251a3e3ba57219ff4e,
   "/components/admin/TableauDeBord#TableauDeBord": TableauDeBord_094e17e2e67dcd7198efc4269aecfac5,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }

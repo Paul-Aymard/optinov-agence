@@ -4,6 +4,7 @@ import * as migration_20260906_184600_contenus_du_site from './20260906_184600_c
 import * as migration_20260906_190000_faq_et_parametres_initiaux from './20260906_190000_faq_et_parametres_initiaux';
 import * as migration_20260906_232705_demandes from './20260906_232705_demandes';
 import * as migration_20261010_204119_sections_clients_cartes from './20261010_204119_sections_clients_cartes';
+import * as migration_20261010_224830_media_prefix_vercel_blob from './20261010_224830_media_prefix_vercel_blob';
 
 export const migrations = [
   {
@@ -34,6 +35,11 @@ export const migrations = [
   {
     up: migration_20261010_204119_sections_clients_cartes.up,
     down: migration_20261010_204119_sections_clients_cartes.down,
-    name: '20261010_204119_sections_clients_cartes'
+    name: '20261010_204119_sections_clients_cartes',
+  },
+  {
+    up: migration_20261010_224830_media_prefix_vercel_blob.up,
+    down: migration_20261010_224830_media_prefix_vercel_blob.down,
+    name: '20261010_224830_media_prefix_vercel_blob'
   },
 ];

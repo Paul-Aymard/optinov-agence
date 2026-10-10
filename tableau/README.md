@@ -19,8 +19,8 @@ avec une base PostgreSQL. L'interface d'administration est en français.
 | Back-office et API | Payload CMS 3.88 (TypeScript, collections définies en code) |
 | Serveur | Next.js 16 (App Router) |
 | Base de données | PostgreSQL 17 en local, [Neon](https://neon.tech) en production |
-| Images | disque local en développement, [Cloudinary](https://cloudinary.com) en production |
-| Hébergement | [Render](https://render.com), offre gratuite, décrit par `render.yaml` |
+| Images | disque local en développement, [Vercel Blob](https://vercel.com/docs/vercel-blob) en production |
+| Hébergement | [Vercel](https://vercel.com), projet `optinov-tableau`, dossier racine `tableau` du dépôt commun |
 | Tests | Vitest (intégration) et Playwright (bout en bout) |
 
 ## Installation locale
@@ -103,10 +103,12 @@ d'objet complet avec son `url`.
 ## Images
 
 - **En local**, les fichiers sont écrits dans `./media` (ignoré par Git).
-- **En production**, dès que `CLOUDINARY_CLOUD_NAME` est renseigné, ils partent
-  sur Cloudinary et sont servis par son CDN. L'adaptateur, dans
-  `src/storage/cloudinary.ts`, n'utilise pas le SDK Cloudinary : il signe
-  lui-même ses requêtes vers l'API REST.
+- **En production**, dès que `BLOB_READ_WRITE_TOKEN` existe (créé par Vercel quand
+  le magasin Blob est relié au projet), ils partent sur Vercel Blob. L'envoi se
+  fait directement du navigateur vers Blob (`clientUploads`) : les fichiers de
+  plus de 4,5 Mo, refusés par une fonction Vercel, passent quand même.
+- Cloudinary, utilisé avant octobre 2026, est abandonné (identifiants invalides
+  en ligne, aucun envoi n'aboutissait).
 
 ## Reconstruction du site
 

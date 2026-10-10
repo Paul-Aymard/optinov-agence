@@ -6,9 +6,8 @@ import { buildConfig } from 'payload'
 import { fileURLToPath } from 'url'
 import sharp from 'sharp'
 import { fr } from '@payloadcms/translations/languages/fr'
-import { cloudStoragePlugin } from '@payloadcms/plugin-cloud-storage'
+import { vercelBlobStorage } from '@payloadcms/storage-vercel-blob'
 
-import { cloudinaryAdapter } from './storage/cloudinary'
 import { migrations } from './migrations'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
@@ -27,21 +26,19 @@ const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
 
 /*
-  Cloudinary n'est activé QUE si ses identifiants sont renseignés.
+  STOCKAGE DES IMAGES : Vercel Blob en production, disque local en développement.
 
-  En production (Render), les trois variables CLOUDINARY_* sont définies : les
-  images partent sur le CDN Cloudinary, comme avant.
+  Sur Vercel, le disque d'une fonction est effacé à chaque requête : les images
+  doivent vivre dans un stockage extérieur. On utilise Vercel Blob (même
+  fournisseur que l'hébergement, aucun compte tiers). Cloudinary, utilisé
+  auparavant, est abandonné : ses identifiants en ligne étaient invalides et
+  aucun envoi d'image n'aboutissait (« Invalid cloud_name », octobre 2026).
 
-  En développement local, on les laisse vides : Payload retombe alors sur son
-  comportement par défaut et écrit les fichiers sur le disque, dans ./media
-  (dossier déjà ignoré par Git). Chacun peut ainsi lancer le tableau de bord
-  sur son PC sans compte Cloudinary, et sans risquer d'écraser les images du
-  site en ligne avec des essais.
-
-  Garder le plugin déclaré avec un cloudName vide ne serait pas une option :
-  chaque téléversement échouerait sur une URL Cloudinary invalide.
+  Le plugin ne s'active que si BLOB_READ_WRITE_TOKEN existe — Vercel le crée
+  quand le magasin Blob est relié au projet. Sans lui (développement local),
+  Payload écrit les fichiers sur le disque, dans ./media (ignoré par Git).
 */
-const CLOUDINARY_ACTIF = Boolean(process.env.CLOUDINARY_CLOUD_NAME)
+const BLOB_ACTIF = Boolean(process.env.BLOB_READ_WRITE_TOKEN)
 
 /*
   L'adresse du site vitrine. Elle sert à deux choses : autoriser ses appels à
@@ -280,22 +277,21 @@ export default buildConfig({
     prodMigrations: migrations, // applique le schéma automatiquement au démarrage en production
   }),
   sharp,
-  plugins: CLOUDINARY_ACTIF
-    ? [
-        // Stockage des images sur Cloudinary (gratuit, sans carte).
-        cloudStoragePlugin({
-          collections: {
-            media: {
-              disablePayloadAccessControl: true, // images servies directement par le CDN Cloudinary
-              adapter: cloudinaryAdapter({
-                cloudName: process.env.CLOUDINARY_CLOUD_NAME || '',
-                apiKey: process.env.CLOUDINARY_API_KEY || '',
-                apiSecret: process.env.CLOUDINARY_API_SECRET || '',
-                folder: 'optinov',
-              }),
-            },
-          },
-        }),
-      ]
-    : [], // en local : images sur le disque, dans ./media
+  plugins: [
+    vercelBlobStorage({
+      enabled: BLOB_ACTIF,
+      token: process.env.BLOB_READ_WRITE_TOKEN,
+      collections: { media: true },
+      // Envoi direct du navigateur vers Vercel Blob : une fonction Vercel
+      // refuse les requêtes de plus de 4,5 Mo, alors que la médiathèque
+      // accepte jusqu'à 15 Mo.
+      clientUploads: true,
+      // Le champ « prefix » ajouté par le plugin existe partout (local compris),
+      // pour que le schéma de la base soit le même dans tous les environnements
+      // (migration 20261010_224830_media_prefix_vercel_blob : colonne media.prefix).
+      alwaysInsertFields: true,
+      // Deux images au même nom ne s'écrasent pas.
+      addRandomSuffix: true,
+    }),
+  ],
 })

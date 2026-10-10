@@ -194,6 +194,7 @@ export interface Media {
    * Décrivez l’image en une phrase (ex. « Séance photo corporate dans nos locaux »).
    */
   alt: string;
+  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -751,6 +752,7 @@ export interface DemandesSelect<T extends boolean = true> {
  */
 export interface MediaSelect<T extends boolean = true> {
   alt?: T;
+  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
