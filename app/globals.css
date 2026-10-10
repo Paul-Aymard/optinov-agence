@@ -870,18 +870,19 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 @keyframes popIn  { from { opacity: 0; transform: scale(.85); }        to { opacity: 1; transform: none; } }
 
 /* Entrée séquencée des éléments internes (listes, checklists, parcours, objectifs) */
-.svc-liste li, .svc-check li, .svc-parcours__etape, .objectifs > a { opacity: 0; }
-.svc-acte__body.is-in .svc-liste li,
-.svc-acte__body.is-in .svc-check li,
+.svc-pastilles li, .svc-duo li, .svc-check li, .svc-parcours__etape, .objectifs > a { opacity: 0; }
+.svc-bloc__carte.is-in .svc-duo li,
+.svc-bloc__carte.is-in .svc-check li,
 .objectifs.is-in > a { animation: itemIn .5s cubic-bezier(.22,.61,.36,1) both; }
-.svc-acte__body.is-in .svc-parcours__etape { animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both; }
+.svc-bloc__carte.is-in .svc-pastilles li,
+.svc-bloc__carte.is-in .svc-parcours__etape { animation: popIn .5s cubic-bezier(.34,1.56,.64,1) both; }
 
-.svc-liste li:nth-child(2), .svc-check li:nth-child(2), .svc-parcours__etape:nth-child(2), .objectifs.is-in > a:nth-child(2) { animation-delay: .08s; }
-.svc-liste li:nth-child(3), .svc-check li:nth-child(3), .svc-parcours__etape:nth-child(3), .objectifs.is-in > a:nth-child(3) { animation-delay: .16s; }
-.svc-liste li:nth-child(4), .svc-check li:nth-child(4), .svc-parcours__etape:nth-child(4), .objectifs.is-in > a:nth-child(4) { animation-delay: .24s; }
-.svc-liste li:nth-child(5), .svc-check li:nth-child(5), .svc-parcours__etape:nth-child(5), .objectifs.is-in > a:nth-child(5) { animation-delay: .32s; }
-.svc-liste li:nth-child(6), .svc-check li:nth-child(6), .svc-parcours__etape:nth-child(6), .objectifs.is-in > a:nth-child(6) { animation-delay: .40s; }
-.svc-liste li:nth-child(7), .svc-check li:nth-child(7) { animation-delay: .48s; }
+.svc-pastilles li:nth-child(2), .svc-duo li:nth-child(2), .svc-check li:nth-child(2), .svc-parcours__etape:nth-child(2), .objectifs.is-in > a:nth-child(2) { animation-delay: .08s; }
+.svc-pastilles li:nth-child(3), .svc-duo li:nth-child(3), .svc-check li:nth-child(3), .svc-parcours__etape:nth-child(3), .objectifs.is-in > a:nth-child(3) { animation-delay: .16s; }
+.svc-pastilles li:nth-child(4), .svc-duo li:nth-child(4), .svc-check li:nth-child(4), .svc-parcours__etape:nth-child(4), .objectifs.is-in > a:nth-child(4) { animation-delay: .24s; }
+.svc-pastilles li:nth-child(5), .svc-duo li:nth-child(5), .svc-check li:nth-child(5), .svc-parcours__etape:nth-child(5), .objectifs.is-in > a:nth-child(5) { animation-delay: .32s; }
+.svc-pastilles li:nth-child(6), .svc-duo li:nth-child(6), .svc-check li:nth-child(6), .svc-parcours__etape:nth-child(6), .objectifs.is-in > a:nth-child(6) { animation-delay: .40s; }
+.svc-pastilles li:nth-child(7), .svc-duo li:nth-child(7), .svc-check li:nth-child(7) { animation-delay: .48s; }
 
 /* Au-dessus de la ligne de flottaison (heros de toutes les pages), l'entree
    est jouee en CSS pur des le chargement, sans attendre l'hydratation React :
@@ -918,7 +919,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   *, *::before, *::after { animation: none !important; transition: none !important; }
   [data-reveal] { opacity: 1; transform: none; }
   /* On rend visibles tous les éléments qui, sinon, restent cachés sans animation. */
-  .svc-liste li, .svc-check li, .svc-parcours__etape, .objectifs > a,
+  .svc-pastilles li, .svc-duo li, .svc-check li, .svc-parcours__etape, .objectifs > a,
   .hero [data-reveal], .pc-hero [data-reveal],
   .svc-hero [data-reveal] > *, .hero--home [data-reveal] > * { opacity: 1 !important; transform: none !important; }
 }
@@ -1096,22 +1097,6 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .svc-vision span { color: var(--text-muted); }
 
 /* Actes 2-4 */
-.svc-acte__head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
-.acte-num {
-  font-family: var(--font-title); font-weight: 700; font-size: clamp(2.2rem, 5vw, 3.4rem);
-  line-height: 1; color: var(--accent); opacity: .9;
-}
-.svc-acte__head h2 { margin: 0; }
-.svc-acte__body { max-width: 62ch; }
-.svc-acte__body > p { color: var(--text); }
-
-/* Actes en 2 colonnes : texte + cadre illustration, alternés gauche/droite. */
-.svc-acte__grid { display: grid; gap: clamp(1.6rem, 4vw, 3.5rem); align-items: center; }
-@media (min-width: 900px) {
-  .svc-acte__grid { grid-template-columns: 1fr 1fr; }
-  .svc-acte--inverse .svc-acte__texte { order: 2; }
-}
-.svc-acte__texte { min-width: 0; }
 /* Cadre où insérer une image (couleur d'accent du service). */
 .ph-media {
   aspect-ratio: 4 / 3; border-radius: var(--r-lg);
@@ -1121,31 +1106,10 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   color: var(--accent); font-weight: 700; letter-spacing: .12em;
   text-transform: uppercase; font-size: .82rem;
 }
-/* Image d'illustration (quand elle est fournie) — même cadre 4:3. */
-.svc-acte__media { border-radius: var(--r-lg); overflow: hidden; }
-.svc-acte__img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
-  border-radius: var(--r-lg); display: block; box-shadow: var(--shadow-md);
-  transition: transform 600ms cubic-bezier(.4, 0, .2, 1);
-}
-/* Léger zoom au survol de l'acte, comme les cartes d'InterDigital. */
-.svc-acte:hover .svc-acte__img { transform: scale(1.04); }
 .svc-chute {
   margin-top: 1.3rem; font-family: var(--font-title); font-size: 1.15rem;
   color: var(--navy); font-weight: 700;
 }
-
-/* Liste « écosystème » (icône + clé → valeur) */
-.svc-liste { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .8rem; }
-.svc-liste li {
-  display: flex; align-items: center; gap: .8rem; padding: .85rem 1.1rem;
-  background: var(--white); border: 1px solid var(--border); border-radius: var(--r-lg);
-  box-shadow: var(--shadow-sm);
-}
-.svc-liste__ic { font-size: 1.35rem; line-height: 1; }
-.svc-liste__cle { font-weight: 700; color: var(--navy); }
-.svc-liste__val { color: var(--text-muted); }
-.svc-liste__val::before { content: "→"; color: var(--accent); margin: 0 .5rem 0 .4rem; font-weight: 700; }
 
 /* Checklist (✔ en couleur d'accent) */
 .svc-check { list-style: none; padding: 0; margin: 1.6rem 0 0; display: grid; gap: .7rem; }
@@ -1202,7 +1166,6 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .service-page--sombre .svc-vision span { color: #bdbdbd; }
 
 @media (min-width: 640px) {
-  .svc-liste { grid-template-columns: repeat(2, 1fr); }
   .svc-check { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -1299,7 +1262,7 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 }
 
 /* --- Direction : suppression des icônes décoratives sur tout le site --- */
-.card__icon, .emoji, .svc-liste__ic { display: none !important; }
+.card__icon, .emoji { display: none !important; }
 
 /* Une phrase par ligne (helper Lignes) : chaque phrase sur sa propre ligne. */
 .phrase { display: block; }
@@ -1371,26 +1334,6 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   .vision-mini span { opacity: 1 !important; transform: none !important; animation: none !important; }
 }
 
-/* Listes d'items en bleu nuit du logo + animation au survol (services concernés). */
-[data-service="automatisation-ia"] .svc-liste li,
-[data-service="communication-visuelle"] .svc-liste li,
-[data-service="communication-digitale"] .svc-liste li {
-  background: #0F1E3D; border-color: transparent;
-  transition: transform .35s cubic-bezier(.22,.61,.36,1), box-shadow .35s ease;
-}
-[data-service="automatisation-ia"] .svc-liste__cle,
-[data-service="communication-visuelle"] .svc-liste__cle,
-[data-service="communication-digitale"] .svc-liste__cle { color: #fff; }
-/* Liste avec valeur (digitale) : texte secondaire et flèche lisibles sur fond sombre. */
-[data-service="communication-digitale"] .svc-liste__val { color: #c2cbdc; }
-[data-service="communication-digitale"] .svc-liste__val::before { color: var(--or); }
-[data-service="automatisation-ia"] .svc-liste li:hover,
-[data-service="communication-visuelle"] .svc-liste li:hover,
-[data-service="communication-digitale"] .svc-liste li:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow: var(--glow-orange);
-}
-
 /* Parcours (Découverte → Intérêt → Confiance → Contact) : fond bleu logo + animation au survol. */
 [data-service="communication-digitale"] .svc-parcours__etape {
   background: #0F1E3D; border-color: transparent; color: #fff;
@@ -1400,32 +1343,6 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 [data-service="communication-digitale"] .svc-parcours__etape:hover {
   transform: translateY(-4px) scale(1.05);
   box-shadow: var(--glow-orange);
-}
-
-/* Photo & Vidéo Corporate : liste en bleu logo + animation DIFFÉRENTE (reflet lumineux qui balaie). */
-[data-service="photo-video"] .svc-liste li {
-  background: #0F1E3D; border-color: transparent; position: relative; overflow: hidden;
-  transition: box-shadow .4s ease;
-}
-[data-service="photo-video"] .svc-liste__cle { color: #fff; position: relative; z-index: 1; }
-[data-service="photo-video"] .svc-liste li::after {
-  content: ""; position: absolute; top: 0; left: -70%; width: 55%; height: 100%;
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.22), transparent);
-  transform: skewX(-18deg); transition: left .7s cubic-bezier(.22,.61,.36,1); z-index: 0;
-}
-[data-service="photo-video"] .svc-liste li:hover::after { left: 140%; }
-[data-service="photo-video"] .svc-liste li:hover { box-shadow: var(--glow-orange); }
-/* Photo & Vidéo : centrer la carte orpheline de la dernière rangée sous les autres. */
-@media (min-width: 640px) {
-  [data-service="photo-video"] .svc-liste li:last-child:nth-child(odd),
-  [data-service="photo-video"] .svc-check li:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    width: calc(50% - .4rem);
-    margin-inline: auto;
-  }
-}
-@media (prefers-reduced-motion: reduce) {
-  [data-service="photo-video"] .svc-liste li::after { display: none; }
 }
 
 /* « FAQ » : police un peu plus grande (demande direction). */
@@ -1739,3 +1656,115 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
 .logos-clients li:hover img { filter: none; opacity: 1; transform: scale(1.06); }
 .logos-clients--fixe { margin-top: 2rem; }
 .logos-clients--fixe .marquee__track { width: auto; animation: none; flex-wrap: wrap; justify-content: center; gap: clamp(1.75rem, 5vw, 3.5rem); }
+
+/* =============================================================
+ * 33. Pages service — nouvelle présentation (PDF « NOUVELLE MODIF AGENCE »)
+ * Menu latéral des cinq services (fixe au défilement) + blocs numérotés :
+ * carte de texte (trait et grand numéro dans la couleur du service, liseré
+ * en bas), image à côté, alternée gauche / droite. Le dernier bloc est posé
+ * sur un panneau gris clair, comme le bloc 03 de la maquette.
+ * ============================================================= */
+.svc-corps { padding-block: clamp(2.5rem, 5vw, 4.5rem); }
+.svc-corps__grille { display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); }
+@media (min-width: 1100px) { .svc-corps__grille { grid-template-columns: 230px minmax(0, 1fr); align-items: start; } }
+
+/* Menu latéral : liste séparée du contenu par un trait vertical. */
+.svc-nav__titre {
+  margin: 0 0 .8rem; font-size: .75rem; font-weight: 800; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.svc-nav ul { list-style: none; margin: 0; padding: 0; }
+.svc-nav a {
+  display: flex; align-items: center; min-height: 44px; padding: .35rem .2rem; position: relative;
+  color: var(--navy-300); text-decoration: none; font-size: 1.02rem; font-weight: 500;
+  transition: color var(--t), transform var(--t);
+}
+.svc-nav a:hover { color: var(--accent-lien); transform: translateX(4px); }
+.svc-nav a[aria-current="page"] { color: var(--accent-lien); font-weight: 700; }
+@media (min-width: 1100px) {
+  .svc-nav { position: sticky; top: calc(var(--header-h) + 1.5rem); border-right: 1px solid var(--border); padding-right: 1.25rem; }
+  .svc-nav a[aria-current="page"]::after {
+    content: ""; position: absolute; right: calc(-1.25rem - 2px); top: 8px; bottom: 8px; width: 3px;
+    border-radius: 3px; background: var(--accent-lien);
+  }
+}
+/* Tablette et téléphone : les services en pastilles, sur plusieurs lignes
+   (toutes visibles, le service affiché compris). */
+@media (max-width: 1099px) {
+  .svc-nav ul { display: flex; flex-wrap: wrap; gap: .5rem; }
+  .svc-nav a { border: 1px solid var(--border); border-radius: 100px; padding: .35rem 1rem; background: #fff; font-size: .9rem; white-space: nowrap; }
+  .svc-nav a:hover { transform: none; }
+  .svc-nav a[aria-current="page"] { border-color: var(--accent-lien); background: color-mix(in srgb, var(--accent-lien) 10%, #fff); }
+}
+
+/* Blocs */
+.svc-blocs { display: grid; gap: clamp(2.5rem, 5vw, 4.5rem); min-width: 0; }
+.svc-bloc { display: grid; gap: clamp(1.5rem, 3vw, 2.75rem); align-items: center; }
+@media (min-width: 900px) {
+  .svc-bloc { grid-template-columns: 1.08fr 1fr; }
+  .svc-bloc--media-gauche { grid-template-columns: 1fr 1.08fr; }
+  .svc-bloc--media-gauche .svc-bloc__media { order: -1; }
+}
+.svc-bloc__carte {
+  position: relative; min-width: 0; background: #fff; border-radius: 16px;
+  padding: clamp(1.6rem, 3vw, 2.4rem); padding-bottom: clamp(1.8rem, 3vw, 2.6rem);
+  box-shadow: var(--shadow-md); border-bottom: 6px solid var(--accent);
+}
+.svc-bloc__carte::before {
+  content: ""; display: block; width: 52px; height: 6px; border-radius: 3px;
+  background: var(--accent); margin-bottom: .45rem;
+}
+.svc-bloc__num {
+  display: block; font-family: var(--font-title); font-weight: 700; line-height: 1;
+  font-size: clamp(2.6rem, 2rem + 2.4vw, 3.6rem); color: var(--accent); margin-bottom: .35rem;
+}
+.svc-bloc__carte h2 { font-size: clamp(1.45rem, 1.15rem + 1.1vw, 2rem); margin-bottom: .8rem; }
+.svc-bloc__carte > p { color: var(--text); }
+.svc-bloc .svc-check { grid-template-columns: 1fr; gap: .45rem; margin-top: 1rem; }
+.svc-bloc .svc-check li::before { content: "✓"; }
+.svc-bloc .svc-chute { font-size: 1.05rem; }
+
+/* Pastilles alternées : pointillés de la couleur du service / pleines. */
+.svc-pastilles { list-style: none; padding: 0; margin: 1.3rem 0 .3rem; display: flex; flex-wrap: wrap; gap: .6rem; }
+.svc-pastilles li {
+  display: inline-flex; align-items: center; min-height: 40px; padding: .45rem 1.1rem;
+  border-radius: 100px; font-size: .9rem; font-weight: 600; text-align: center;
+  border: 2px dashed var(--accent); color: var(--navy); background: #fff;
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.svc-pastilles li:nth-child(4n + 2), .svc-pastilles li:nth-child(4n + 3) {
+  background: #111; border: 2px solid #111; color: #fff;
+}
+.svc-pastilles li:hover { transform: translateY(-3px); box-shadow: var(--shadow-sm); }
+
+/* Liste « canal → rôle » (Communication digitale). */
+.svc-duo { list-style: none; padding: 0; margin: 1.3rem 0 .3rem; display: grid; gap: .5rem; }
+.svc-duo li {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: .3rem 1rem;
+  padding: .7rem 1rem; border-radius: 10px; border-left: 4px solid var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, #fff);
+}
+.svc-duo b { color: var(--navy); }
+.svc-duo span { color: var(--text-muted); }
+
+ol.svc-parcours { list-style: none; padding: 0; }
+
+/* Image : cadre arrondi et ombre portée, léger zoom au survol du bloc. */
+.svc-bloc__media { min-width: 0; }
+.svc-bloc__img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover; display: block;
+  border-radius: 20px; box-shadow: var(--shadow-lg);
+  transition: transform .6s cubic-bezier(.22,.61,.36,1);
+}
+.svc-bloc:hover .svc-bloc__img { transform: translateY(-4px) scale(1.02); }
+
+/* Dernier bloc sur panneau gris clair (bloc 03 de la maquette). */
+.svc-bloc--panneau {
+  background: var(--bg-alt); border-radius: 22px; padding: clamp(1.4rem, 3vw, 2.5rem);
+}
+.svc-bloc--panneau .svc-bloc__carte { background: transparent; box-shadow: none; border-bottom: 0; padding: 0; }
+
+/* Univers sombre (Photo & Vidéo) : les cartes restent blanches sur la page claire. */
+.service-page--sombre .svc-corps { background: #f4f4f4; }
+.service-page--sombre .svc-pastilles li:nth-child(4n + 2),
+.service-page--sombre .svc-pastilles li:nth-child(4n + 3) { background: var(--or); border-color: var(--or); color: #fff; }

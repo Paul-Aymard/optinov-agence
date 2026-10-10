@@ -113,75 +113,108 @@ export default async function PageService({ params }) {
         </div>
       </section>
 
-      {/* ACTES 2 · 3 · 4 — le récit */}
-      {p.actes.map((acte, i) => (
-        <section
-          key={acte.titre}
-          className={`svc-acte section${i % 2 === 0 ? " section--alt" : ""}${i % 2 === 1 ? " svc-acte--inverse" : ""}`}
-        >
-          <div className="container svc-acte__grid">
-            <div className="svc-acte__texte">
-              <Reveal className="svc-acte__head">
-                {/* Numéro de l'acte : rythme le récit comme la méthodologie
-                    numérotée de sweetglobe.eu, citée par le client. Le style
-                    .acte-num existait déjà sans être posé nulle part. */}
-                <span className="acte-num" aria-hidden="true">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <h2>{acte.titre}</h2>
-              </Reveal>
-              <Reveal className="svc-acte__body">
-                {acte.paras.map((t, j) => (
-                  <p key={j}><Lignes>{t}</Lignes></p>
-                ))}
+      {/* ACTES 2 · 3 · 4 — nouvelle présentation (PDF « NOUVELLE MODIF AGENCE »)
+          Menu latéral des cinq services à gauche (fixe au défilement), et les
+          trois blocs numérotés 01 · 02 · 03 : carte de texte au grand numéro et
+          aux traits de la couleur du service, image à côté, alternée gauche /
+          droite. Le dernier bloc est posé sur un panneau gris. */}
+      <div className="svc-corps">
+        <div className="container svc-corps__grille">
+          <nav className="svc-nav" aria-label="Nos services">
+            <p className="svc-nav__titre">Nos services</p>
+            <ul>
+              {services.map((x) => {
+                const actif = x.slug === s.slug;
+                return (
+                  <li key={x.slug}>
+                    <Link
+                      href={`/services/${x.slug}`}
+                      aria-current={actif ? "page" : undefined}
+                      style={{ "--accent-lien": `var(${getPageService(x.slug)?.accentVar || "--or"})` }}
+                    >
+                      {x.titre}
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
 
-                {acte.liste && (
-                  <ul className="svc-liste">
-                    {acte.liste.map((it) => (
-                      <li key={it.cle}>
-                        {it.icone && <span className="svc-liste__ic" aria-hidden="true">{it.icone}</span>}
-                        <span className="svc-liste__cle">{it.cle}</span>
-                        {it.valeur && <span className="svc-liste__val">{it.valeur}</span>}
-                      </li>
+          <div className="svc-blocs">
+            {p.actes.map((acte, i) => {
+              const image = imgs[`img${i + 1}`];
+              const dernier = i === p.actes.length - 1;
+              const avecValeurs = acte.liste?.some((it) => it.valeur);
+              return (
+                <section
+                  key={acte.titre}
+                  className={`svc-bloc${i % 2 === 0 ? " svc-bloc--media-gauche" : ""}${dernier ? " svc-bloc--panneau" : ""}`}
+                  aria-labelledby={`bloc-${i}`}
+                >
+                  <Reveal className="svc-bloc__carte">
+                    <span className="svc-bloc__num" aria-hidden="true">{String(i + 1).padStart(2, "0")}</span>
+                    <h2 id={`bloc-${i}`}>{acte.titre}</h2>
+                    {acte.paras.map((t, j) => (
+                      <p key={j}><Lignes>{t}</Lignes></p>
                     ))}
-                  </ul>
-                )}
 
-                {acte.checklist && (
-                  <ul className="svc-check">
-                    {acte.checklist.map((c) => (
-                      <li key={c}>{c}</li>
-                    ))}
-                  </ul>
-                )}
+                    {acte.checklist && (
+                      <ul className="svc-check">
+                        {acte.checklist.map((c) => (
+                          <li key={c}>{c}</li>
+                        ))}
+                      </ul>
+                    )}
 
-                {acte.parcours && (
-                  <div className="svc-parcours" aria-hidden="true">
-                    {acte.parcours.map((etape, k) => (
-                      <span key={etape} className="svc-parcours__etape">
-                        {etape}
-                        {k < acte.parcours.length - 1 && <i>→</i>}
-                      </span>
-                    ))}
-                  </div>
-                )}
+                    {/* Liste simple : pastilles alternées pointillées / pleines (maquette
+                        bloc 02). Liste « canal → rôle » : petites lignes à deux temps. */}
+                    {acte.liste && !avecValeurs && (
+                      <ul className="svc-pastilles">
+                        {acte.liste.map((it) => (
+                          <li key={it.cle}>{it.cle}</li>
+                        ))}
+                      </ul>
+                    )}
+                    {acte.liste && avecValeurs && (
+                      <ul className="svc-duo">
+                        {acte.liste.map((it) => (
+                          <li key={it.cle}>
+                            <b>{it.cle}</b>
+                            <span>{it.valeur}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
 
-                {acte.chute && <p className="svc-chute"><Lignes>{acte.chute}</Lignes></p>}
-                {acte.realisations && <RealisationsGrid />}
-              </Reveal>
-            </div>
+                    {acte.parcours && (
+                      <ol className="svc-parcours">
+                        {acte.parcours.map((etape, k) => (
+                          <li key={etape} className="svc-parcours__etape">
+                            {etape}
+                            {k < acte.parcours.length - 1 && <i aria-hidden="true">→</i>}
+                          </li>
+                        ))}
+                      </ol>
+                    )}
 
-            {/* Illustration — image du dashboard si fournie, sinon cadre placeholder (alterné G/D) */}
-            <Reveal className="svc-acte__media">
-              {imgs[`img${i + 1}`] ? (
-                <img src={imgs[`img${i + 1}`]} alt="" className="svc-acte__img" />
-              ) : (
-                <div className="ph-media" aria-hidden="true">Illustration</div>
-              )}
-            </Reveal>
+                    {acte.chute && <p className="svc-chute"><Lignes>{acte.chute}</Lignes></p>}
+                    {acte.realisations && <RealisationsGrid />}
+                  </Reveal>
+
+                  {/* Illustration : image du tableau de bord, sinon cadre provisoire. */}
+                  <Reveal className="svc-bloc__media">
+                    {image ? (
+                      <img src={image} alt="" className="svc-bloc__img" loading="lazy" />
+                    ) : (
+                      <div className="ph-media" aria-hidden="true">Illustration</div>
+                    )}
+                  </Reveal>
+                </section>
+              );
+            })}
           </div>
-        </section>
-      ))}
+        </div>
+      </div>
 
       {/* ACTE 5 — MANIFESTE + CTA */}
       <section className={`svc-manifeste${p.manifeste.camera ? " svc-manifeste--camera" : ""}`}>
