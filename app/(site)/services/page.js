@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { temoignages, lienRdv } from "@/content/site";
 import { services } from "@/content/services";
+import { getPageService } from "@/content/servicesPages";
+import imagesServices from "@/content/generated/services.json";
 import { faqCourteServices } from "@/content/faq";
 import { Breadcrumb, Reveal, Accordion, FaqJsonLd, WhatsAppFloat } from "@/components/Ui";
 
@@ -16,20 +18,41 @@ export const metadata = {
   alternates: { canonical: "/services" },
 };
 
-/** Carte d'un service (hub) — factorisée pour les 2 rangées. */
+/**
+ * Carte d'un service (hub) — factorisée pour les 2 rangées.
+ *
+ * PDF « NOUVELLE MODIF AGENCE » : au survol, la carte se retourne et montre au
+ * dos une image (« Dos de la carte » dans le tableau de bord) et un bouton
+ * « Découvrir ». Sans image, le dos prend la couleur du service. Sur écran
+ * tactile (pas de survol), la carte ne se retourne pas : la face avant garde
+ * son lien « Découvrir ».
+ */
 function carteServiceHub(s) {
+  const image = imagesServices[s.slug]?.carte || "";
+  const accent = getPageService(s.slug)?.accentVar || "--or";
   return (
-    <Reveal key={s.slug} className="card">
-      <h3>{s.titre}</h3>
-      <p>{s.description}</p>
-      <ul>
-        {s.livrablesTypes.map((l) => (
-          <li key={l}>{l}</li>
-        ))}
-      </ul>
-      <Link className="link-arrow" href={`/services/${s.slug}`}>
-        Découvrir<span className="sr-only"> {s.titre}</span>
-      </Link>
+    <Reveal key={s.slug} className="carte-flip" style={{ "--accent": `var(${accent})` }}>
+      <div className="carte-flip__inner">
+        <div className="card carte-flip__avant">
+          <h3>{s.titre}</h3>
+          <p>{s.description}</p>
+          <ul>
+            {s.livrablesTypes.map((l) => (
+              <li key={l}>{l}</li>
+            ))}
+          </ul>
+          <Link className="link-arrow" href={`/services/${s.slug}`}>
+            Découvrir<span className="sr-only"> {s.titre}</span>
+          </Link>
+        </div>
+        {/* Dos : décor + raccourci souris ; le lien accessible est sur la face avant. */}
+        <div className="carte-flip__dos" aria-hidden="true">
+          {image ? <img src={image} alt="" loading="lazy" /> : <span className="carte-flip__nom">{s.titre}</span>}
+          <Link className="carte-flip__btn" href={`/services/${s.slug}`} tabIndex={-1}>
+            Découvrir <span>→</span>
+          </Link>
+        </div>
+      </div>
     </Reveal>
   );
 }
@@ -108,7 +131,7 @@ export default function HubServices() {
             <span className="eyebrow">Questions fréquentes</span>
             <h2>Trois réponses avant de nous appeler</h2>
           </Reveal>
-          <Accordion items={faqCourteServices} />
+          <Accordion items={faqCourteServices} variante="fondu" />
           <p style={{ marginTop: "2rem", textAlign: "center" }}>
             <Link className="link-arrow" href="/faq">Consulter la FAQ complète</Link>
           </p>

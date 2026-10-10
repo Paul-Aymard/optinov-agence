@@ -356,7 +356,7 @@ export default function Accueil() {
             <span className="eyebrow">Questions fréquentes</span>
             <h2>Vous avez des questions&nbsp;? Nous avons les réponses.</h2>
           </Reveal>
-          <Accordion items={faqAccueil} />
+          <Accordion items={faqAccueil} variante="glisse" />
           <p className="center" style={{ marginTop: "2rem" }}>
             <Link className="link-arrow" href="/faq">Consulter la FAQ complète</Link>
           </p>

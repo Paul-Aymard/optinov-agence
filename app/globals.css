@@ -1615,3 +1615,110 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   }
   .svc-manifeste--camera .section-head { margin-inline: auto; }
 }
+
+/* =============================================================
+ * 30. Page « Nos services » — cartes qui se retournent au survol
+ * Les deux faces partagent la même case de grille : la carte prend la
+ * hauteur de la plus haute, rien ne saute au retournement. Uniquement sur
+ * les appareils à survol ; au clavier ou au doigt, la face avant suffit.
+ * ============================================================= */
+.carte-flip { perspective: 1400px; height: 100%; }
+.carte-flip__inner {
+  display: grid; height: 100%; position: relative;
+  transform-style: preserve-3d; transition: transform .75s cubic-bezier(.22,.61,.36,1);
+}
+.carte-flip__inner > * { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.carte-flip__avant { height: auto; }
+.carte-flip__avant:hover { transform: none; }
+.carte-flip__dos {
+  transform: rotateY(180deg); border-radius: var(--r-lg); overflow: hidden;
+  display: grid; place-items: center; position: relative; box-shadow: var(--shadow-lg);
+  background: linear-gradient(140deg, var(--accent), color-mix(in srgb, var(--accent) 55%, #0F1E3D));
+}
+.carte-flip__dos img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.carte-flip__dos::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(15,30,61,.05), rgba(15,30,61,.35)); }
+.carte-flip__nom {
+  position: absolute; top: 1.4rem; left: 1.6rem; right: 1.6rem; z-index: 1;
+  font-family: var(--font-title); font-size: 1.35rem; font-weight: 700; color: #fff;
+}
+.carte-flip__btn {
+  position: relative; z-index: 1; display: inline-flex; align-items: center; gap: .7rem;
+  background: #fff; color: var(--or-600); text-decoration: none; text-transform: uppercase;
+  font-weight: 800; letter-spacing: .04em; padding: .95rem 2.1rem; border-radius: 100px;
+  box-shadow: 0 10px 26px rgba(0,0,0,.22); transition: transform var(--t-fast), box-shadow var(--t-fast);
+}
+.carte-flip__btn span { transition: transform .3s ease; }
+.carte-flip__btn:hover { color: var(--or-600); transform: scale(1.05); box-shadow: 0 14px 30px rgba(0,0,0,.28); }
+.carte-flip__btn:hover span { transform: translateX(5px); }
+@media (hover: hover) and (pointer: fine) {
+  .carte-flip:hover .carte-flip__inner { transform: rotateY(180deg); }
+}
+@media (hover: none), (pointer: coarse) {
+  .carte-flip__dos { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .carte-flip__inner { transition-duration: .01s; }
+}
+
+/* =============================================================
+ * 31. FAQ — une animation par FAQ (PDF : « toutes les FAQ ne doivent pas
+ * avoir les mêmes animations »). Le dépliage en hauteur reste commun ;
+ * chaque variante change la façon dont la réponse et la question réagissent.
+ * ============================================================= */
+
+/* Accueil — « glisse » : la réponse arrive de la gauche, un trait orange se
+   dessine sous la question ouverte. */
+.accordion--glisse .accordion__btn span:first-child {
+  background: linear-gradient(var(--or), var(--or)) left bottom / 0 2px no-repeat;
+  transition: background-size .45s cubic-bezier(.22,.61,.36,1), color var(--t);
+  padding-bottom: 2px;
+}
+.accordion--glisse .accordion__btn:hover span:first-child,
+.accordion--glisse .accordion__btn[aria-expanded="true"] span:first-child { background-size: 100% 2px; }
+.accordion--glisse .accordion__panel[data-open] .accordion__inner > * { animation: faqGlisse .5s cubic-bezier(.22,.61,.36,1) both; }
+@keyframes faqGlisse { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+
+/* Hub Services — « fondu » : la réponse sort d'un flou, la question
+   ouverte passe en orange. */
+.accordion--fondu .accordion__btn[aria-expanded="true"] { color: var(--or-600); }
+.accordion--fondu .accordion__panel[data-open] .accordion__inner > * { animation: faqFondu .55s ease both; }
+@keyframes faqFondu { from { opacity: 0; filter: blur(6px); transform: scale(.98); } to { opacity: 1; filter: none; transform: none; } }
+
+/* Pages service — « accent » : la question ouverte prend un fond teinté et une
+   barre à gauche, dans la couleur du service ; la réponse monte. */
+.accordion--accent .accordion__item { position: relative; transition: background .4s ease; border-radius: 10px; }
+.accordion--accent .accordion__item::before {
+  content: ""; position: absolute; left: 0; top: 14px; bottom: 14px; width: 4px; border-radius: 4px;
+  background: var(--accent, var(--or)); transform: scaleY(0); transition: transform .45s cubic-bezier(.22,.61,.36,1);
+}
+.accordion--accent .accordion__item:has([data-open]) { background: color-mix(in srgb, var(--accent, var(--or)) 7%, transparent); }
+.accordion--accent .accordion__item:has([data-open])::before { transform: scaleY(1); }
+.accordion--accent .accordion__btn { padding-left: 1.1rem; }
+.accordion--accent .accordion__inner > * { padding-left: 1.1rem; }
+.accordion--accent .accordion__btn[aria-expanded="true"] .plus { background: var(--accent, var(--or)); border-color: var(--accent, var(--or)); }
+.accordion--accent .accordion__panel[data-open] .accordion__inner > * { animation: faqMonte .5s cubic-bezier(.22,.61,.36,1) both; }
+@keyframes faqMonte { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+/* Page FAQ — « cartes » : chaque question est une carte ; ouverte, elle se
+   soulève avec un liseré orange et la réponse se déroule de haut en bas. */
+.accordion--cartes { border: 0; display: grid; gap: .7rem; }
+.accordion--cartes .accordion__item {
+  border: 1px solid var(--border); border-radius: 14px; background: #fff; padding-inline: .9rem;
+  box-shadow: var(--shadow-sm); transition: transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+}
+.accordion--cartes .accordion__item:hover { transform: translateY(-2px); }
+.accordion--cartes .accordion__item:has([data-open]) { border-color: var(--or); box-shadow: 0 12px 28px rgba(252,99,3,.14); transform: translateY(-3px); }
+.accordion--cartes .accordion__panel[data-open] .accordion__inner > * { animation: faqDeroule .6s cubic-bezier(.22,.61,.36,1) both; }
+@keyframes faqDeroule { from { clip-path: inset(0 0 100% 0); opacity: .3; } to { clip-path: inset(0 0 0 0); opacity: 1; } }
+
+/* PROS.CARDS — « rebond » : la pastille fait un tour avec rebond, la réponse
+   apparaît avec un léger effet ressort. */
+.accordion--rebond .accordion__btn .plus { transition: background var(--t), border-color var(--t), transform .6s cubic-bezier(.34,1.56,.64,1); }
+.accordion--rebond .accordion__btn[aria-expanded="true"] .plus { transform: rotate(180deg) scale(1.08); }
+.accordion--rebond .accordion__panel[data-open] .accordion__inner > * { animation: faqRebond .55s cubic-bezier(.34,1.56,.64,1) both; transform-origin: top left; }
+@keyframes faqRebond { from { opacity: 0; transform: scale(.92); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .accordion .accordion__inner > * { animation: none !important; }
+  .accordion--rebond .accordion__btn .plus { transition: none; }
+}

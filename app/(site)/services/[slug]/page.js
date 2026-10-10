@@ -231,7 +231,7 @@ export default async function PageService({ params }) {
             <span className="eyebrow eyebrow--faq">FAQ</span>
             <h2>Questions fréquentes</h2>
           </Reveal>
-          <Accordion items={s.faq} />
+          <Accordion items={s.faq} variante="accent" />
         </div>
       </section>
 

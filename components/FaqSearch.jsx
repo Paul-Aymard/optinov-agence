@@ -55,7 +55,7 @@ export default function FaqSearch() {
         resultats.map((t) => (
           <section key={t.id} id={t.id} style={{ marginBottom: "3.5rem" }}>
             <h2>{t.titre}</h2>
-            <Accordion items={t.questions} />
+            <Accordion items={t.questions} variante="cartes" />
           </section>
         ))
       )}

@@ -88,12 +88,17 @@ export function Reveal({ children, as: Tag = "div", className = "", ...rest }) {
 /* ------------------------------------------------------------------ *
  * Accordéon accessible au clavier — EX-016, M
  * ------------------------------------------------------------------ */
-export function Accordion({ items, defaultOpen = -1 }) {
+/**
+ * `variante` : chaque FAQ du site a sa propre animation (demande direction,
+ * PDF « NOUVELLE MODIF AGENCE ») — glisse (accueil), fondu (hub Services),
+ * accent (pages service), cartes (page FAQ), rebond (PROS.CARDS).
+ */
+export function Accordion({ items, defaultOpen = -1, variante = "" }) {
   const [open, setOpen] = useState(defaultOpen);
   const base = useId();
 
   return (
-    <div className="accordion">
+    <div className={`accordion${variante ? ` accordion--${variante}` : ""}`}>
       {items.map((it, i) => {
         const ouvert = open === i;
         return (

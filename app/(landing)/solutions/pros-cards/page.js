@@ -383,7 +383,7 @@ export default function LandingProsCards() {
             <span className="eyebrow eyebrow--faq">FAQ</span>
             <h2>Vos questions, nos réponses</h2>
           </Reveal>
-          <Accordion items={faqProsCards} />
+          <Accordion items={faqProsCards} variante="rebond" />
         </div>
       </section>
 
