@@ -155,8 +155,8 @@ export const methode = [
 
 /** Valeurs — §6.2 */
 export const valeurs = [
-  { titre: "Exigence", texte: "Un livrable sort quand il est juste, pas quand il est fini." },
-  { titre: "Transparence", texte: "Un devis lisible, un calendrier tenu, des résultats montrés tels quels." },
+  { titre: "Exigence", texte: "Nous livrons un travail quand il est juste, pas seulement quand il est fini." },
+  { titre: "Transparence", texte: "Un devis clair, des délais tenus, des résultats montrés tels qu'ils sont." },
   { titre: "Proximité", texte: "Un interlocuteur unique, joignable, qui connaît votre dossier." },
-  { titre: "Curiosité", texte: "L'IA et l'automatisation entrent dans nos process avant d'entrer dans nos offres." },
+  { titre: "Curiosité", texte: "Nous testons l'IA et l'automatisation sur nous-mêmes avant de vous les proposer." },
 ];

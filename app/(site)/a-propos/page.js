@@ -21,11 +21,11 @@ export default function Agence() {
         <div className="container">
           <Reveal>
             <span className="eyebrow">Qui nous sommes</span>
-            <h1>Un partenaire qui rend des comptes</h1>
+            <h1>Une seule équipe pour toute votre communication</h1>
             <p className="lead">
-              Nous sommes le pôle communication du groupe OPTINOV. Nous travaillons pour
-              des dirigeants qui attendent d&apos;un partenaire autre chose que de belles
-              images : des résultats qu&apos;on peut lire.
+              Nous sommes le pôle communication du groupe OPTINOV, à Abidjan. Nous
+              travaillons pour des dirigeants qui attendent plus que de belles images&nbsp;:
+              des résultats concrets et mesurables.
             </p>
           </Reveal>
         </div>
@@ -38,22 +38,16 @@ export default function Agence() {
             <span className="eyebrow">Notre histoire</span>
             <h2>Née d&apos;une conviction</h2>
             <p>
-              <Lignes>Les entreprises qui marquent leur époque ne communiquent pas davantage. Elles communiquent mieux.</Lignes>
+              <Lignes>Les entreprises qui marquent leur époque ne communiquent pas plus que les autres. Elles communiquent mieux.</Lignes>
             </p>
             <p>
-              <Lignes>Pourtant, dans de nombreuses organisations, la communication reste fragmentée. Une agence conçoit le logo. Une autre réalise le site internet. Les réseaux sociaux sont confiés à un prestataire, les vidéos à un autre, le marketing à un troisième.</Lignes>
+              <Lignes>Pourtant, la communication reste souvent éclatée : une agence pour le logo, une autre pour le site, un prestataire pour les réseaux sociaux, un autre pour les vidéos. Les actions se multiplient, la vision se disperse.</Lignes>
             </p>
             <p>
-              <Lignes>Les actions se multiplient, mais la vision se disperse.</Lignes>
+              <Lignes>Nous avons créé OPTINOV pour changer cela. Notre nom dit notre ambition : «&nbsp;Optez pour l&apos;Innovation&nbsp;». La communication ne doit pas être une suite de prestations, mais un vrai levier de croissance.</Lignes>
             </p>
             <p>
-              <Lignes>Nous avons créé OPTINOV avec une conviction forte : la communication ne doit pas être une succession de prestations. Elle doit devenir un véritable levier de croissance.</Lignes>
-            </p>
-            <p>
-              <Lignes>Notre nom traduit cette ambition : OPTINOV, pour «&nbsp;Optez pour l&apos;Innovation&nbsp;».</Lignes>
-            </p>
-            <p>
-              <Lignes>Nous accompagnons les entreprises qui veulent aller au-delà de la simple visibilité. Celles qui souhaitent construire une marque forte, harmoniser leur communication, moderniser leurs outils et faire de chaque action un investissement créateur de valeur.</Lignes>
+              <Lignes>Nous accompagnons les entreprises qui veulent aller plus loin que la simple visibilité : construire une marque forte, rendre leur communication cohérente, moderniser leurs outils et faire de chaque action un investissement utile.</Lignes>
             </p>
           </Reveal>
           <Reveal>
@@ -71,8 +65,8 @@ export default function Agence() {
             <span className="eyebrow">Vision &amp; mission</span>
             <h2>Faire de la communication un investissement, pas une dépense</h2>
             <p className="lead">
-              Notre mission : donner aux entreprises d&apos;Afrique francophone les moyens
-              d&apos;une image à la hauteur de leur ambition, et les outils pour la mesurer.
+              Notre mission&nbsp;: donner aux entreprises d&apos;Afrique de l&apos;Ouest une image
+              à la hauteur de leurs ambitions, et les outils pour en mesurer les résultats.
             </p>
           </Reveal>
         </div>
@@ -106,7 +100,7 @@ export default function Agence() {
           <div className="container">
             <Reveal className="section-head center">
               <span className="eyebrow">L&apos;équipe</span>
-              <h2>Les visages derrière les livrables</h2>
+              <h2>Les visages derrière vos projets</h2>
             </Reveal>
             <div className="grid grid-4">
               {equipe.map((m) => (
@@ -155,7 +149,7 @@ export default function Agence() {
         <div className="container">
           <CtaBand
             titre="Rencontrons-nous"
-            texte="Nos bureaux sont à Abidjan. Le café est offert, le premier échange aussi."
+            texte="Nos bureaux sont à Abidjan. Passez nous voir, le café est offert."
             contexte="une rencontre avec l'équipe"
           />
         </div>
