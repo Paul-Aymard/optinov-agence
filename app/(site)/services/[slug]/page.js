@@ -184,7 +184,26 @@ export default async function PageService({ params }) {
       ))}
 
       {/* ACTE 5 — MANIFESTE + CTA */}
-      <section className="svc-manifeste">
+      <section className={`svc-manifeste${p.manifeste.camera ? " svc-manifeste--camera" : ""}`}>
+        {/* Photo & Vidéo : forme orange et caméra posées sur la bande noire,
+            débordant au-dessus et au-dessous (maquette direction). Décor pur. */}
+        {p.manifeste.camera && (
+          <div className="manif-scene" aria-hidden="true">
+            <svg className="manif-scene__forme" viewBox="0 0 600 600">
+              <defs>
+                <linearGradient id="manif-orange" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0" stopColor="#fd8534" />
+                  <stop offset="1" stopColor="#fc6303" />
+                </linearGradient>
+              </defs>
+              <path
+                fill="url(#manif-orange)"
+                d="M318 22c86 6 166 52 210 122 42 66 54 152 26 226-30 80-102 146-186 176-82 30-178 26-250-20C46 482 8 396 4 312 0 226 34 138 98 82 158 30 240 16 318 22Z"
+              />
+            </svg>
+            <img className="manif-scene__camera" src="/camera-photo-video.webp" alt="" width="660" height="581" loading="lazy" />
+          </div>
+        )}
         <div className="container">
           <Reveal className="section-head center">
             <h2>{p.manifeste.titre}</h2>

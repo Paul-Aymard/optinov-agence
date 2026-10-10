@@ -333,6 +333,9 @@ export const pagesServices = {
       },
     ],
     manifeste: {
+      // Mise en scène PDF « NOUVELLE MODIF AGENCE » : bande noire, forme orange
+      // et caméra codées dans le site (et non une image du tableau de bord).
+      camera: true,
       titre: "Faisons rayonner votre entreprise",
       paras: [
         "Chaque événement est une occasion de renforcer votre image.",
