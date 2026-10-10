@@ -1,8 +1,10 @@
+import { waitUntil } from '@vercel/functions'
+
 /*
   RECONSTRUCTION DU SITE VITRINE QUAND LE CONTENU CHANGE.
 
   Le site est statique : pour qu'une modification apparaisse, il faut le
-  reconstruire. On appelle pour cela le « Deploy Hook » de Cloudflare Pages
+  reconstruire. On appelle pour cela le « Deploy Hook » Vercel du site
   (URL fournie par la variable SITE_DEPLOY_HOOK). Sans la variable, on ne
   fait rien : pratique en local, où personne ne veut déclencher un vrai
   déploiement à chaque essai.
@@ -14,6 +16,14 @@
   compte. On attend donc que l'éditeur ait fini : chaque demande REPOUSSE un
   minuteur, et le hook n'est appelé qu'une fois le calme revenu (deux minutes
   sans nouvelle modification).
+
+  SUR VERCEL, PAS DE MINUTEUR. Une fonction Vercel s'arrête dès sa réponse
+  envoyée : un minuteur de deux minutes ne partait jamais, et le site n'était
+  jamais reconstruit (constaté en octobre 2026). Sur Vercel, l'appel part donc
+  tout de suite, confié à waitUntil pour qu'il aboutisse après la réponse. Le
+  site se construit en une vingtaine de secondes : quelques reconstructions de
+  plus valent mieux qu'aucune. Le regroupement reste actif ailleurs (serveur
+  classique, où le processus vit en continu).
 
   `creerDeclencheur` est une fabrique, pour que les tests puissent fournir
   leur propre délai et leur propre fonction d'appel sans toucher au réseau.
@@ -73,5 +83,9 @@ const declencheur = creerDeclencheur()
  */
 export const triggerSiteRebuild = (): void => {
   if (!process.env.SITE_DEPLOY_HOOK) return
+  if (process.env.VERCEL) {
+    waitUntil(appelerLeHook())
+    return
+  }
   declencheur.demander()
 }
