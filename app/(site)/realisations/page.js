@@ -1,7 +1,6 @@
-import { Suspense } from "react";
-import { projets } from "@/content/realisations";
+import { projets, sectionsRealisations } from "@/content/realisations";
 import { Breadcrumb, Reveal, CtaBand, WhatsAppFloat } from "@/components/Ui";
-import PortfolioGrid from "@/components/PortfolioGrid";
+import RealisationsSections from "@/components/RealisationsSections";
 
 /** Réalisations (G6) — CDC §6.6 */
 export const metadata = {
@@ -32,10 +31,12 @@ export default function Realisations() {
       <section className="section">
         <div className="container">
           {projets.length > 0 ? (
-            /* useSearchParams impose une frontière Suspense au prérendu statique */
-            <Suspense fallback={<p className="empty-state">Chargement des projets…</p>}>
-              <PortfolioGrid />
-            </Suspense>
+            /* Sections et sens de défilement pilotés depuis le tableau de bord.
+               Seuls les champs utiles aux vignettes partent au navigateur. */
+            <RealisationsSections
+              sections={sectionsRealisations}
+              projets={projets.map(({ slug, client, visuel, sections }) => ({ slug, client, visuel, sections }))}
+            />
           ) : (
             <p className="empty-state">
               Nos études de cas sont en cours de publication.
