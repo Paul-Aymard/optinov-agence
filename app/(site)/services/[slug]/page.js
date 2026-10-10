@@ -189,7 +189,9 @@ export default async function PageService({ params }) {
             débordant au-dessus et au-dessous (maquette direction). Décor pur. */}
         {p.manifeste.camera && (
           <div className="manif-scene" aria-hidden="true">
-            <svg className="manif-scene__forme" viewBox="0 0 600 600">
+            {/* Forme libre dessinée par la direction : haute à gauche, creux en
+                haut à droite, grand arrondi à droite qui descend sous la bande. */}
+            <svg className="manif-scene__forme" viewBox="0 0 360 345" preserveAspectRatio="none">
               <defs>
                 <linearGradient id="manif-orange" x1="0" y1="0" x2="1" y2="1">
                   <stop offset="0" stopColor="#fd8534" />
@@ -198,10 +200,10 @@ export default async function PageService({ params }) {
               </defs>
               <path
                 fill="url(#manif-orange)"
-                d="M318 22c86 6 166 52 210 122 42 66 54 152 26 226-30 80-102 146-186 176-82 30-178 26-250-20C46 482 8 396 4 312 0 226 34 138 98 82 158 30 240 16 318 22Z"
+                d="M34 6C74 -6 122 10 142 48C162 90 192 118 242 126C302 136 354 152 358 212C362 274 326 330 248 340C176 348 98 344 50 300C10 262 -2 190 2 122C6 62 4 16 34 6Z"
               />
             </svg>
-            <img className="manif-scene__camera" src="/camera-photo-video.webp" alt="" width="660" height="581" loading="lazy" />
+            <img className="manif-scene__camera" src="/camera-photo-video.webp" alt="" width="664" height="549" loading="lazy" />
           </div>
         )}
         <div className="container">
