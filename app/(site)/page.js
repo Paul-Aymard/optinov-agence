@@ -292,11 +292,26 @@ export default function Accueil() {
                 ))}
               </div>
             )}
+            {/* Logos depuis le tableau de bord (collection « Clients »). Jusqu'à
+                5 logos : une rangée fixe ; au-delà, un bandeau qui défile. */}
             {logosClients.length > 0 && (
-              <div className="marquee" aria-label="Nos clients">
-                <div className="marquee__track">
-                  {[...logosClients, ...logosClients].map((l, i) => <span key={i}>{l.nom}</span>)}
-                </div>
+              <div
+                className={logosClients.length > 5 ? "marquee logos-clients" : "logos-clients logos-clients--fixe"}
+                aria-label="Nos clients"
+              >
+                <ul className="marquee__track">
+                  {(logosClients.length > 5 ? [...logosClients, ...logosClients] : logosClients).map((l, i) => {
+                    const doublon = i >= logosClients.length;
+                    const logo = <img src={l.src} alt={doublon ? "" : l.nom} loading="lazy" />;
+                    return (
+                      <li key={i} aria-hidden={doublon || undefined}>
+                        {l.lien ? (
+                          <a href={l.lien} target="_blank" rel="noopener noreferrer" tabIndex={doublon ? -1 : undefined}>{logo}</a>
+                        ) : logo}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             )}
             {temoignages.length > 0 && (

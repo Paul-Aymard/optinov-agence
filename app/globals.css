@@ -1722,3 +1722,20 @@ table.compare tbody tr:last-child th, table.compare tbody tr:last-child td { bor
   .accordion .accordion__inner > * { animation: none !important; }
   .accordion--rebond .accordion__btn .plus { transition: none; }
 }
+
+/* =============================================================
+ * 32. Accueil — logos clients (collection « Clients » du tableau de bord)
+ * Logos en gris, qui reprennent leurs couleurs au survol. Au-delà de 5,
+ * ils défilent dans le bandeau (.marquee) ; sinon, rangée fixe centrée.
+ * ============================================================= */
+.logos-clients { margin-bottom: clamp(2rem, 4vw, 3rem); }
+.logos-clients .marquee__track { list-style: none; margin: 0; padding: 0; align-items: center; }
+.logos-clients li { flex: none; display: flex; align-items: center; }
+.logos-clients img {
+  height: clamp(42px, 5vw, 60px); width: auto; max-width: 170px; object-fit: contain; display: block;
+  filter: grayscale(1); opacity: .65; transition: filter .35s ease, opacity .35s ease, transform .35s ease;
+}
+.logos-clients a { display: flex; align-items: center; min-height: 44px; }
+.logos-clients li:hover img { filter: none; opacity: 1; transform: scale(1.06); }
+.logos-clients--fixe { margin-top: 2rem; }
+.logos-clients--fixe .marquee__track { width: auto; animation: none; flex-wrap: wrap; justify-content: center; gap: clamp(1.75rem, 5vw, 3.5rem); }
